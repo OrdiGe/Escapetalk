@@ -1,0 +1,61 @@
+@font-face {
+    font-family: 'montserratthin';
+    src: url('montserrat-variablefont_wght-webfont.woff2') format('woff2'),
+         url('montserrat-variablefont_wght-webfont.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+* {
+    font-family: 'montserratthin';
+}
+
+body {
+    margin: 0;
+
+}
+
+header {
+    position: fixed;
+    width: 100vw;
+    height: 70px;
+}
+
+header .container {
+    width: 100%;
+    height: 100%;
+    background-color: #f23838;
+}
+
+header .container .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    max-width: 320px;
+    padding: 20px 0;
+}
+
+header .container .content .right-content {
+    display: flex;
+    flex-direction: row;
+}
+
+header .container .content .right-content a {
+    white-space: nowrap;
+    font-weight: 100;
+    text-decoration: none;
+    color: white;
+}
+
+.fa-earth-europe, .fa-user {
+    color: white;
+    height: 100%;
+}
+
+@media only screen and (max-width: 768px ) {
+    .logo, .games, .news {
+        display: none;
+    }
+}
