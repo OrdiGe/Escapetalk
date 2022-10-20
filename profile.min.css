@@ -200,6 +200,29 @@
 	margin-bottom: 50px;
 }
 
+.profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .rank {
+	font-size: 16px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .full-progress-bar {
+	width: 100%;
+    height: 5px;
+    background-color: #eba3a7;
+    border-radius: 10px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .full-progress-bar .progress-bar {
+    width: 0px;
+    height: 5px;
+    background-color: #ec202c;
+    border-radius: 10px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .progression-text {
+    font-size: 12px;
+	font-style: italic;
+}
+
 .profiel #profile .container .contentbox .profile-header .header-info .right .place {
 	color: #888;
 }
@@ -212,12 +235,46 @@
 	color: #fd4c4c;
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .labels {
+.profiel #profile .container .contentbox .profile-header .item-wrapper .label-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(2), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(5) {
+    border-left: 1px solid #000;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(1), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(2) {
+    border-bottom: 1px solid #000;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(4), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(5), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(6) {
+    border-top: 1px solid #000;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .labels {
+    width: 50%;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
+	flex-direction: column;
+    text-align: center;
+    padding: 20px;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .labels.full-width {
+    width: 100%;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.number {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.statistic {
+    font-size: 12px;
+    text-transform: uppercase;
 }
 
 .profiel #profile .container .contentbox .profile-header .header-info .right .labels p {
@@ -302,13 +359,83 @@
 	margin-top: 20px;
 }
 
+.profiel #profile .container .contentbox .more-information .challenges-top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all-btn {
+    background-color: #efefef;
+    padding: 5px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-title {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb .pb-container {
+    width: 75%;
+    margin-top: 10px;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb .full-progress-bar {
+    height: 5px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb .full-progress-bar .progress-bar {
+    width: 0px;
+    height: 5px;
+    background-color: #838383;
+    border-radius: 10px;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb .challenge-progression {
+    font-size: 10px;
+}
+
+.profiel #profile .container .contentbox .more-information .challenge .challenge-pb .claim-btn {
+    width: 25%;
+    background-color: #efefef;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+    text-align: center;
+}
+
 .profiel #profile .container .contentbox .more-information .extra-information .description {
 	overflow: auto;
 }
 
-.profiel #profile .container .contentbox .more-information .extra-information p {
+.profiel #profile .container .contentbox .more-information .extra-information p, .profiel #profile .container .contentbox .more-information .badges-box p, .profiel #profile .container .contentbox .more-information .teams-box p {
 	color: #888;
+    font-size: 12px;
 }
+
+
 
 .profiel #profile .container .contentbox .more-information .extra-information .badges {
 	display: -webkit-box;
@@ -319,6 +446,8 @@
 	flex-wrap: wrap;
 	margin-top: -10px;
 }
+
+
 
 .profiel #profile .container .contentbox .more-information .extra-information .badges .badge {
 	width: calc(100% - 20px);
