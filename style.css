@@ -110,7 +110,16 @@ main .background {
 	box-shadow: 0 0 4px 0 rgba(51,51,51,0.1);
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .title-container {
+.profiel #profile .container .contentbox .profile-header .header-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right {
+    width: 100%;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .left .title-container {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 70px;
@@ -141,6 +150,38 @@ main .background {
 .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .progression-text {
     font-size: 12px;
 	font-style: italic;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs .container {
+	padding: 0
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs svg {
+	color: #888
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs a {
+	color: #888
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs a:hover {
+	color: #fd4c4c
+}
+
+.profiel #profile h3 {
+	font-size: 16px;
+    margin: 0;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .left h1 {
+	font-size: 24px;
+	line-height: 1.2;
+	margin: 0px
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .permanent-closed,
+.profiel #profile .container .contentbox .profile-header .header-info .left .closed {
+	color: #fd4c4c
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container {
@@ -255,4 +296,239 @@ main .background {
 .profiel #profile .container .contentbox .more-information .extra-information p, .profiel #profile .container .contentbox .more-information .badges-box p, .profiel #profile .container .contentbox .more-information .teams-box p {
 	color: #888;
     font-size: 12px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category svg {
+    width: 17px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
+    margin-left: 10px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .right {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.edit-profile {
+    color: #acacac;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+}
+
+.edit-profile .svg-inline--fa {
+    margin-right: 5px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .lazy-loaded {
+    display: flex;
+}
+
+@media (min-width: 568px) {
+    .profiel #profile .container .contentbox .profile-header .header-info .left {
+        width: 100%;
+        display: flex;
+	}
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-container {
+
+        display: flex;
+        justify-content:unset;
+        flex-direction: column;
+    }    
+}
+
+@media (min-width: 1024px) {
+    .profiel #profile .container .contentbox .profile-header {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container {
+        display: flex;
+
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-container .title .breadcrumbs .container {
+        padding: 0;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .breadcrumbs .container {
+        padding: 0
+    }
+    
+    .profiel #profile .container .contentbox .profile-header .header-info .left .breadcrumbs svg {
+        color: #888
+    }
+    
+    .profiel #profile .container .contentbox .profile-header .header-info .left .breadcrumbs a {
+        color: #888
+    }
+    
+    .profiel #profile .container .contentbox .profile-header .header-info .left .breadcrumbs a:hover {
+        color: #fd4c4c
+    }
+
+    .edit-profile {
+        position: relative;
+        right: 0;
+        color: #acacac;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        height: fit-content;
+        align-items: center;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right {
+        position: relative;
+        top: -85px;
+        left: 170px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        width: calc(100% - 170px);
+        justify-content: space-between;
+        margin-bottom: -85px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container {
+        padding-bottom: 10px;
+        margin: 0;
+        width: 50%;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information {
+        width: 50%;
+        position: absolute;
+        top: calc(-63px + (75px - (87px / 2)));
+        right: 0;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category {
+        justify-content: center;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .item {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category {
+        display: flex;
+        margin-bottom: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
+        margin-left: 10px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .labels, .profiel #profile .container .contentbox .profile-header .item-wrapper .labels.full-width {
+        width: calc(100% / 6);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-direction: column;
+        text-align: center;
+        padding: 0;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.number {
+        font-size: 24px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.statistic {
+        font-size: 18px;
+        line-height: 1.3em;
+        text-transform: capitalize;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(n+2) {
+        border-left: 1px solid rgb(167, 167, 167);
+    }
+    
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(1), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(2) {
+        border-bottom: 0px solid rgb(167, 167, 167);
+    }
+    
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(4), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(5), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(6) {
+        border-top: 0px solid rgb(167, 167, 167);
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenges-top-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges {
+        height: 100%;
+        max-height: 370px;
+        overflow-y: scroll;
+    }
+
+    .profiel #profile .container .contentbox .more-information .extra-information {
+        height: 458px;
+        overflow-y: scroll;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box, .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
+        height: 458px;
+    }
 }
