@@ -241,15 +241,15 @@
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(2), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(5) {
-    border-left: 1px solid #000;
+    border-left: 1px solid rgb(167, 167, 167);
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(1), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(2) {
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgb(167, 167, 167);
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(4), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(5), .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(6) {
-    border-top: 1px solid #000;
+    border-top: 1px solid rgb(167, 167, 167);
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .labels {
