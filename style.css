@@ -467,10 +467,6 @@ main .background {
         margin: 0 10px 0 0
     }
 
-    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .title {
-        display: flex;
-        align-items: center;
-    }
 
     .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .profile-pic {
         position: relative;
@@ -708,7 +704,7 @@ main .background {
     }
 
     .profiel #profile .container .contentbox .more-information .extra-information {
-        height: 458px;
+        height: 100%;
         overflow-y: scroll;
     }
 
