@@ -1,0 +1,39 @@
+.breadcrumbs .container {
+	padding-top: 15px;
+	padding-bottom: 0
+}
+
+.breadcrumbs .breadcrumbs-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding: 10px 20px;
+	color: #888;
+	background-color: #fff;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0.1);
+	box-shadow: 0 0 4px 0 rgba(51, 51, 51, 0.1);
+	font-size: 14px
+}
+
+.breadcrumbs .breadcrumbs-wrapper svg {
+	margin-right: 5px
+}
+
+.breadcrumbs .breadcrumbs-wrapper a {
+	margin-right: 5px;
+	color: #888
+}
+
+.breadcrumbs .breadcrumbs-wrapper a:hover {
+	color: #fd4c4c
+}
+
+.breadcrumbs .breadcrumbs-wrapper .breadcrumb {
+	margin-right: 10px
+}

@@ -101,6 +101,11 @@ main .background {
     }
 } */
 
+.breadcrumbs {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
 .item-box {
 	padding: 20px;
 	padding-bottom: 0;
@@ -110,9 +115,21 @@ main .background {
 	box-shadow: 0 0 4px 0 rgba(51,51,51,0.1);
 }
 
+.profiel #profile .container .contentbox {
+    padding-top: 100px;
+}
+
 .profiel #profile .container .contentbox .profile-header .header-info {
     display: flex;
     flex-wrap: wrap;
+}
+
+.profiel #profile .container .contentbox .profile-header .profile-box-1 {
+    margin-bottom: 20px;
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .left {
+    position: relative;
 }
 
 .profiel #profile .container .contentbox .profile-header .header-info .right {
@@ -121,6 +138,7 @@ main .background {
 
 .profiel #profile .container .contentbox .profile-header .header-info .left .title-container {
 	display: flex;
+    flex-direction: column;
 	justify-content: space-between;
 	margin-bottom: 70px;
 }
@@ -152,19 +170,19 @@ main .background {
 	font-style: italic;
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs .container {
+.profiel #profile .container .contentbox .profile-header .profile-header-box .left .title-pic-container .title-container .breadcrumbs .container {
 	padding: 0
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs svg {
+.profiel #profile .container .contentbox .profile-header .profile-header-box .left .title-pic-container .title-container .breadcrumbs .container .content .breadcrumbs-wrapper .breadcrumbs svg {
 	color: #888
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs a {
+.profiel #profile .container .contentbox .profile-header .profile-header-box .left .title-pic-container .title-container .breadcrumbs .container .content .breadcrumbs-wrapper .breadcrumbs a {
 	color: #888
 }
 
-.profiel #profile .container .contentbox .profile-header .header-info .right .breadcrumbs a:hover {
+.profiel #profile .container .contentbox .profile-header .profile-header-box .left .title-pic-container .title-container .breadcrumbs .container .content .breadcrumbs-wrapper .breadcrumbs a:hover {
 	color: #fd4c4c
 }
 
@@ -179,9 +197,21 @@ main .background {
 	margin: 0px
 }
 
+.profiel #profile .container .contentbox .profile-header .header-info .left .profile-pic {
+    position: relative;
+}
+
 .profiel #profile .container .contentbox .profile-header .header-info .right .permanent-closed,
 .profiel #profile .container .contentbox .profile-header .header-info .left .closed {
 	color: #fd4c4c
+}
+
+.profiel #profile .container .contentbox .profile-header .header-info .left .closed {
+    position: absolute;
+    top: calc(100% - 34px);
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 0 5px 0 0;
 }
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container {
@@ -226,6 +256,10 @@ main .background {
     text-transform: uppercase;
 }
 
+.profiel #profile .container .contentbox .profile-header .item-wrapper .full-width .label.statistic br {
+    display: none;
+}
+
 .profiel #profile .container .contentbox .more-information .challenges-top-container {
     display: flex;
     justify-content: space-between;
@@ -233,6 +267,9 @@ main .background {
 }
 
 .profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all-btn {
+    max-width: 140px;
+    width: 35%;
+    text-align: center;
     background-color: #efefef;
     padding: 5px;
     border-radius: 10px;
@@ -260,7 +297,7 @@ main .background {
 }
 
 .profiel #profile .container .contentbox .more-information .challenge .challenge-pb .pb-container {
-    width: 75%;
+    width: 100%;
     margin-top: 10px;
 }
 
@@ -333,6 +370,9 @@ main .background {
     display: flex;
     height: fit-content;
     align-items: center;
+    position: absolute;
+    left: 0;
+    top: 360px;
 }
 
 .edit-profile .svg-inline--fa {
@@ -343,10 +383,17 @@ main .background {
     display: flex;
 }
 
+@media (min-width: 375px) {
+    .container {
+        padding: 0;
+    }
+}
+
 @media (min-width: 568px) {
     .profiel #profile .container .contentbox .profile-header .header-info .left {
         width: 100%;
         display: flex;
+        justify-content: space-between;
 	}
 
     .profiel #profile .container .contentbox .profile-header .header-info .left .title-container {
@@ -354,13 +401,53 @@ main .background {
         display: flex;
         justify-content:unset;
         flex-direction: column;
-    }    
+    }   
+    
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container {
+        display: flex;
+
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .profile-pic {
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .closed {
+        position: absolute;
+        top: calc(100px - 21px);
+        padding: 2px 7px;
+        background-color: #fff;
+        border-radius: 0 5px 0 0;
+        font-size: 12px;
+    }
+
+    .edit-profile {
+        color: #acacac;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        height: fit-content;
+        align-items: center;
+        position:unset;
+    }
 }
 
 @media (min-width: 1024px) {
     .profiel #profile .container .contentbox .profile-header {
         display: flex;
         flex-direction: column;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .profile-box-1 {
+        margin-bottom: 0px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .profile-header-box {
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        /* flex-direction: column; */
+        /* justify-content: center; */
     }
 
     .profiel #profile .container .contentbox .profile-header .header-info .left {
@@ -372,6 +459,34 @@ main .background {
     .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container {
         display: flex;
 
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left h1 {
+        font-size: 24px;
+        line-height: 1.2;
+        margin: 0 10px 0 0
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .title {
+        display: flex;
+        align-items: center;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .profile-pic {
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .left .title-pic-container .profile-pic .closed {
+        position: absolute;
+        top: calc(100% - 28px);
+        padding: 5px 10px;
+        background-color: #fff;
+        border-radius: 0 5px 0 0;
+        font-size: 12px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .rank {
+        font-size: 18px;
     }
 
     .profiel #profile .container .contentbox .profile-header .header-info .left .title-container .title .breadcrumbs .container {
@@ -394,15 +509,23 @@ main .background {
         color: #fd4c4c
     }
 
+    .profiel #profile h3 {
+        font-size: 20px;
+        margin: 0 0 20px 0;
+    }
+
     .edit-profile {
         position: relative;
         right: 0;
+        top: 0;
         color: #acacac;
         font-size: 12px;
         font-weight: 700;
         display: flex;
         height: fit-content;
         align-items: center;
+
+        
     }
 
     .profiel #profile .container .contentbox .profile-header .header-info .right {
@@ -425,7 +548,9 @@ main .background {
     }
 
     .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container {
-        padding-bottom: 10px;
+        position: absolute;
+        bottom: 0;
+        padding-bottom: 0px;
         margin: 0;
         width: 50%;
     }
@@ -493,9 +618,13 @@ main .background {
     }
 
     .profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.statistic {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.3em;
         text-transform: capitalize;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .item-wrapper .full-width .label.statistic br {
+        display: inline;
     }
 
     .profiel #profile .container .contentbox .profile-header .item-wrapper .label-container .labels:nth-child(n+2) {
@@ -517,10 +646,65 @@ main .background {
         margin-bottom: 20px;
     }
 
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container {
+        margin-top: -20px;
+    }
+
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges {
         height: 100%;
         max-height: 370px;
         overflow-y: scroll;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges::webkit-scrollbar-track {
+        border: 0px solid #000;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges::webkit-scrollbar {
+        position: relative;
+        z-index: 1;
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all-btn {
+        max-width: 140px;
+        width: 35%;
+        text-align: center;
+        background-color: #efefef;
+        padding: 5px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenge {
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 10px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenge .challenge-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenge .challenge-pb .claim-btn {
+        max-width: 140px;
+        width: 25%;
+        background-color: #efefef;
+        padding: 5px;
+        margin-left: 10px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 500;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .profiel #profile .container .contentbox .more-information .challenge .challenge-pb .challenge-progression {
+        font-size: 16px;
+        color: #888;
     }
 
     .profiel #profile .container .contentbox .more-information .extra-information {
@@ -530,5 +714,10 @@ main .background {
 
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box, .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
         height: 458px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .extra-information p, .profiel #profile .container .contentbox .more-information .badges-box p, .profiel #profile .container .contentbox .more-information .teams-box p {
+        color: #888;
+        font-size: 14px;
     }
 }
