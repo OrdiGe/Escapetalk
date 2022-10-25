@@ -154,12 +154,12 @@ main .background {
 .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .full-progress-bar {
 	width: 100%;
     height: 5px;
-    background-color: #eba3a7;
+    background-color: #ffe6e7;
     border-radius: 10px;
 }
 
 .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .full-progress-bar .progress-bar {
-    width: 0px;
+    width: 50%;
     height: 5px;
     background-color: #ec202c;
     border-radius: 10px;
@@ -258,6 +258,56 @@ main .background {
 
 .profiel #profile .container .contentbox .profile-header .item-wrapper .full-width .label.statistic br {
     display: none;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+    width: calc(50% - 10px);
+    height: 119.16px;
+    margin: 0 10px 10px 0;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge svg {
+    width: 100%;
+    height: 119.16px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: -25px;
+    border: 1px solid #000;
+    background-color: #fff;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+    font-size: 12px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+    font-size: 12px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc.active {
+    display: flex;    
 }
 
 .profiel #profile .container .contentbox .more-information .challenges-top-container {
@@ -370,7 +420,6 @@ main .background {
     display: flex;
     height: fit-content;
     align-items: center;
-    position: absolute;
     left: 0;
     top: 360px;
 }
@@ -381,6 +430,48 @@ main .background {
 
 .profiel #profile .container .contentbox .profile-header .header-info .lazy-loaded {
     display: flex;
+}
+.profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image {
+    width: 70px;
+    height: 70px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image a {
+    width: 70px;
+    height: 70px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info {
+    margin: 0 0 0 10px;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .name {
+    font-size: 14px;
+    margin: 0;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels .label {
+    margin: -3px 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    height: 0;
+    font-size: 12px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 @media (min-width: 375px) {
@@ -430,9 +521,63 @@ main .background {
         align-items: center;
         position:unset;
     }
+
+    .profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: #f8f8f8;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-y: unset;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image a {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info {
+        margin: 0 0 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .name {
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels .label {
+        margin: -3px 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        height: 0;
+        font-size: 12px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
 }
 
 @media (min-width: 1024px) {
+
+    .profiel #profile .container .contentbox {
+        padding-top: 200px;
+    }
     .profiel #profile .container .contentbox .profile-header {
         display: flex;
         flex-direction: column;
@@ -556,6 +701,7 @@ main .background {
         position: absolute;
         top: calc(-63px + (75px - (87px / 2)));
         right: 0;
+        align-items: center;
     }
 
     .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper {
@@ -607,6 +753,15 @@ main .background {
         flex-direction: column;
         text-align: center;
         padding: 0;
+    }
+
+    .item-box {
+        padding: 20px 0 20px 0;
+        padding-bottom: 0;
+        background-color: #fff;
+        border-radius: 3px;
+        -webkit-box-shadow: 0 0 4px 0 rgb(51 51 51 / 10%);
+        box-shadow: 0 0 4px 0 rgb(51 51 51 / 10%);
     }
 
     .profiel #profile .container .contentbox .profile-header .item-wrapper .labels .label.number {
@@ -704,7 +859,7 @@ main .background {
     }
 
     .profiel #profile .container .contentbox .more-information .extra-information {
-        height: 100%;
+        height: 460px;
         overflow-y: scroll;
     }
 
@@ -717,3 +872,134 @@ main .background {
         font-size: 14px;
     }
 }
+
+@media (min-width: 1024px) {
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .team-wrapper-container {
+        overflow-y: none;
+    }
+
+    .profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper  {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: #f8f8f8;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 0 0px 20px 0;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image a {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info {
+        margin: 0 0 0 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .name {
+        font-size: 14px;
+        margin: 0;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels .label {
+        margin: -10px 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        height: 0;
+        font-size: 12px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+@media (min-width: 1440px) {
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
+        margin-left: 10px;
+        font-size: 18px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .team-wrapper-container {
+        overflow-y: scroll;
+    }
+
+    .profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper  {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: #f8f8f8;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 0 10px 20px 0;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .image a {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info {
+        margin: 0 0 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .name {
+        font-size: 16px;
+        margin: 0;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .team-wrapper-container .team-wrapper .team-info .labels .label {
+        margin: -5px 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        height: 0;
+        font-size: 14px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
