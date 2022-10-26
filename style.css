@@ -266,36 +266,50 @@ main .background {
 }
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container {
+    height: 100%;
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content {
+    overflow-y: auto;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-wrap: wrap;
-    height: 100%;
-    overflow-y: scroll;
+
 }
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
-    width: calc(50% - 10px);
-    height: 119.16px;
+    width: 45%;
+    height: 126px;
     margin: 0 10px 10px 0;
     display: flex;
-    position: relative;
     justify-content: center;
+    position: relative;
 }
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge svg {
-    width: 100%;
-    height: 119.16px;
+    overflow: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc {
     display: none;
     position: absolute;
     width: 100%;
-    top: -25px;
-    border: 1px solid #000;
-    background-color: #fff;
-    text-align: center;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(1px);
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-
+    text-align: center;
+    z-index: 20;
 }
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
@@ -304,9 +318,10 @@ main .background {
 
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
     font-size: 12px;
+    color: #000;
 }
 
-.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc.active {
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge:hover .badge-desc {
     display: flex;    
 }
 
@@ -522,6 +537,33 @@ main .background {
         position:unset;
     }
 
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content {
+        overflow-y: auto;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+        width: 31.68852459016393%;
+        height: 139.42px;
+        margin: 0 0 10px 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+        font-size: 16px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+        font-size: 14px;
+    }
+
     .profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper {
         display: flex;
         flex-direction: row;
@@ -570,6 +612,35 @@ main .background {
         font-size: 12px;
         -webkit-box-shadow: none;
         box-shadow: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content {
+        overflow-y: auto;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+        width: 14.75409836065574%;
+        height: 90px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+        font-size: 10px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+        font-size: 10px;
     }
 }
 
@@ -804,7 +875,7 @@ main .background {
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges {
         height: 100%;
         max-height: 370px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container .challenges::webkit-scrollbar-track {
@@ -860,7 +931,38 @@ main .background {
 
     .profiel #profile .container .contentbox .more-information .extra-information {
         height: 460px;
-        overflow-y: scroll;
+        overflow-y: auto;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container {
+        margin-top: 0;
+        height: 368px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content {
+        overflow-y: auto;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+        width: 118.94px;
+        height: 118.94px;
+        margin: 0 10px 10px 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+        font-size: 14px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+        font-size: 14px;
     }
 
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box, .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
@@ -933,6 +1035,29 @@ main .background {
     }
 }
 
+@media (min-width: 1200px) {
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+        width: 142.27px;
+        height: 142.27px;
+        margin: 0 10px 10px 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc {
+        padding: 5px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+        font-size: 13px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+        font-size: 14px;
+    }
+}
+
 @media (min-width: 1440px) {
     .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category svg {
         width: 25px;
@@ -944,13 +1069,34 @@ main .background {
         font-size: 18px;
     }
 
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
+        width: 158.94px;
+        height: 158.94px;
+        margin: 0 10px 10px 0;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc {
+        padding: 5px;
+    }
+
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc h4 {
+        font-size: 14px;
+    }
+    
+    .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+        font-size: 14px;
+    }
+
     .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
         display: flex;
         flex-direction: column;
     }
     
     .profiel #profile .container .contentbox .more-information .team-wrapper-container {
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 
     .profiel #profile .container .contentbox .more-information .team-wrapper-container .team-wrapper  {
