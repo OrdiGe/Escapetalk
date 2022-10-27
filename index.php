@@ -608,12 +608,12 @@
                             <div class="challenges-box box item">
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
-                                    <div class="claim-all-btn" style="background-color:#30d158;">CLAIM ALLES</div>
+                                    <div id="claim-all-btn">CLAIM ALLES</div>
                                 </div>
 
                                 <div class="challenges-container">
                                     <div class="challenges">
-                                        <div class="challenge">
+                                        <div class="challenge" data-icon="profileCompleteBadge.svg">
                                             <p class="challenge-title">Profielpagina compleet</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -622,7 +622,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn" style="background-color:#30d158;">CLAIM</div>
+                                                <div class="claim-btn claimable">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -637,7 +637,7 @@
                                                 <div class="claim-btn">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge">
+                                        <div class="challenge" data-icon="badge1.svg">
                                             <p class="challenge-title">1 game gespeeld</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -726,13 +726,31 @@
 
                             <div class="box badges-box item">
                                 <h3>Badges</h3>
-                                <p>Voltooi challenges om badges te krijgen!</p>
-
+                                <div class="badges-container" style="display: block;">
+                                    <p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>
+                                    <div class="badges-content">
+                                                                                
+                                        <div class="badge ">
+                                            <img src="http://localhost/Escapetalk/images/1jaarLidBadge.svg" alt="">
+                                              
+                                              
+                                            
+                                            <div class="badge-desc">
+                                                <h4>Eerste kamer review</h4>
+                                                <p>Behaald op</p>
+                                                <p>25-10-2022</p>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    
+                                </div>
                             </div>
 
                             <div class="box teams-box item marge-top" style="margin-top: 20px;">
                                 <h3>Teams</h3>
-                                <p>Nog geen teams</p>
+                                <div class="description">
+                                    <p>Nog geen teams</p>
+                                </div>
                             </div>
                             
                         </div>
@@ -922,11 +940,84 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
                     <a href="https://lift3.nl/" target="_blank" title="Lift 3 - Krachtig in vormgeving en webdevelopment">Lift 3</a>
                 </p>
             </div>
-
         </div>
     </div>
 </footer>
 
+<script src="https://lift3cdn.nl/js/umbrella.min.js?v=0.5.5"></script>
+<?php
+
+$badges = [
+    0 => ['id' => 1, 'title' => '1jaarLidBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => '1JaarLidBadge.svg'],
+    1 => ['id' => 2, 'title' => '100likesBadge', 'progress' => '0/100', 'claimable' => false, 'icon' => '100likesBadge.svg'],
+    2 => ['id' => 3, 'title' => 'championBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'championBadge.svg'],
+    3 => ['id' => 4, 'title' => 'eersteKamerReviewBadge', 'progress' => '0/1', 'claimable' => true, 'icon' => 'eersteKamerReview.svg'],
+    4 => ['id' => 5, 'title' => 'firstGamesReviewBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'firstGamesReview.svg'],
+    5 => ['id' => 6, 'title' => 'foundersBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'foundersBadge.svg'],
+    6 => ['id' => 7, 'title' => 'halloweenBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'halloweenBadge.svg'],
+    7 => ['id' => 8, 'title' => 'profileCompleteBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'profileCompleteBadge.svg'],
+];
+
+//iterate over $badges and set title on id
+foreach ($badges as $key => $badge) {
+    $badges[$key]['title'] = 'test' . $badge['id'];
+}
+
+?>
+<script>
+    
+
+    function claimBadge() {
+        const badgeId = new XMLHttpRequest();
+        badgeId.onload = function() {
+            
+        }
+
+        badgeId.open("GET", "claimbadge.php")
+    }
+//    u("#claim-all-btn").on('click', function(){
+//         u(this).find(".claim-btn.claimable").closest('.challenge').data('icon');
+//         console.log(u(".claim-btn.claimable").closest('.challenge').data('icon'));
+//         // u(".badge").removeClass("hidden");
+//         // u(".badges-box-description").addClass("hidden");
+//    })
+
+
+   // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
+   // claimbadge.php
+   // json_return = [];  
+   // if (id == 'all') {
+    // claim alles
+    // 
+  // elseif (id == X) {
+// json_return['html'] = "HTML VAN DIE BADGE";
+  // }
+  // echo json_encode(json_return);
+
+   // when I click on claim
+   // Do Ajax request to claimbadge.php (id van challenge)
+   // If ajax request != false
+   // INSERT badge from ajax_request json array
+   // {{claimed_badge = "TEST", "HTML" = }}
+   // u('.badges-container').prepend(json.badge_html);
+   // ELSE
+   // SHOW ERROR
+
+    // u(".claim-btn.claimable").on('click', function(){
+    //     // console.log(u(this).closest('.challenge').data('icon'));
+
+    //     u(".badge").removeClass("hidden");
+    //     u(".badges-box-description").addClass("hidden");
+    // });
+
+    // for(var i = 0; i < challengeBar.length; i++) {
+    //     if(challengeBar[i].offsetWidth == parentChallengeBar[i].offsetWidth) {
+    //         console.log(i);
+    //         claimBtn[i].style.backgroundColor = '#30d158';
+    //         claimAllBtn.style.backgroundColor = '#30d158';
+    //     }
+    // }
+</script>
 
 
 <script>var current_language = '1';</script>
@@ -937,7 +1028,6 @@ var JS_VERSION = '0.5.5';
 var CSS_VERSION = '0.5.9';
 </script> 
 
-<script src="https://lift3cdn.nl/js/umbrella.min.js?v=0.5.5"></script>
 <script src="https://lift3cdn.nl/js/lazysizes.bgset.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/lazysizes.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>

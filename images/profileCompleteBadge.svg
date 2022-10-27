@@ -1,0 +1,13 @@
+<svg id="Component_47_62" data-name="Component 47 – 62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="160" height="160" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.037" y1="0.963" x2="0.963" y2="0.037" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#d9d9d9"/>
+      <stop offset="0.5" stop-color="#a5a5a5"/>
+      <stop offset="1" stop-color="#838383"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_116" data-name="Group 116" transform="translate(-946.248 -32.206)">
+    <rect id="Rectangle_45" data-name="Rectangle 45" width="160" height="160" rx="20" transform="translate(946.248 32.206)" fill="url(#linear-gradient)"/>
+  </g>
+  <path id="Path_97" data-name="Path 97" d="M1067.974,60.481H984.523a10,10,0,0,0-10,10v83.451a10,10,0,0,0,10,10h83.451a10,10,0,0,0,10-10V70.481A10,10,0,0,0,1067.974,60.481Zm-70.965,84.547-3,3-7.619-7.619,3-3,4.62,4.619,10.442-10.442,3,3Zm0-27.359-3,3-7.619-7.62,3-3,4.62,4.619,10.442-10.442,3,3Zm0-27.843h0l-3,3-7.619-7.619,3-3,4.62,4.62,10.442-10.442,3,3Zm66.115,55.151h-42.14a2.983,2.983,0,1,1,0-5.966h42.14a2.983,2.983,0,1,1,0,5.966Zm0-29.546h-42.14a2.984,2.984,0,0,1,0-5.967h42.14a2.984,2.984,0,0,1,0,5.967Zm0-25.656h-42.14a2.983,2.983,0,1,1,0-5.966h42.14a2.983,2.983,0,1,1,0,5.966Z" transform="translate(-946.248 -32.206)" fill="#fff"/>
+</svg>
