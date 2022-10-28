@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+
+<?php
+
+// $badges = [
+//     0 => ['id' => 1, 'title' => '1jaarLidBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => '1JaarLidBadge.svg'],
+//     1 => ['id' => 2, 'title' => '100likesBadge', 'progress' => '0/100', 'claimable' => false, 'icon' => '100likesBadge.svg'],
+//     2 => ['id' => 3, 'title' => 'championBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'championBadge.svg'],
+//     3 => ['id' => 4, 'title' => 'eersteKamerReviewBadge', 'progress' => '0/1', 'claimable' => true, 'icon' => 'eersteKamerReview.svg'],
+//     4 => ['id' => 5, 'title' => 'firstGamesReviewBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'firstGamesReview.svg'],
+//     5 => ['id' => 6, 'title' => 'foundersBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'foundersBadge.svg'],
+//     6 => ['id' => 7, 'title' => 'halloweenBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'halloweenBadge.svg'],
+//     7 => ['id' => 8, 'title' => 'profileCompleteBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'profileCompleteBadge.svg'],
+// ];
+?>
+
 <html lang="en">
     <head>
 		<meta charset="utf-8">
@@ -622,7 +637,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable">CLAIM</div>
+                                                <div class="claim-btn claimable" data-badgeId="1">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -634,7 +649,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="2">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" data-icon="badge1.svg">
@@ -646,7 +661,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="3">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -658,7 +673,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="4">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -670,7 +685,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="5">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -682,7 +697,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="6">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -694,7 +709,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="7">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge">
@@ -706,7 +721,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="8">CLAIM</div>
                                             </div>
                                         </div>
                                     </div>
@@ -729,18 +744,13 @@
                                 <div class="badges-container" style="display: block;">
                                     <p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>
                                     <div class="badges-content">
-                                                                                
-                                        <div class="badge ">
-                                            <img src="http://localhost/Escapetalk/images/1jaarLidBadge.svg" alt="">
-                                              
-                                              
-                                            
-                                            <div class="badge-desc">
-                                                <h4>Eerste kamer review</h4>
-                                                <p>Behaald op</p>
-                                                <p>25-10-2022</p>
-                                            </div>
-                                        </div>                                        
+                                        <?php
+                                            foreach ($badges as $badge) {
+                                                echo '<div class="badge"><img src="http://localhost/Escapetalk/images/' . $badge['icon'] . '"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>';
+                                        
+                                            }
+                                        ?>
+
                                     </div>
                                     
                                 </div>
@@ -947,76 +957,62 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 <script src="https://lift3cdn.nl/js/umbrella.min.js?v=0.5.5"></script>
 <?php
 
-$badges = [
-    0 => ['id' => 1, 'title' => '1jaarLidBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => '1JaarLidBadge.svg'],
-    1 => ['id' => 2, 'title' => '100likesBadge', 'progress' => '0/100', 'claimable' => false, 'icon' => '100likesBadge.svg'],
-    2 => ['id' => 3, 'title' => 'championBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'championBadge.svg'],
-    3 => ['id' => 4, 'title' => 'eersteKamerReviewBadge', 'progress' => '0/1', 'claimable' => true, 'icon' => 'eersteKamerReview.svg'],
-    4 => ['id' => 5, 'title' => 'firstGamesReviewBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'firstGamesReview.svg'],
-    5 => ['id' => 6, 'title' => 'foundersBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'foundersBadge.svg'],
-    6 => ['id' => 7, 'title' => 'halloweenBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'halloweenBadge.svg'],
-    7 => ['id' => 8, 'title' => 'profileCompleteBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'profileCompleteBadge.svg'],
-];
 
-//iterate over $badges and set title on id
-foreach ($badges as $key => $badge) {
-    $badges[$key]['title'] = 'test' . $badge['id'];
-}
+
 
 ?>
 <script>
+
+
+    //when i click on the div with class .claim-btn write in console the id of the div
+    u('.claimable').on('click', function() {
+        var badgeId = u(this).data('badgeId');
+
+        let data = new FormData();
+        data.append('type', 'claimBadge');
+        data.append('badgeId', badgeId);
+    
+        fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
+            console.log(response);
+            console.log(response.json());
+            const badge = JSON.parse(response.PromiseResult.Object);    
+            console.log(badge.title);
+        })
+        .catch((err) => {
+
+    
+        });
+
+    });
+
+
+
     
 
-    function claimBadge() {
-        const badgeId = new XMLHttpRequest();
-        badgeId.onload = function() {
-            
-        }
-
-        badgeId.open("GET", "claimbadge.php")
-    }
-//    u("#claim-all-btn").on('click', function(){
-//         u(this).find(".claim-btn.claimable").closest('.challenge').data('icon');
-//         console.log(u(".claim-btn.claimable").closest('.challenge').data('icon'));
-//         // u(".badge").removeClass("hidden");
-//         // u(".badges-box-description").addClass("hidden");
-//    })
-
-
-   // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
-   // claimbadge.php
-   // json_return = [];  
-   // if (id == 'all') {
-    // claim alles
-    // 
-  // elseif (id == X) {
-// json_return['html'] = "HTML VAN DIE BADGE";
-  // }
-  // echo json_encode(json_return);
-
-   // when I click on claim
-   // Do Ajax request to claimbadge.php (id van challenge)
-   // If ajax request != false
-   // INSERT badge from ajax_request json array
-   // {{claimed_badge = "TEST", "HTML" = }}
-   // u('.badges-container').prepend(json.badge_html);
-   // ELSE
-   // SHOW ERROR
-
-    // u(".claim-btn.claimable").on('click', function(){
-    //     // console.log(u(this).closest('.challenge').data('icon'));
-
-    //     u(".badge").removeClass("hidden");
-    //     u(".badges-box-description").addClass("hidden");
-    // });
-
-    // for(var i = 0; i < challengeBar.length; i++) {
-    //     if(challengeBar[i].offsetWidth == parentChallengeBar[i].offsetWidth) {
-    //         console.log(i);
-    //         claimBtn[i].style.backgroundColor = '#30d158';
-    //         claimAllBtn.style.backgroundColor = '#30d158';
-    //     }
+    // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
+    // claimbadge.php
+    // json_return = [];  
+    // if (id == 'all') {
+    //      claim alles
     // }
+    // elseif (id == X) {
+    //      json_return['html'] = "HTML VAN DIE BADGE";
+    // }
+    // echo json_encode(json_return);
+
+    // when I click on claim
+    // Do Ajax request to claimbadge.php (id van challenge)
+
+    // If (ajax_request != false) {
+    //      INSERT badge from ajax_request json array
+    //      {{claimed_badge = "TEST", "HTML" = }}
+    //      u('.badges-container').prepend(json.badge_html);
+    // }
+    // ELSE {
+    //      SHOW ERROR
+    // }
+
+    
 </script>
 
 
@@ -1065,6 +1061,7 @@ var CSS_VERSION = '0.5.9';
         data.append('type', 'reportReview');
         data.append('report-type', 'profiel');
         data.append('content', 'review_id=' + reviewId + '&message='+ reportReviewMessage);
+
 
         fetch('includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
 
