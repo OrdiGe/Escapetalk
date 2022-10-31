@@ -744,12 +744,12 @@
                                 <div class="badges-container" style="display: block;">
                                     <p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>
                                     <div class="badges-content">
-                                        <?php
+                                        <!-- <?php
                                             foreach ($badges as $badge) {
                                                 echo '<div class="badge"><img src="http://localhost/Escapetalk/images/' . $badge['icon'] . '"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>';
                                         
                                             }
-                                        ?>
+                                        ?> -->
 
                                     </div>
                                     
@@ -973,10 +973,9 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         data.append('badgeId', badgeId);
     
         fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-            console.log(response);
-            console.log(response.json());
-            const badge = JSON.parse(response.PromiseResult.Object);    
-            console.log(badge.title);
+            response.json().then((res) => {
+                u('.badges-content').nodes[0].innerHTML = '<div class="badge"><img src="http://localhost/Escapetalk/images/'+res.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>';
+            })
         })
         .catch((err) => {
 
