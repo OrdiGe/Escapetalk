@@ -626,12 +626,12 @@
                             <div class="challenges-box box item">
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
-                                    <div id="claim-all-btn">CLAIM ALLES</div>
+                                    <div class="claim-all-btn claim-all" >CLAIM ALLES</div>
                                 </div>
 
                                 <div class="challenges-container">
                                     <div class="challenges">
-                                        <div class="challenge" id="challenge1" data-challengeId="1">
+                                        <div class="challenge" id="challenge1" data-challengeId="1"  data-claimed="false">
                                             <p class="challenge-title">Profielpagina compleet</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -643,7 +643,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="1">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge2" data-challengeId="2">
+                                        <div class="challenge" id="challenge2" data-challengeId="2"  data-claimed="false">
                                             <p class="challenge-title">1 kamer gespeeld</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -655,7 +655,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="2">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge3">
+                                        <div class="challenge" id="challenge3" data-challengeId="3"  data-claimed="false">
                                             <p class="challenge-title">1 game gespeeld</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -667,7 +667,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="3">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge4">
+                                        <div class="challenge" id="challenge4" data-challengeId="4"  data-claimed="false">
                                             <p class="challenge-title">Eerste review over een kamer geplaatst</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -679,7 +679,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="4">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge5">
+                                        <div class="challenge" id="challenge5" data-challengeId="5"  data-claimed="false">
                                             <p class="challenge-title">Eerste review over een game geplaatst</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -691,7 +691,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="5">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge6">
+                                        <div class="challenge" id="challenge6" data-challengeId="6" data-claimed="false">
                                             <p class="challenge-title">10 kamers in één maand gespeeld</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -700,10 +700,10 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="6">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="6">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge7">
+                                        <div class="challenge" id="challenge7" data-challengeId="7"  data-claimed="false">
                                             <p class="challenge-title">Eén jaar lid</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -715,7 +715,7 @@
                                                 <div class="claim-btn claimable" data-badgeId="7">CLAIM</div>
                                             </div>
                                         </div>
-                                        <div class="challenge" id="challenge8">
+                                        <div class="challenge" id="challenge8" data-challengeId="8"  data-claimed="false">
                                             <p class="challenge-title">Kamer gespeeld tijdens Halloween</p>
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
@@ -960,7 +960,6 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 ?>
 <script>
 
-
     //when i click on the div with class .claim-btn write in console the id of the div
     u('.claimable').on('click', function() {
  
@@ -969,7 +968,7 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         claimBadges([badge]);
     });
 
-    u('#claim-all-btn').on('click', function() {
+    u('.claim-all').on('click', function() {
 
         var claimablebadges = u('.claimable');
 
@@ -978,6 +977,8 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         claimablebadges.each(function (e){
             badges.push(u(e).data('badgeId'));
         });
+        
+        u('.claim-all-btn').first().style.display = 'none';
 
         claimBadges(badges);
 
@@ -992,17 +993,20 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 
         u('.badges-box-description').first().style.display = 'none';
 
-        setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 1000);
+        setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
         fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
             response.json().then((res) => {
-                console.log(res);
-                u(res).each(function(e){
-                    console.log(e);
-                    u('.badges-content').prepend(u('<div class="badge"><img src="http://localhost/Escapetalk/images/'+res.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
-                    u('.badge').addClass("badge-ani");
 
-                    u('.challenge[data-challengeId="' + res.id+ + '"]').first().style.display = 'none';
+                u(res).each(function(e){
+                    
+                    console.log(e);
+
+                    u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
+
+                    u('#badge'+e.id+'').addClass("badge-ani");
+
+                    u('.challenge[data-challengeId="'+e.id+'"]').first().style.display = 'none';
                 });                
             });
         })
@@ -1010,11 +1014,7 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 
 
         });
-    }
-
-
-
-    
+    }    
 
     // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
     // claimbadge.php
@@ -1038,7 +1038,6 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
     // ELSE {
     //      SHOW ERROR
     // }
-
     
 </script>
 

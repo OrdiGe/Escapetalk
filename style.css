@@ -328,8 +328,8 @@ main .background {
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge-ani {
   -webkit-animation-name: badgeSlide;
           animation-name: badgeSlide;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .description {
   margin-top: 20px;
@@ -366,7 +366,7 @@ main .background {
   justify-content: space-between;
   align-items: center;
 }
-.profiel #profile .container .contentbox .more-information .challenges-top-container #claim-all-btn {
+.profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all-btn {
   max-width: 140px;
   width: 35%;
   text-align: center;
@@ -375,6 +375,9 @@ main .background {
   color: white;
   font-weight: 500;
   font-size: 12px;
+  background-color: #efefef;
+}
+.profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all {
   background-color: #30d158;
   cursor: pointer;
 }
@@ -506,12 +509,12 @@ main .background {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: unset;
+    justify-content: space-between;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
     width: 31.6885245902%;
     height: 139.42px;
-    margin: 0 10px 10px 0;
+    margin: 0 0 10px 0;
     display: flex;
     justify-content: center;
     position: relative;
@@ -589,6 +592,7 @@ main .background {
     width: 14.7540983607%;
     height: 90px;
     margin: 0;
+    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -779,6 +783,9 @@ main .background {
     font-weight: 500;
     font-size: 14px;
   }
+  .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box {
+    height: 458px;
+  }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box .challenges-container {
     margin-top: -20px;
   }
@@ -808,6 +815,7 @@ main .background {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
     width: 118.94px;
