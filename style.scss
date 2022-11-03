@@ -101,15 +101,15 @@ main .background {
     }
 } */
 
-@mixin badgeSlide($name) {
+@mixin animation($name) {
 	@keyframes #{$name} {
 		@content
 	}
 }
 
-@include badgeSlide(badgeSlide) {
+@include animation(badgeSlide) {
 	0% {
-		transform: translateX(-100%);
+		transform: translateX(-10%);
 	}
 	100% {
 		transform: translateX(0%);
@@ -324,14 +324,15 @@ main .background {
 										height: 100%;
 										display: flex;
 										flex-wrap: wrap;
+										gap: 5px;
 									}
                                     #profile-complete-badge {
                                         display: none;
                                     }
 									.badge {
-										width: 45%;
-										height: 126px;
-										margin: 0 10px 10px 0;
+										width: 90px;
+										height: 90px;
+										margin: 0;
 										display: flex;
 										justify-content: center;
 										position: relative;
@@ -374,6 +375,9 @@ main .background {
 								}
 							}
 							.teams-box {
+								h3 {
+									margin: 0;
+								}
                                 .description {
                                     margin-top: 20px;
                                 }
@@ -435,6 +439,17 @@ main .background {
 						}
 
 					}
+					.challenges-container {
+						margin-top: 20px;
+						.challenges {
+							.desc{
+								color: #888;
+								font-size: 12px;
+							}
+						}
+						
+					}
+					
 					.challenge {
 						margin: 10px 0;
 						display: flex;
@@ -585,12 +600,13 @@ main .background {
 											height: 100%;
 											display: flex;
 											flex-wrap: wrap;
-											justify-content: space-between;
+											justify-content: unset;
+											gap: 13.333px;
 										}
 										.badge {
-											width: 31.68852459016393%;
-											height: 139.42px;
-											margin: 0 0 10px 0;
+											width: 100px;
+											height: 100px;
+											margin: 0;
 											display: flex;
 											justify-content: center;
 											position: relative;
@@ -689,13 +705,13 @@ main .background {
 											height: 100%;
 											display: flex;
 											flex-wrap: wrap;
-											justify-content: space-between;
+											justify-content: unset;
+											gap: 5px;
 										}
 										.badge {
-											width: 14.75409836065574%;
-											height: 90px;
+											width: 118px;
+											height: 118px;
 											margin: 0;
-											margin-bottom: 10px;
 											display: flex;
 											justify-content: center;
 											position: relative;
@@ -937,6 +953,7 @@ main .background {
 											height: 100%;
 											max-height: 370px;
 											overflow-y: auto;
+
 											&::webkit-scrollbar-track {
 												border: 0px solid #000;
 											}
@@ -952,18 +969,18 @@ main .background {
 										margin-top: 0;
 										height: 368px;
 										.badges-content {
-											overflow-y: auto;
+											overflow-y: unset;
 											z-index: 10;
 											width: 100%;
-											height: 100%;
+											height: unset;
 											display: flex;
 											flex-wrap: wrap;
-											justify-content: space-between;
+											gap: 10px
 										}
 										.badge {
-											width: 118.94px;
-											height: 118.94px;
-											margin: 0 10px 10px 0;
+											width: 131.67px;
+											height: 131.67px;
+											margin: 0;
 											display: flex;
 											justify-content: center;
 											position: relative;
@@ -976,6 +993,32 @@ main .background {
 												}
 											}
 										}
+										.badges-content:has(div:nth-child(5)) {
+											overflow-y: auto;
+											z-index: 10;
+											width: 100%;
+											height: 100%;
+											display: flex;
+											flex-wrap: wrap;
+											gap: 10px
+										}
+										.badges-content:has(div:nth-child(5)) > div {
+											width: 118.94px;
+											height: 118.94px;
+											margin: 0;
+											display: flex;
+											justify-content: center;
+											position: relative;
+											.badge-desc {
+												h4 {
+													font-size: 14px;
+												}
+												p {
+													font-size: 14px;
+												}
+											}
+										}
+										
 									}
 									height: 458px;
 								}

@@ -700,7 +700,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn" data-badgeId="6">CLAIM</div>
+                                                <div class="claim-btn claimable" data-badgeId="6">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge7" data-challengeId="7"  data-claimed="false">
@@ -965,6 +965,8 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
  
         var badge = u(this).data('badgeId');
 
+        u(".challenges").children().length = u(".challenges").children().length - 1;
+
         claimBadges([badge]);
     });
 
@@ -978,9 +980,13 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
             badges.push(u(e).data('badgeId'));
         });
         
-        u('.claim-all-btn').first().style.display = 'none';
+
+
+
 
         claimBadges(badges);
+
+        
 
     });
 
@@ -996,25 +1002,31 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
         fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
+
             response.json().then((res) => {
 
                 u(res).each(function(e){
                     
-                    console.log(e);
-
                     u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
 
                     u('#badge'+e.id+'').addClass("badge-ani");
 
-                    u('.challenge[data-challengeId="'+e.id+'"]').first().style.display = 'none';
+                    u('.challenge[data-challengeId="'+e.id+'"]').remove();
+
+                    if(u(".challenges").children().length == 0) {
+                        u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
+                        u('.claim-all-btn').first().style.display = 'none';
+                    }
                 });                
             });
+
+            
         })
         .catch((err) => {
 
 
         });
-    }    
+    }   
 
     // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
     // claimbadge.php
@@ -1053,6 +1065,8 @@ var CSS_VERSION = '0.5.9';
 <script src="https://lift3cdn.nl/js/lazysizes.bgset.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/lazysizes.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>
+
+<script src="/js/confetti.min.js?v=0.5.5"></script>
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->

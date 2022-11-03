@@ -102,7 +102,7 @@ main .background {
 } */
 @-webkit-keyframes badgeSlide {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-10%);
   }
   100% {
     transform: translateX(0%);
@@ -110,7 +110,7 @@ main .background {
 }
 @keyframes badgeSlide {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-10%);
   }
   100% {
     transform: translateX(0%);
@@ -283,14 +283,15 @@ main .background {
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 5px;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container #profile-complete-badge {
   display: none;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
-  width: 45%;
-  height: 126px;
-  margin: 0 10px 10px 0;
+  width: 90px;
+  height: 90px;
+  margin: 0;
   display: flex;
   justify-content: center;
   position: relative;
@@ -330,6 +331,9 @@ main .background {
           animation-name: badgeSlide;
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s;
+}
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box h3 {
+  margin: 0;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box .description {
   margin-top: 20px;
@@ -380,6 +384,13 @@ main .background {
 .profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all {
   background-color: #30d158;
   cursor: pointer;
+}
+.profiel #profile .container .contentbox .more-information .challenges-container {
+  margin-top: 20px;
+}
+.profiel #profile .container .contentbox .more-information .challenges-container .challenges .desc {
+  color: #888;
+  font-size: 12px;
 }
 .profiel #profile .container .contentbox .more-information .challenge {
   margin: 10px 0;
@@ -509,12 +520,13 @@ main .background {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: unset;
+    gap: 13.333px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
-    width: 31.6885245902%;
-    height: 139.42px;
-    margin: 0 0 10px 0;
+    width: 100px;
+    height: 100px;
+    margin: 0;
     display: flex;
     justify-content: center;
     position: relative;
@@ -586,13 +598,13 @@ main .background {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: unset;
+    gap: 5px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
-    width: 14.7540983607%;
-    height: 90px;
+    width: 118px;
+    height: 118px;
     margin: 0;
-    margin-bottom: 10px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -809,18 +821,18 @@ main .background {
     height: 368px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content {
-    overflow-y: auto;
+    overflow-y: unset;
     z-index: 10;
     width: 100%;
-    height: 100%;
+    height: unset;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 10px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge {
-    width: 118.94px;
-    height: 118.94px;
-    margin: 0 10px 10px 0;
+    width: 131.67px;
+    height: 131.67px;
+    margin: 0;
     display: flex;
     justify-content: center;
     position: relative;
@@ -829,6 +841,29 @@ main .background {
     font-size: 14px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
+    font-size: 14px;
+  }
+  .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content:has(div:nth-child(5)) {
+    overflow-y: auto;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content:has(div:nth-child(5)) > div {
+    width: 118.94px;
+    height: 118.94px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content:has(div:nth-child(5)) > div .badge-desc h4 {
+    font-size: 14px;
+  }
+  .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badges-content:has(div:nth-child(5)) > div .badge-desc p {
     font-size: 14px;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .teams-box {
