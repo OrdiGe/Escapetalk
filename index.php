@@ -640,7 +640,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="1">CLAIM</div>
+                                                <div id="button" class="claim-btn claimable" data-badgeId="1">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge2" data-challengeId="2"  data-claimed="false">
@@ -771,7 +771,7 @@
                 
             </div>
         </div>
-
+        <canvas id="canvas"></canvas>
 
     </section>
 </main>
@@ -959,35 +959,30 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 
 ?>
 <script>
-
-    //when i click on the div with class .claim-btn write in console the id of the div
     u('.claimable').on('click', function() {
- 
+
         var badge = u(this).data('badgeId');
+
 
         u(".challenges").children().length = u(".challenges").children().length - 1;
 
         claimBadges([badge]);
     });
+    
 
     u('.claim-all').on('click', function() {
-
+        var clicked = false;
         var claimablebadges = u('.claimable');
 
         var badges = [];
 
+        u('.claim-all').off('click');
+
         claimablebadges.each(function (e){
             badges.push(u(e).data('badgeId'));
-        });
-        
-
-
-
+        });        
 
         claimBadges(badges);
-
-        
-
     });
 
     function claimBadges(badges = [])
@@ -1006,26 +1001,33 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
             response.json().then((res) => {
 
                 u(res).each(function(e){
-                    
+
                     u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
 
                     u('#badge'+e.id+'').addClass("badge-ani");
 
-                    u('.challenge[data-challengeId="'+e.id+'"]').remove();
+                    setTimeout(function(){
+                        u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
+                        
+                        setTimeout(function(){
+                            u('.challenge[data-challengeId="'+e.id+'"]').remove(); 
+                        }, 1000);                        
+                    }, 1000);                    
 
                     if(u(".challenges").children().length == 0) {
                         u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
                         u('.claim-all-btn').first().style.display = 'none';
                     }
-                });                
-            });
+                    //u('.claimable').off('click', function)
 
-            
+                });                
+            });            
         })
         .catch((err) => {
 
 
         });
+        
     }   
 
     // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
@@ -1066,7 +1068,7 @@ var CSS_VERSION = '0.5.9';
 <script src="https://lift3cdn.nl/js/lazysizes.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>
 
-<script src="/js/confetti.min.js?v=0.5.5"></script>
+<script src="http://localhost/Escapetalk/button-confetti.js"></script>
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->
