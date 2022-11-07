@@ -640,7 +640,8 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
-                                                <div id="button" class="claim-btn claimable" data-badgeId="1">CLAIM</div>
+                                                <div class="claim-btn claimable" data-badgeId="1">CLAIM</div>
+                                                
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge2" data-challengeId="2"  data-claimed="false">
@@ -771,7 +772,7 @@
                 
             </div>
         </div>
-        <canvas id="canvas"></canvas>
+        
 
     </section>
 </main>
@@ -950,7 +951,6 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         </div>
     </div>
 </footer>
-
 <script src="https://lift3cdn.nl/js/umbrella.min.js?v=0.5.5"></script>
 <?php
 
@@ -1006,18 +1006,18 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 
                     u('#badge'+e.id+'').addClass("badge-ani");
 
-                    setTimeout(function(){
-                        u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
+                    // setTimeout(function(){
+                    //     u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
                         
                         setTimeout(function(){
-                            u('.challenge[data-challengeId="'+e.id+'"]').remove(); 
-                        }, 1000);                        
-                    }, 1000);                    
-
-                    if(u(".challenges").children().length == 0) {
-                        u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
-                        u('.claim-all-btn').first().style.display = 'none';
-                    }
+                            u('.challenge[data-challengeId="'+e.id+'"]').remove();
+                            if(u(".challenges").children().length == 0) {
+                                u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
+                                u('.claim-all-btn').first().style.display = 'none';
+                            } 
+                        }, 750);                        
+                    // }, 1000);                    
+                    
                     //u('.claimable').off('click', function)
 
                 });                

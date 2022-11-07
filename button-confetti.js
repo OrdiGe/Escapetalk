@@ -1,206 +1,155 @@
-// ammount to add on each button press
-const confettiCount = 20
-const sequinCount = 10
 
-// "physics" variables
-const gravityConfetti = 0.3
-const gravitySequins = 0.55
-const dragConfetti = 0.075
-const dragSequins = 0.02
-const terminalVelocity = 3
+// const colors = ['#f23838', '#FF5A5A', '#FF7D7D', '#FF9C9C', '#FFBBBB']
+// // const shapes = ['square', 'circle', 'triangle', 'heart']
+// const shapes = ['square']
 
-// init other global elements
-const button = document.querySelector('.claimable')
-var disabled = false
-const canvas = document.getElementById('canvas')
-const ctx = canvas.getContext('2d')
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-let cx = ctx.canvas.width / 2
-let cy = ctx.canvas.height / 2
+// const randomIntBetween = (min, max) => {
+//   return Math.floor(Math.random() * (max - min + 1) + min)
+// }
 
-// add Confetto/Sequin objects to arrays to draw them
-let confetti = []
-let sequins = []
+// class Particle {
+//   constructor({ x, y, rotation, shape, color, size, duration, parent }) {
+//     this.x = x
+//     this.y = y
+//     this.parent = parent
+//     this.rotation = rotation
+//     this.shape = shape
+//     this.color = color
+//     this.size = size
+//     this.duration = duration
+//     this.children = document.createElement('div')
+//   }
 
-// colors, back side is darker for confetti flipping
-const colors = [
-  { front : '#f23838', back: '#922626' }, 
-  { front : '#f36b6b', back: '#813737' }, 
-  { front : '#e71313', back: '#500707' }  
-]
+//   draw() {
+//     this.children.style.setProperty('--x', this.x + 'px')
+//     this.children.style.setProperty('--y', this.y + 'px')
+//     this.children.style.setProperty('--r', this.rotation + 'deg')
+//     this.children.style.setProperty('--c', this.color)
+//     this.children.style.setProperty('--size', this.size + 'px')
+//     this.children.style.setProperty('--d', this.duration + 'ms')
+//     this.children.className = `shape ${this.shape}`
+//     this.parent.append(this.children)
+//   }
 
-// helper function to pick a random number within a range
-randomRange = (min, max) => Math.random() * (max - min) + min
-
-// helper function to get initial velocities for confetti
-// this weighted spread helps the confetti look more realistic
-initConfettoVelocity = (xRange, yRange) => {
-  const x = randomRange(xRange[0], xRange[1])
-  const range = yRange[1] - yRange[0] + 1
-  let y = yRange[1] - Math.abs(randomRange(0, range) + randomRange(0, range) - range)
-  if (y >= yRange[1] - 1) {
-    // Occasional confetto goes higher than the max
-    y += (Math.random() < .25) ? randomRange(1, 3) : 0
-  }
-  return {x: x, y: -y}
-}
-
-// Confetto Class
-function Confetto() {
-  this.randomModifier = randomRange(0, 99)
-  this.color = colors[Math.floor(randomRange(0, colors.length))]
-  this.dimensions = {
-    x: randomRange(5, 9),
-    y: randomRange(8, 15),
-  }
-  this.position = {
-    x: randomRange(canvas.width/2 - button.offsetWidth/4, canvas.width/2 + button.offsetWidth/4),
-    y: randomRange(canvas.height/2 + button.offsetHeight/2 + 8, canvas.height/2 + (1.5 * button.offsetHeight) - 8),
-  }
-  this.rotation = randomRange(0, 2 * Math.PI)
-  this.scale = {
-    x: 1,
-    y: 1,
-  }
-  this.velocity = initConfettoVelocity([-9, 9], [6, 11])
-}
-Confetto.prototype.update = function() {
-  // apply forces to velocity
-  this.velocity.x -= this.velocity.x * dragConfetti
-  this.velocity.y = Math.min(this.velocity.y + gravityConfetti, terminalVelocity)
-  this.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random()
+//   animate() {
+//     this.draw()
+//     const timer = setTimeout(() => {
+//       this.parent.removeChild(this.children)
+//       clearTimeout(timer)
+//     }, this.duration)
+    
   
-  // set position
-  this.position.x += this.velocity.x
-  this.position.y += this.velocity.y
 
-  // spin confetto by scaling y and set the color, .09 just slows cosine frequency
-  this.scale.y = Math.cos((this.position.y + this.randomModifier) * 0.09)    
+//   }
+// }
+
+// function animateParticles({ total }) {
+//   for (let i = 0; i < total; i++) {
+//     const particle = new Particle({
+//       x: randomIntBetween(-100, 100),
+//       y: randomIntBetween(0, -300),
+//       rotation: randomIntBetween(-360 * 5, 360 * 5),
+//       shape: shapes[randomIntBetween(0, shapes.length - 1)],
+//       color: colors[randomIntBetween(0, colors.length - 1)],
+//       size: randomIntBetween(4, 7),
+//       duration: 500,
+//       parent
+//     })
+//     particle.animate()
+//     console.log(particle)
+//   }
+// }
+
+// u('.claimable').each(function(elem) {
+//   elem.addEventListener('click', e => {
+//     parent = u('.claimable').first();
+//     animateParticles({ total: 40 })
+//   }
+//  )
+// });
+
+// u('.claim-all').each(function(elem) {
+//   elem.addEventListener('click', e => {
+//     parent = u('.claim-all');
+//     animateParticles({ total: 40 })
+//   }
+//  )
+// });
+
+
+const colors = ['#f23838', '#FF5A5A', '#FF7D7D', '#FF9C9C', '#FFBBBB']
+// const shapes = ['square', 'circle', 'triangle', 'heart']
+const shapes = ['circle', 'square']
+
+const randomIntBetween = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// Sequin Class
-function Sequin() {
-  this.color = colors[Math.floor(randomRange(0, colors.length))].back,
-  this.radius = randomRange(1, 2),
-  this.position = {
-    x: randomRange(canvas.width/2 - button.offsetWidth/3, canvas.width/2 + button.offsetWidth/3),
-    y: randomRange(canvas.height/2 + button.offsetHeight/2 + 8, canvas.height/2 + (1.5 * button.offsetHeight) - 8),
-  },
-  this.velocity = {
-    x: randomRange(-6, 6),
-    y: randomRange(-8, -12)
+class Particle {
+  constructor({ x, y, rotation, shape, color, size, duration, parent }) {
+    this.x = x
+    this.y = y
+    this.parent = parent
+    this.rotation = rotation
+    this.shape = shape
+    this.color = color
+    this.size = size
+    this.duration = duration
+    this.children = document.createElement('div')
   }
-}
-Sequin.prototype.update = function() {
-  // apply forces to velocity
-  this.velocity.x -= this.velocity.x * dragSequins
-  this.velocity.y = this.velocity.y + gravitySequins
-  
-  // set position
-  this.position.x += this.velocity.x
-  this.position.y += this.velocity.y   
-}
 
-// add elements to arrays to be drawn
-initBurst = () => {
-  for (let i = 0; i < confettiCount; i++) {
-    confetti.push(new Confetto())
+  draw() {
+    this.children.style.setProperty('--x', this.x + 'px')
+    this.children.style.setProperty('--y', this.y + 'px')
+    this.children.style.setProperty('--r', this.rotation + 'deg')
+    this.children.style.setProperty('--c', this.color)
+    this.children.style.setProperty('--size', this.size + 'px')
+    this.children.style.setProperty('--d', this.duration + 'ms')
+    this.children.className = `shape ${this.shape}`
+    this.parent.append(this.children)
   }
-  for (let i = 0; i < sequinCount; i++) {
-    sequins.push(new Sequin())
-  }
-}
 
-// draws the elements on the canvas
-render = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  
-  confetti.forEach((confetto, index) => {
-    let width = (confetto.dimensions.x * confetto.scale.x)
-    let height = (confetto.dimensions.y * confetto.scale.y)
-    
-    // move canvas to position and rotate
-    ctx.translate(confetto.position.x, confetto.position.y)
-    ctx.rotate(confetto.rotation)
+  animate() {
+    this.draw()
 
-    // update confetto "physics" values
-    confetto.update()
-    
-    // get front or back fill color
-    ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back
-    
-    // draw confetto
-    ctx.fillRect(-width / 2, -height / 2, width, height)
-    
-    // reset transform matrix
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-
-    // clear rectangle where button cuts off
-    if (confetto.velocity.y < 0) {
-      ctx.clearRect(canvas.width/2 - button.offsetWidth/2, canvas.height/2 + button.offsetHeight/2, button.offsetWidth, button.offsetHeight)
+    const timer = setTimeout(() => {
+      this.parent.removeChild(this.children)
+      clearTimeout(timer)
+    }, this.duration)
     }
-  })
-
-  sequins.forEach((sequin, index) => {  
-    // move canvas to position
-    ctx.translate(sequin.position.x, sequin.position.y)
-    
-    // update sequin "physics" values
-    sequin.update()
-    
-    // set the color
-    ctx.fillStyle = sequin.color
-    
-    // draw sequin
-    ctx.beginPath()
-    ctx.arc(0, 0, sequin.radius, 0, 2 * Math.PI)
-    ctx.fill()
-
-    // reset transform matrix
-    ctx.setTransform(1, 0, 0, 1, 0, 0)
-
-    // clear rectangle where button cuts off
-    if (sequin.velocity.y < 0) {
-      ctx.clearRect(canvas.width/2 - button.offsetWidth/2, canvas.height/2 + button.offsetHeight/2, button.offsetWidth, button.offsetHeight)
-    }
-  })
-
-  // remove confetti and sequins that fall off the screen
-  // must be done in seperate loops to avoid noticeable flickering
-  confetti.forEach((confetto, index) => {
-    if (confetto.position.y >= canvas.height) confetti.splice(index, 1)
-  })
-  sequins.forEach((sequin, index) => {
-    if (sequin.position.y >= canvas.height) sequins.splice(index, 1)
-  })
-
-  window.requestAnimationFrame(render)
 }
 
-// cycle through button states when clicked
-function clickButton() {
-    window.initBurst()
-    console.log('clicked')
+function animateParticles({ total }) {
+  for (let i = 0; i < total; i++) {
+    const particle = new Particle({
+      x: randomIntBetween(-100, 100),
+      y: randomIntBetween(0, -300),
+      rotation: randomIntBetween(-360 * 5, 360 * 5),
+      shape: shapes[randomIntBetween(0, shapes.length - 1)],
+      color: colors[randomIntBetween(0, colors.length - 1)],
+      size: randomIntBetween(4, 7),
+      duration: 500,
+      parent
+    })
+    particle.animate()
+
+  }
 }
 
-// re-init canvas if the window size changes
-resizeCanvas = () => {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
-  cx = ctx.canvas.width / 2
-  cy = ctx.canvas.height / 2
-}
+u('.claimable').each(function(elem) {
+  elem.addEventListener('click', e => {
+    parent = e.target;
+      
+    animateParticles({ total: 40 })
+  }
+ )
+});
 
-// resize listenter
-window.addEventListener('resize', () => {
-  resizeCanvas()
-})
-
-
-
-
-
-// kick off the render loop
-button.addEventListener('click', clickButton)
-render()
+u('.claim-all').each(function(elem) {
+  elem.addEventListener('click', e => {
+    parent = e.target;
+      
+    animateParticles({ total: 40 })
+  }
+ )
+});

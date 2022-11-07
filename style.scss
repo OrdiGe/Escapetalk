@@ -125,6 +125,15 @@ main .background {
 	}
 }
 
+@include animation(popup) {
+	0% { opacity: 0; }
+	60% { opacity: 1; }
+	100% {
+		opacity: 0;
+		transform: translate(var(--x), var(--y)) rotate(var(--r));
+	}
+}
+
 .breadcrumbs {
 	width: 100%;
 	margin-bottom: 20px;
@@ -463,6 +472,7 @@ main .background {
 						margin: 10px 0;
 						display: flex;
 						flex-wrap: wrap;
+						overflow: hidden;
 						.challenge-title {
 							font-size: 12px;
 							font-weight: 500;
@@ -504,6 +514,10 @@ main .background {
                             .claimable {
                                 background-color: #30d158;
                                 cursor: pointer;
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								position: relative;
                             }
 						}
 					}
@@ -549,6 +563,23 @@ main .background {
 			font-size: 16px;
 			margin: 0;
 		}
+
+	}
+	.shape {
+		--size: 8px 16px;
+		position: absolute;
+		top: calc(50% - var(--size));
+		left: calc(50% - var(--size));
+		width: calc(var(--size) * 2);
+		height: calc(var(--size) * 2);
+		animation: popup var(--d) cubic-bezier(.08,.56,.53,.98) forwards;
+	}
+	.circle {
+		border-radius: 50%;
+		background-color: var(--c);
+	}
+	.square {
+		background-color: var(--c);
 	}
 }
 .edit-profile {
@@ -564,13 +595,7 @@ main .background {
 		margin-right: 5px;
 	}
 }
-canvas {
-	height: 100vh;
-	pointer-events: none;
-	position: fixed;
-	width: 100%;
-	z-index: 2;
-  }
+
 @media (min-width: 375px) {
 	.container {
 		padding: 0;
@@ -973,6 +998,8 @@ canvas {
 											height: 100%;
 											max-height: 370px;
 											overflow-y: auto;
+											overflow-x: visible;
+											position: relative;
 
 											&::webkit-scrollbar-track {
 												border: 0px solid #000;
