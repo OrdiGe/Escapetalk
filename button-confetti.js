@@ -123,7 +123,7 @@ function animateParticles({ total }) {
   for (let i = 0; i < total; i++) {
     const particle = new Particle({
       x: randomIntBetween(-100, 100),
-      y: randomIntBetween(0, -300),
+      y: randomIntBetween(500, -300),
       rotation: randomIntBetween(-360 * 5, 360 * 5),
       shape: shapes[randomIntBetween(0, shapes.length - 1)],
       color: colors[randomIntBetween(0, colors.length - 1)],
@@ -145,11 +145,11 @@ u('.claimable').each(function(elem) {
  )
 });
 
-u('.claim-all').each(function(elem) {
-  elem.addEventListener('click', e => {
+
+  u('.claim-all').addEventListener('click', e => {
     parent = e.target;
-      
+    
     animateParticles({ total: 40 })
   }
  )
-});
+

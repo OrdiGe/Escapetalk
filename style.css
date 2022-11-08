@@ -172,6 +172,17 @@ main .background {
 .profiel #profile .container .contentbox {
   padding-top: 100px;
 }
+.profiel #profile .container .contentbox .challenge-popup-container {
+  width: 30vw;
+  height: 100vh;
+  position: fixed;
+  float: right;
+  overflow: hidden;
+  top: 70px;
+  right: 0;
+  z-index: 9999999;
+  pointer-events: none;
+}
 .profiel #profile .container .contentbox .profile-header .header-info {
   display: flex;
   flex-wrap: wrap;
@@ -307,6 +318,21 @@ main .background {
 .profiel #profile .container .contentbox .profile-header .item-wrapper .full-width .label.statistic br {
   display: none;
 }
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box {
+  position: relative;
+}
+.profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box #confetti-canvas {
+  width: 110%;
+  height: 100%;
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: -5%;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%);
+          clip-path: polygon(5% 0, 95% 0, 100% 100%, 0% 100%);
+}
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box {
   display: flex;
   flex-direction: column;
@@ -409,10 +435,12 @@ main .background {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 .profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all-btn {
   max-width: 140px;
-  width: 35%;
+  width: 40%;
   text-align: center;
   padding: 5px;
   border-radius: 10px;
@@ -424,9 +452,15 @@ main .background {
 .profiel #profile .container .contentbox .more-information .challenges-top-container .claim-all {
   background-color: #30d158;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .profiel #profile .container .contentbox .more-information .challenges-container {
   margin-top: 20px;
+  position: relative;
+  z-index: 1;
 }
 .profiel #profile .container .contentbox .more-information .challenges-container .challenges .desc {
   color: #888;
@@ -437,6 +471,7 @@ main .background {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+  position: relative;
 }
 .profiel #profile .container .contentbox .more-information .challenge .challenge-title {
   font-size: 12px;

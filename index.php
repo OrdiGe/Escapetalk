@@ -479,6 +479,10 @@
         <div class="background-image no-bg lazyloaded" data-bgset="images/pattern-cover.svg" style="background-image: url(&quot;https://escapetalk.nl/images/pattern-cover.svg&quot;);"><picture style="display: none;"><source data-srcset="images/pattern-cover.svg" sizes="2327px" srcset="images/pattern-cover.svg"><img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="2327px"></picture></div>
         <div class="container">
             <div class="contentbox">
+                <div class="challenge-popup-container">
+                    <div class="multi-challenge-popup">5 CHALLENGES GECLAIMD</div>
+                    <div class="challenge-popup">PROFIELPAGINA COMPLEET GECLAIMD</div>
+                </div>
                 <div class="profile-header grid flex-start">
                     <script type="application/ld+json">
                         {
@@ -624,6 +628,7 @@
                     <div class="grid flex-start">
                         <div class="item-wrapper md-col-4 marge-right">
                             <div class="challenges-box box item">
+                                <canvas id="confetti-canvas" height="600px" width="400px"></canvas>
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
                                     <div class="claim-all-btn claim-all" >CLAIM ALLES</div>
@@ -649,9 +654,9 @@
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
                                                     <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
+                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
                                                     </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
+                                                    <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
                                                 <div class="claim-btn claimable" data-badgeId="2">CLAIM</div>
                                             </div>
@@ -665,7 +670,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="3">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="3">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge4" data-challengeId="4"  data-claimed="false">
@@ -673,9 +678,9 @@
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
                                                     <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
+                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
                                                     </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
+                                                    <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
                                                 <div class="claim-btn claimable" data-badgeId="4">CLAIM</div>
                                             </div>
@@ -689,7 +694,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="5">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="5">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge6" data-challengeId="6" data-claimed="false">
@@ -697,9 +702,9 @@
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
                                                     <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
+                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
                                                     </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
+                                                    <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
                                                 <div class="claim-btn claimable" data-badgeId="6">CLAIM</div>
                                             </div>
@@ -713,7 +718,7 @@
                                                     </div>
                                                     <p class="challenge-progression">Progressie: 0/1</p>
                                                 </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="7">CLAIM</div>
+                                                <div class="claim-btn" data-badgeId="7">CLAIM</div>
                                             </div>
                                         </div>
                                         <div class="challenge" id="challenge8" data-challengeId="8"  data-claimed="false">
@@ -721,9 +726,9 @@
                                             <div class="challenge-pb">
                                                 <div class="pb-container">
                                                     <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
+                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
                                                     </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
+                                                    <p class="challenge-progression">Progressie: 1/1</p>
                                                 </div>                                            
                                                 <div class="claim-btn claimable" data-badgeId="8">CLAIM</div>
                                             </div>
@@ -959,18 +964,16 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
 
 ?>
 <script>
-    u('.claimable').on('click', function() {
+
+    var confettirunning = false;
+    const claimBadge = function() {
 
         var badge = u(this).data('badgeId');
 
-
-        u(".challenges").children().length = u(".challenges").children().length - 1;
-
         claimBadges([badge]);
-    });
-    
+    }
 
-    u('.claim-all').on('click', function() {
+    const claimAllBadges = function() {
         var clicked = false;
         var claimablebadges = u('.claimable');
 
@@ -983,7 +986,14 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
         });        
 
         claimBadges(badges);
-    });
+    }
+    
+    u('.claimable').on('click', claimBadge);
+    
+
+    u('.claim-all').on('click', claimAllBadges);
+
+    u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
 
     function claimBadges(badges = [])
     {
@@ -1005,21 +1015,32 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
                     u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
 
                     u('#badge'+e.id+'').addClass("badge-ani");
+                    u('.challenge[data-challengeId="'+e.id+'"] .claimable').removeClass('claimable');
+                    u('.challenge[data-challengeId="'+e.id+'"] .claimable').off('click');
 
-                    // setTimeout(function(){
-                    //     u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
-                        
+                    u('#confetti-canvas').first().style.visibility = 'visible';
+                    startConfetti();
+
+                    setTimeout(function(){
+                        u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
                         setTimeout(function(){
+
+                            stopConfetti();
                             u('.challenge[data-challengeId="'+e.id+'"]').remove();
+                            u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
+
+
                             if(u(".challenges").children().length == 0) {
                                 u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
                                 u('.claim-all-btn').first().style.display = 'none';
                             } 
-                        }, 750);                        
-                    // }, 1000);                    
-                    
-                    //u('.claimable').off('click', function)
 
+                            if(u('.claimable').length == 0){
+                                u('.claim-all').remove();
+                            }
+                        }, 1000);
+                        
+                    }, 1500);                        
                 });                
             });            
         })
@@ -1068,7 +1089,8 @@ var CSS_VERSION = '0.5.9';
 <script src="https://lift3cdn.nl/js/lazysizes.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>
 
-<script src="http://localhost/Escapetalk/button-confetti.js"></script>
+<!-- <script src="http://localhost/Escapetalk/button-confetti.js"></script> -->
+<script src="http://localhost/Escapetalk/confetti-button.js"></script>
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->
