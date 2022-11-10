@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-
-<?php
-
-// $badges = [
-//     0 => ['id' => 1, 'title' => '1jaarLidBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => '1JaarLidBadge.svg'],
-//     1 => ['id' => 2, 'title' => '100likesBadge', 'progress' => '0/100', 'claimable' => false, 'icon' => '100likesBadge.svg'],
-//     2 => ['id' => 3, 'title' => 'championBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'championBadge.svg'],
-//     3 => ['id' => 4, 'title' => 'eersteKamerReviewBadge', 'progress' => '0/1', 'claimable' => true, 'icon' => 'eersteKamerReview.svg'],
-//     4 => ['id' => 5, 'title' => 'firstGamesReviewBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'firstGamesReview.svg'],
-//     5 => ['id' => 6, 'title' => 'foundersBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'foundersBadge.svg'],
-//     6 => ['id' => 7, 'title' => 'halloweenBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'halloweenBadge.svg'],
-//     7 => ['id' => 8, 'title' => 'profileCompleteBadge', 'progress' => '0/1', 'claimable' => false, 'icon' => 'profileCompleteBadge.svg'],
-// ];
-?>
-
 <html lang="en">
     <head>
 		<meta charset="utf-8">
@@ -104,15 +89,6 @@
 
 	<link href="/css/modals.min.css?v=0.5.9" rel="stylesheet">
 </head>
-<!-- <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profiel van OrdiGe - escapetalk.nl</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/204c07c5a6.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.typekit.net/hmh3zim.css">
-</head> -->
 
 <body class="profiel">
 	
@@ -479,10 +455,10 @@
         <div class="background-image no-bg lazyloaded" data-bgset="images/pattern-cover.svg" style="background-image: url(&quot;https://escapetalk.nl/images/pattern-cover.svg&quot;);"><picture style="display: none;"><source data-srcset="images/pattern-cover.svg" sizes="2327px" srcset="images/pattern-cover.svg"><img alt="" class="lazyautosizes lazyloaded" data-sizes="auto" data-parent-fit="cover" sizes="2327px"></picture></div>
         <div class="container">
             <div class="contentbox">
-                <div class="challenge-popup-container">
+                <!-- <div class="challenge-popup-container">
                     <div class="multi-challenge-popup">5 CHALLENGES GECLAIMD</div>
                     <div class="challenge-popup">PROFIELPAGINA COMPLEET GECLAIMD</div>
-                </div>
+                </div> -->
                 <div class="profile-header grid flex-start">
                     <script type="application/ld+json">
                         {
@@ -549,7 +525,7 @@
                                     <div class="full-progress-bar">
                                         <div class="progress-bar" id="progress-bar-xp"></div>
                                     </div>
-                                    <p class="progression-text">Progressie: 50/100</p>
+                                    <p class="progression-text">Progressie: 0/100</p>
                                 </div>
                                 
                                 <div class="contact-information grid">
@@ -957,125 +933,6 @@ Plus <span class="bold">12921</span> gebruikers die onze community alleen maar b
     </div>
 </footer>
 <script src="https://lift3cdn.nl/js/umbrella.min.js?v=0.5.5"></script>
-<?php
-
-
-
-
-?>
-<script>
-
-    var confettirunning = false;
-    const claimBadge = function() {
-
-        var badge = u(this).data('badgeId');
-
-        claimBadges([badge]);
-    }
-
-    const claimAllBadges = function() {
-        var clicked = false;
-        var claimablebadges = u('.claimable');
-
-        var badges = [];
-
-        u('.claim-all').off('click');
-
-        claimablebadges.each(function (e){
-            badges.push(u(e).data('badgeId'));
-        });        
-
-        claimBadges(badges);
-    }
-    
-    u('.claimable').on('click', claimBadge);
-    
-
-    u('.claim-all').on('click', claimAllBadges);
-
-    u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
-
-    function claimBadges(badges = [])
-    {
-
-        let data = new FormData();
-        data.append('type', 'claimBadges');
-        data.append('badges', JSON.stringify(badges));
-
-        u('.badges-box-description').first().style.display = 'none';
-
-        setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
-
-        fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-
-            response.json().then((res) => {
-
-                u(res).each(function(e){
-
-                    u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
-
-                    u('#badge'+e.id+'').addClass("badge-ani");
-                    u('.challenge[data-challengeId="'+e.id+'"] .claimable').removeClass('claimable');
-                    u('.challenge[data-challengeId="'+e.id+'"] .claimable').off('click');
-
-                    u('#confetti-canvas').first().style.visibility = 'visible';
-                    startConfetti();
-
-                    setTimeout(function(){
-                        u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
-                        setTimeout(function(){
-
-                            stopConfetti();
-                            u('.challenge[data-challengeId="'+e.id+'"]').remove();
-                            u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
-
-
-                            if(u(".challenges").children().length == 0) {
-                                u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
-                                u('.claim-all-btn').first().style.display = 'none';
-                            } 
-
-                            if(u('.claimable').length == 0){
-                                u('.claim-all').remove();
-                            }
-                        }, 1000);
-                        
-                    }, 1500);                        
-                });                
-            });            
-        })
-        .catch((err) => {
-
-
-        });
-        
-    }   
-
-    // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
-    // claimbadge.php
-    // json_return = [];  
-    // if (id == 'all') {
-    //      claim alles
-    // }
-    // elseif (id == X) {
-    //      json_return['html'] = "HTML VAN DIE BADGE";
-    // }
-    // echo json_encode(json_return);
-
-    // when I click on claim
-    // Do Ajax request to claimbadge.php (id van challenge)
-
-    // If (ajax_request != false) {
-    //      INSERT badge from ajax_request json array
-    //      {{claimed_badge = "TEST", "HTML" = }}
-    //      u('.badges-container').prepend(json.badge_html);
-    // }
-    // ELSE {
-    //      SHOW ERROR
-    // }
-    
-</script>
-
 
 <script>var current_language = '1';</script>
 
@@ -1091,6 +948,7 @@ var CSS_VERSION = '0.5.9';
 
 <!-- <script src="http://localhost/Escapetalk/button-confetti.js"></script> -->
 <script src="http://localhost/Escapetalk/confetti-button.js"></script>
+<script src="http://localhost/Escapetalk/claim-challenge.js"></script>
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->
@@ -1231,56 +1089,4 @@ if (navigator.appVersion.indexOf("MSIE 10") !== -1 || navigator.appVersion.index
 
 
 </body>
-<!-- <body>
-    <header>
-        <div class="container">
-            <div class="content">
-                <div class="logo-content">
-                    <img class="logo" src="/images/logo.png" alt="Escapetalk logo">
-                    <svg class="logo-mobile" xmlns="http://www.w3.org/2000/svg" width="30.317" height="30" viewBox="0 0 30.317 30">
-                        <path id="Path_441" data-name="Path 441" d="M24.264.76H6.053A6.042,6.042,0,0,0,0,6.751v18.02A6.04,6.04,0,0,0,6.053,30.76H24.264a6.038,6.038,0,0,0,6.053-5.989V6.751A6.042,6.042,0,0,0,24.264.76ZM8.978,24.92l3.029-10.381a4.756,4.756,0,0,1-1.465-3.446,4.592,4.592,0,1,1,7.719,3.444l3.027,10.381H8.982Z" transform="translate(0 -0.76)" fill="#fff" fill-rule="evenodd"/>
-                    </svg>
-                      
-                </div>
-                <div class="right-content">
-                    <a href="https://escapetalk.nl/escaperooms/">Escape rooms</a>
-                    <a class="games" href="https://escapetalk.nl/games/">Games</a>
-                    <a class="news" href="https://escapetalk.nl/nieuws-artikelen/">Nieuws en artikelen</a>
-                    <div class="language-container">
-                        <a class="language-button"><svg class="svg-inline--fa fa-earth-europe" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="earth-europe" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg><path fill="currentColor" d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM266.3 48.25L232.5 73.6C227.2 77.63 224 83.95 224 90.67V99.72C224 106.5 229.5 112 236.3 112C238.7 112 241.1 111.3 243.1 109.9L284.9 82.06C286.9 80.72 289.3 80 291.7 80H292.7C298.9 80 304 85.07 304 91.31C304 94.31 302.8 97.19 300.7 99.31L280.8 119.2C275 124.1 267.9 129.4 260.2 131.9L233.6 140.8C227.9 142.7 224 148.1 224 154.2C224 157.9 222.5 161.5 219.9 164.1L201.9 182.1C195.6 188.4 192 197.1 192 206.1V210.3C192 226.7 205.6 240 221.9 240C232.9 240 243.1 233.8 248 224L252 215.9C254.5 211.1 259.4 208 264.8 208C269.4 208 273.6 210.1 276.3 213.7L292.6 235.5C294.7 238.3 298.1 240 301.7 240C310.1 240 315.6 231.1 311.8 223.6L310.7 221.3C307.1 214.3 310.7 205.8 318.1 203.3L339.3 196.2C346.9 193.7 352 186.6 352 178.6C352 168.3 360.3 160 370.6 160H400C408.8 160 416 167.2 416 176C416 184.8 408.8 192 400 192H379.3C372.1 192 365.1 194.9 360 200L355.3 204.7C353.2 206.8 352 209.7 352 212.7C352 218.9 357.1 224 363.3 224H374.6C380.6 224 386.4 226.4 390.6 230.6L397.2 237.2C398.1 238.1 400 241.4 400 244C400 246.6 398.1 249 397.2 250.8L389.7 258.3C386 261.1 384 266.9 384 272C384 277.1 386 282 389.7 285.7L408 304C418.2 314.2 432.1 320 446.6 320H453.1C460.5 299.8 464 278.3 464 256C464 144.6 376.4 53.64 266.3 48.25V48.25zM438.4 356.1C434.7 353.5 430.2 352 425.4 352C419.4 352 413.6 349.6 409.4 345.4L395.1 331.1C388.3 324.3 377.9 320 367.1 320C357.4 320 347.9 316.5 340.5 310.2L313.1 287.4C302.4 277.5 287.6 271.1 272.3 271.1H251.4C238.7 271.1 226.4 275.7 215.9 282.7L188.5 301C170.7 312.9 160 332.9 160 354.3V357.5C160 374.5 166.7 390.7 178.7 402.7L194.7 418.7C203.2 427.2 214.7 432 226.7 432H248C261.3 432 272 442.7 272 456C272 458.5 272.4 461 273.1 463.3C344.5 457.5 405.6 415.7 438.4 356.1L438.4 356.1zM164.7 100.7L132.7 132.7C126.4 138.9 126.4 149.1 132.7 155.3C138.9 161.6 149.1 161.6 155.3 155.3L187.3 123.3C193.6 117.1 193.6 106.9 187.3 100.7C181.1 94.44 170.9 94.44 164.7 100.7V100.7z"></path></svg></a>
-                        <div class="languages">
-
-                        </div>
-                    </div>
-                    <div class="profile-button">
-                        <a href=""><svg class="svg-inline--fa fa-user" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg><path fill="currentColor" d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path></svg></a>
-                    </div>
-                    <div class="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <section>
-            <div class="background" style="background-image: url(https://escapetalk.nl/images/pattern-cover.svg);"></div>
-            <div class="container">
-                <div class="content-container">
-                    <div class="profile-header">
-                        <div class="item-wrapper">
-                            <div class="item">
-                                <div class="image"></div>
-                                <div class="right-content"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-</body> -->
 </html>

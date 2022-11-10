@@ -1,4 +1,4 @@
-var maxParticleCount = 1000,
+var maxParticleCount = 250,
     particleSpeed = 5,
     startConfetti, stopConfetti, toggleConfetti, removeConfetti;
 ! function() {
@@ -15,7 +15,6 @@ var maxParticleCount = 1000,
     }
 
     function startConfettiInner() {
-        console.log(challengesBox.offsetWidth)
         var width = window.innerWidth,
             height = window.innerHeight;
             window.requestAnimFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {

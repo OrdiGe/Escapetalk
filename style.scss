@@ -1,106 +1,3 @@
-/* * {
-    font-family: montserrat, sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-body {
-    margin: 0;
-    background-color: #fffaf8;
-}
-
-header {
-    position: fixed;
-    width: 100vw;
-    height: 70px;
-}
-
-header .container {
-    width: 100%;
-    height: 100%;
-    background-color: #f23838;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-}
-
-header .container .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: auto;
-    max-width: 320px;
-    width: 100%;
-    padding: 15px 0;
-}
-
-header .container .content .right-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: inherit;
-    justify-content: flex-end;
-}
-
-header .container .content .right-content .language-container, .right-content .profile-button {
-    height: 50%;
-}
-
-header .container .content .right-content .language-container a, .right-content .profile-button a, .right-content .hamburger {
-    margin-left: 20px;
-}
-
-header .container .content .right-content a {
-    white-space: nowrap;
-    text-decoration: none;
-    color: white;
-}
-
-.fa-earth-europe, .fa-user {
-    color: white;
-    height: 100%;
-}
-
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
-.bar {
-    background-color: white;
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 4px 0;
-    -webkit-transition: all .2s ease-in;
-    transition: all .2s ease-in;
-    border-radius: 20px;
-}
-
-.hamburger {
-    display: block;
-}
-
-main .background {
-    background-color: #434343;
-    background-repeat: repeat;
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    height: 400px;
-    background-position: center;
-    background-size: cover;
-}
-
-@media only screen and (max-width: 768px ) {
-    .logo, .games, .news {
-        display: none;
-    }
-} */
-
 @mixin animation($name) {
 	@keyframes #{$name} {
 		@content
@@ -215,7 +112,7 @@ main .background {
 									background-color: #ffe6e7;
 									border-radius: 10px;
 									.progress-bar {
-										width: 50%;
+										width: 0%;
 										height: 5px;
 										background-color: #ec202c;
 										border-radius: 10px;
@@ -342,8 +239,8 @@ main .background {
 							.challenges-box {
 								position: relative;
 								#confetti-canvas {
-									width: 110%;
-									height: 100%;
+									width: 352px;
+									height: 552px;
 									position: absolute;
 									z-index: 9999;
 									top: 0;
@@ -671,6 +568,12 @@ main .background {
 					.more-information {
 						.grid {
 							.item-wrapper {
+								.challenges-box {
+									#confetti-canvas {
+										width: 528px;
+										height: 552px;
+									}
+								}
 								.badges-box {
 									.badges-container {
 										.badges-content {
@@ -776,6 +679,12 @@ main .background {
 					.more-information {
 						.grid {
 							.item-wrapper {
+								.challenges-box {
+									#confetti-canvas {
+										width: 715px;
+										height: 552px;
+									}
+								}
 								.badges-box {
 									.badges-container {
 										.badges-content {
@@ -1026,6 +935,10 @@ main .background {
 							.item-wrapper {
 								.challenges-box {
 									height: 458px;
+									#confetti-canvas {
+										width: 110%;
+										height: 100%;
+									}
 									.challenges-container {
 										margin-top: -20px;
 										.challenges {
