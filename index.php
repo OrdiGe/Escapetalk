@@ -604,7 +604,7 @@
                     <div class="grid flex-start">
                         <div class="item-wrapper md-col-4 marge-right">
                             <div class="challenges-box box item">
-                                <canvas id="confetti-canvas" height="600px" width="400px"></canvas>
+                                <canvas id="confetti-canvas"></canvas>
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
                                     <div class="claim-all-btn claim-all" >CLAIM ALLES</div>
@@ -948,7 +948,9 @@ var CSS_VERSION = '0.5.9';
 
 <!-- <script src="http://localhost/Escapetalk/button-confetti.js"></script> -->
 <script src="http://localhost/Escapetalk/confetti-button.js"></script>
+<script src="http://localhost/Escapetalk/experience-bar.js"></script>
 <script src="http://localhost/Escapetalk/claim-challenge.js"></script>
+
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->

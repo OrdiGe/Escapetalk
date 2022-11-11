@@ -1,4 +1,4 @@
-var maxParticleCount = 250,
+var maxParticleCount = 750,
     particleSpeed = 5,
     startConfetti, stopConfetti, toggleConfetti, removeConfetti;
 ! function() {

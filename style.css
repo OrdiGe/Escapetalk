@@ -218,12 +218,13 @@
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box {
   position: relative;
+  overflow-y: clip;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box #confetti-canvas {
   width: 352px;
   height: 552px;
   position: absolute;
-  z-index: 9999;
+  z-index: 9;
   top: 0;
   left: -5%;
   visibility: hidden;

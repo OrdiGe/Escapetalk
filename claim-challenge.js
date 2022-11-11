@@ -20,10 +20,7 @@ const claimAllBadges = function() {
     claimBadges(badges);
 }
 
-console.log(u('#progress-bar-xp').first().offsetWidth);
-
 u('.claimable').on('click', claimBadge);
-
 
 u('.claim-all').on('click', claimAllBadges);
 
@@ -34,14 +31,16 @@ function claimBadges(badges = [])
 
     let data = new FormData();
     data.append('type', 'claimBadges');
+    data.append('type', 'levelUp');
     data.append('badges', JSON.stringify(badges));
+    data.append('levels', JSON.stringify(levels));
 
     u('.badges-box-description').first().style.display = 'none';
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-
+        console.log(response);
         response.json().then((res) => {
 
             u(res).each(function(e){
@@ -55,8 +54,6 @@ function claimBadges(badges = [])
                 u('#confetti-canvas').first().style.visibility = 'visible';
                 startConfetti();
 
-                                        //console.log the width of class progress-bar
-
                 setTimeout(function(){
                     u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
                     stopConfetti();
@@ -69,6 +66,7 @@ function claimBadges(badges = [])
 
                         u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";
                         console.log(u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100))
+                        levelUp();
 
                         if(u(".challenges").children().length == 0) {
                             u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
@@ -78,8 +76,7 @@ function claimBadges(badges = [])
                         if(u('.claimable').length == 0){
                             u('.claim-all').remove();
                         }
-                    }, 1000);
-                    
+                    }, 1000);                    
                 }, 1500);                        
             });                
         });            
