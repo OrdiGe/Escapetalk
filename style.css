@@ -132,6 +132,7 @@
   border-radius: 10px;
 }
 .profiel #profile .container .contentbox .profile-header .header-info .right .progress-bar-container .full-progress-bar .progress-bar {
+  transition: 1s;
   width: 0%;
   height: 5px;
   background-color: #ec202c;
@@ -260,6 +261,7 @@
   display: flex;
   justify-content: center;
   position: relative;
+  cursor: pointer;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge svg {
   overflow: visible;
@@ -287,9 +289,6 @@
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge .badge-desc p {
   font-size: 12px;
   color: #000;
-}
-.profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge:hover .badge-desc {
-  display: flex;
 }
 .profiel #profile .container .contentbox .more-information .grid .item-wrapper .badges-box .badges-container .badge-ani {
   -webkit-animation-name: badgeSlide;

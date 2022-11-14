@@ -44,9 +44,14 @@ function claimBadges(badges = [])
         response.json().then((res) => {
 
             u(res).each(function(e){
+                const badge = e;
 
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
-
+                u(document).on('click', '#badge'+e.id, function() {
+                    modal('info', ''+badge.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
+                });
+                singleNotification('Je hebt de badge '+e.title+' verdiend!', '/badges/');
+                // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 u('#badge'+e.id+'').addClass("badge-ani");
                 u('.challenge[data-challengeId="'+e.id+'"] .claimable').removeClass('claimable');
                 u('.challenge[data-challengeId="'+e.id+'"] .claimable').off('click');

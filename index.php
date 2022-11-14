@@ -67,6 +67,7 @@
 				let data = {errorObject: encodeURIComponent(errorObject),fileUrl: encodeURIComponent(url), lineNmbr: encodeURIComponent(lineNumber), column: encodeURIComponent(column), page: encodeURIComponent(window.location.href)}; 				var xhttp = new XMLHttpRequest();
 
 				xhttp.open("POST", "/includes/ajax.inc.php", true);
+				xhttp.open("POST", "/includes/experience-bar.inc.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send('type=JS_error&data=' + JSON.stringify(data));
 				return false;
@@ -947,14 +948,17 @@ var CSS_VERSION = '0.5.9';
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>
 
 <!-- <script src="http://localhost/Escapetalk/button-confetti.js"></script> -->
-<script src="http://localhost/Escapetalk/confetti-button.js"></script>
-<script src="http://localhost/Escapetalk/experience-bar.js"></script>
-<script src="http://localhost/Escapetalk/claim-challenge.js"></script>
+<script src="http://localhost/Escapetalk/js/confetti-button.js"></script>
+<script src="http://localhost/Escapetalk/js/experience-bar.js"></script>
+<script src="http://localhost/Escapetalk/js/claim-challenge.js"></script>
+<script src="http://localhost/Escapetalk/js/badge-click.js"></script>
+
+
 
 
 <script src="/js/site.min.js?v=0.5.5"></script>
 <!-- <script src="/js/notifications.min.js"></script> -->
-<script src="/js/notification.min.js"></script>
+<script src="http://localhost/Escapetalk/js/notification.min.js"></script>
 
 <script src="/js/modals.min.js?v=0.5.5"></script>
 <script src="/js/get-advertentie.min.js?v=0.5.5"></script>
@@ -1068,26 +1072,6 @@ var CSS_VERSION = '0.5.9';
     </script>
 
 
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u="//stats.lift3.nl/";
-    _paq.push(['setTrackerUrl', u+'pwk']);
-    _paq.push(['setSiteId', 8]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'pwk.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="//stats.lift3.nl/pwk?idsite=8" class="noindex" style="border:0;" alt="" /></p></noscript>
-
-<script>
-if (navigator.appVersion.indexOf("MSIE 10") !== -1 || navigator.appVersion.indexOf('Trident/') > -1) {
-    document.write('<div class="browser-notice">Je gebruikt een verouderde, onveilige versie van Internet Explorer. Upgrade vandaag nog naar de nieuwste versie van &lt;a href=&quot;https://www.microsoft.com/nl-nl/edge&quot; target=&quot;_blank&quot;&gt;Microsoft Edge&lt;/a&gt; voor een optimale ervaring.</div>');
-    document.getElementsByTagName('body')[0].className += ' browser-notice-active';
-}
-</script>
 
 
 </body>

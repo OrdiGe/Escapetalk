@@ -112,6 +112,7 @@
 									background-color: #ffe6e7;
 									border-radius: 10px;
 									.progress-bar {
+										transition: 1s;
 										width: 0%;
 										height: 5px;
 										background-color: #ec202c;
@@ -277,6 +278,7 @@
 										display: flex;
 										justify-content: center;
 										position: relative;
+										cursor: pointer;
 										svg {
 											overflow: visible;
 											position: absolute;
@@ -303,11 +305,11 @@
 												color: #000;
 											}
 										}
-										&:hover {
-											.badge-desc {
-												display: flex;
-											}
-										}
+										// &:hover {
+										// 	.badge-desc {
+										// 		display: flex;
+										// 	}
+										// }
 									}
 									.badge-ani {
 										animation-name: badgeSlide;
