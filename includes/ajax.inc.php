@@ -18,33 +18,33 @@ if($_POST['type'] == 'claimBadges')
 
     $badges_post = json_decode($_POST['badges']);
 
-    $levels = [
-        1 => ["id" => 1, "rankName" => "Escape Apprentice"],
-        2 => ["id" => 2, "rankName" => "Escape Newbie"],
-        3 => ["id" => 3, "rankName" => "Junior Escaper"],
-        4 => ["id" => 4, "rankName" => "Escaper"],
-        5 => ["id" => 5, "rankName" => "Advanced Escaper"],
-        6 => ["id" => 6, "rankName" => "Escape Enthusiast"],
-        7 => ["id" => 7, "rankName" => "Escape Specialist"],
-        8 => ["id" => 8, "rankName" => "Senior Escaper"],
-        9 => ["id" => 9, "rankName" => "Escape Expert"],
-        10 => ["id" => 10, "rankName" => "Escaper Guru"],
-        11 => ["id" => 11, "rankName" => "Escaper Master"],
-        12 => ["id" => 12, "rankName" => "Escaper Champion"],
-        13 => ["id" => 13, "rankName" => "Escaper Legend"],
-        14 => ["id" => 14, "rankName" => "Escaper Enigma"],
-        15 => ["id" => 15, "rankName" => "Escaper God"],
-    ];
+    // $levels = [
+    //     1 => ["id" => 1, "rankName" => "Escape Apprentice"],
+    //     2 => ["id" => 2, "rankName" => "Escape Newbie"],
+    //     3 => ["id" => 3, "rankName" => "Junior Escaper"],
+    //     4 => ["id" => 4, "rankName" => "Escaper"],
+    //     5 => ["id" => 5, "rankName" => "Advanced Escaper"],
+    //     6 => ["id" => 6, "rankName" => "Escape Enthusiast"],
+    //     7 => ["id" => 7, "rankName" => "Escape Specialist"],
+    //     8 => ["id" => 8, "rankName" => "Senior Escaper"],
+    //     9 => ["id" => 9, "rankName" => "Escape Expert"],
+    //     10 => ["id" => 10, "rankName" => "Escaper Guru"],
+    //     11 => ["id" => 11, "rankName" => "Escaper Master"],
+    //     12 => ["id" => 12, "rankName" => "Escaper Champion"],
+    //     13 => ["id" => 13, "rankName" => "Escaper Legend"],
+    //     14 => ["id" => 14, "rankName" => "Escaper Enigma"],
+    //     15 => ["id" => 15, "rankName" => "Escaper God"],
+    // ];
 
-    $return = [];
+    // $return = [];
 
-    $levels_post = json_decode($_POST['levels']);
+    // $levels_post = json_decode($_POST['levels']);
 
-    $return[] = $levels[$level];
+    // $return[] = $levels[$level];
 
-    echo json_encode($return);
+    // echo json_encode($return);
 
-    var_dump($levels);
+    // var_dump($levels);
 
     foreach($badges_post as $badge)
     {
@@ -96,21 +96,3 @@ if($_POST['type'] == 'claimBadges')
 // }
 
 ?>
-
-
-<!-- // 1 claim 
-
-$items = [$id];
-
-
-//claimall 
-
-loop over alle beschikbare,  en zet die allemaal in array
-
-var items = [];
-
-foreach(claimable as id)
-{
-    items.push(id);
-
-} -->
