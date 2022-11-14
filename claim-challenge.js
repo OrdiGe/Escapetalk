@@ -31,16 +31,16 @@ function claimBadges(badges = [])
 
     let data = new FormData();
     data.append('type', 'claimBadges');
-    data.append('type', 'levelUp');
+    // data.append('type', 'levelUp');
     data.append('badges', JSON.stringify(badges));
-    data.append('levels', JSON.stringify(levels));
+    // data.append('levels', JSON.stringify(levels));
 
     u('.badges-box-description').first().style.display = 'none';
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-        console.log(response);
+        // console.log(response);
         response.json().then((res) => {
 
             u(res).each(function(e){
