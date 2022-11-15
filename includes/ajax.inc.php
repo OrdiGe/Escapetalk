@@ -3,18 +3,20 @@
 if($_POST['type'] == 'claimBadges')
 {
     $badges = [
-        1 => ["id" => 1, "title" => "profileCompleteBadge", "progress" => "1/1", "claimable" => true, "icon" => "profileCompleteBadge.svg", "claimed" => false, "expPoints" => 10],
-        2 => ["id" => 2, "title" => "firstRoomPlayedBadge", "progress" => "1/1", "claimable" => true, "icon" => "firstRoomPlayedBadge.svg", "claimed" => false, "expPoints" => 15],
-        3 => ["id" => 3, "title" => "firstGamePlayedBadge", "progress" => "0/1", "claimable" => false, "icon" => "firstGamePlayedBadge.svg", "claimed" => false, "expPoints" => 15],
-        4 => ["id" => 4, "title" => "firstRoomReviewBadge", "progress" => "1/1", "claimable" => true, "icon" => "firstRoomReview.svg", "claimed" => false, "expPoints" => 35],
-        5 => ["id" => 5, "title" => "firstGameReviewBadge", "progress" => "0/1", "claimable" => false, "icon" => "firstGameReview.svg", "claimed" => false, "expPoints" => 35],
-        6 => ["id" => 6, "title" => "10RoomsOneMonth", "progress" => "0/1", "claimable" => true, "icon" => "10RoomsOneMonth.svg", "claimed" => false, "expPoints" => 150],
-        7 => ["id" => 7, "title" => "1yearMemberBadge", "progress" => "0/1", "claimable" => false, "icon" => "1yearMemberBadge.svg", "claimed" => false, "expPoints" => 250],
-        8 => ["id" => 8, "title" => "halloweenBadge", "progress" => "0/1", "claimable" => true, "icon" => "halloweenBadge.svg", "claimed" => false, "expPoints" => 75],
+        1 => ["id" => 1, "title" => "Profielpagina Compleet", "description" => "Maak je profielpagina compleet!", "progress" => "1/1", "claimable" => true, "icon" => "profileCompleteBadge.svg", "claimed" => false, "expPoints" => 10, "claimedDate" => "15-11-2022"],
+        2 => ["id" => 2, "title" => "Eerste Kamer Gespeeld", "description" => "Speel je eerste kamer!", "progress" => "1/1", "claimable" => true, "icon" => "firstRoomPlayedBadge.svg", "claimed" => false, "expPoints" => 15, "claimedDate" => "15-11-2022"],
+        3 => ["id" => 3, "title" => "Eerste Game Gespeeld", "description" => "Speel je eerste game!", "progress" => "0/1", "claimable" => false, "icon" => "firstGamePlayedBadge.svg", "claimed" => false, "expPoints" => 15, "claimedDate" => "15-11-2022"],
+        4 => ["id" => 4, "title" => "Eerste Kamer Review", "description" => "Geef je eerste review over een kamer!", "progress" => "1/1", "claimable" => true, "icon" => "firstRoomReview.svg", "claimed" => false, "expPoints" => 35, "claimedDate" => "15-11-2022"],
+        5 => ["id" => 5, "title" => "Eerste Game Review", "description" => "Geef je eerste review over een game!", "progress" => "0/1", "claimable" => false, "icon" => "firstGameReview.svg", "claimed" => false, "expPoints" => 35, "claimedDate" => "15-11-2022"],
+        6 => ["id" => 6, "title" => "10 Kamers In Eén Maand", "description" => "Speel 10 kamers in één maand", "progress" => "0/1", "claimable" => true, "icon" => "10RoomsOneMonth.svg", "claimed" => false, "expPoints" => 150, "claimedDate" => "15-11-2022"],
+        7 => ["id" => 7, "title" => "1 Jaar Lid", "description" => "Bedankt dat je al één jaar lid van ons bent!", "progress" => "0/1", "claimable" => false, "icon" => "1yearMemberBadge.svg", "claimed" => false, "expPoints" => 250, "claimedDate" => "15-11-2022"],
+        8 => ["id" => 8, "title" => "Spooky Ontsnapping", "description" => "Speel een kamer tijdens Halloween!", "progress" => "0/1", "claimable" => true, "icon" => "halloweenBadge.svg", "claimed" => false, "expPoints" => 75, "claimedDate" => "15-11-2022"],
         
     ];
 
-    $return = [];
+
+
+    $return = ['badges' => [], 'new_rank' => $new_rank];
 
     $badges_post = json_decode($_POST['badges']);
 
@@ -26,7 +28,7 @@ if($_POST['type'] == 'claimBadges')
         {
             $badges[$badge]['claimable'] = false;
             $badges[$badge]['claimed'] = true;
-            $return[] = $badges[$badge];
+            $return['badges'][] = $badges[$badge];
         }
         else if(isset($badges[$badge]) && $badges[$badge]['claimable'] == false && $badges[$badge]['claimed'] == true)
         {
@@ -35,9 +37,18 @@ if($_POST['type'] == 'claimBadges')
         }
     }
 
+    $new_rank = 'Junior escaper';
+
+    $return['new_rank'] = $new_rank;
+
     echo json_encode($return);
 
 }
+
+// $return = [['badge1'], ['badge2'], ['badge3']];
+
+
+// $return = ["badges" => [['badge1'], ['badge2'], ['badge3']], 'new_rank' => 'Junior escaper'];
 
 // if($_POST['type'] == 'levelUp')
 // {

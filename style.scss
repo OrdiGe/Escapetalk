@@ -30,7 +30,14 @@
 		transform: translate(var(--x), var(--y)) rotate(var(--r));
 	}
 }
-
+.notice-modal .content-notice .notice-wrapper h1 {
+	margin-bottom: 0.67em;
+	font-size: 16px;
+}
+.notice-modal .content-notice .notice-wrapper p {
+	word-break: break-word;
+	font-size: 14px;
+}
 .breadcrumbs {
 	width: 100%;
 	margin-bottom: 20px;
@@ -537,6 +544,14 @@
 }
 @media (min-width: 568px) {
 	.profiel {
+		.notice-modal .content-notice .notice-wrapper h1 {
+			margin-bottom: 0.67em;
+			font-size: 18px;
+		}
+		.notice-modal .content-notice .notice-wrapper p {
+			word-break: break-word;
+			font-size: 16px;
+		}
 		#profile {
 			.container {
 				.contentbox {
@@ -676,7 +691,16 @@
 }
 @media (min-width: 768px) {
 	.profiel {
+		.notice-modal .content-notice .notice-wrapper h1 {
+			margin-bottom: 0.67em;
+			font-size: 18px;
+		}
+		.notice-modal .content-notice .notice-wrapper p {
+			word-break: break-word;
+			font-size: 16px;
+		}
 		#profile {
+
 			.container {
 				.contentbox {
 					.more-information {
@@ -727,7 +751,16 @@
 }
 @media (min-width: 1024px) {
 	.profiel {
+		.notice-modal .content-notice .notice-wrapper h1 {
+			margin-bottom: 0.67em;
+			font-size: 20px;
+		}
+		.notice-modal .content-notice .notice-wrapper p {
+			word-break: break-word;
+			font-size: 16px;
+		}
 		#profile {
+
 			.container {
 				.contentbox {
 					padding-top: 200px;

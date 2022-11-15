@@ -6,12 +6,11 @@ const claimBadge = function() {
 }
 
 const claimAllBadges = function() {
-    var clicked = false;
+
     var claimablebadges = u('.claimable');
 
     var badges = [];
 
-    u('.claim-all').off('click');
 
     claimablebadges.each(function (e){
         badges.push(u(e).data('badgeId'));
@@ -22,7 +21,7 @@ const claimAllBadges = function() {
 
 u('.claimable').on('click', claimBadge);
 
-u('.claim-all').on('click', claimAllBadges);
+u(document).on('click', '.claim-all', claimAllBadges);
 
 u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
 
@@ -39,18 +38,28 @@ function claimBadges(badges = [])
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
+    if(badges.length >= 3) {
+        multipleNotifications(u('.claimable').length, 'small');
+    }
+
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
         // console.log(response);
         response.json().then((res) => {
 
-            u(res).each(function(e){
+            u(res.badges).each(function(e){
                 const badge = e;
 
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
                 u(document).on('click', '#badge'+e.id, function() {
-                    modal('info', ''+badge.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
+                    modal('info', ''+badge.title+'</br>', ''+badge.description+' </br></br> Deze badge is behaald op '+badge.claimedDate+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 });
-                singleNotification('Je hebt de badge '+e.title+' verdiend!', '/badges/');
+
+                if(badges.length < 3) {
+                    singleNotification('Je hebt de badge '+e.title+' verdiend!', '/badges/');
+                }
+
+
+
                 // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 u('#badge'+e.id+'').addClass("badge-ani");
                 u('.challenge[data-challengeId="'+e.id+'"] .claimable').removeClass('claimable');
@@ -73,13 +82,15 @@ function claimBadges(badges = [])
                         console.log(u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100))
                         levelUp();
 
+                        u('p.rank').html(res.new_rank);
+
                         if(u(".challenges").children().length == 0) {
                             u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
                             u('.claim-all-btn').first().style.display = 'none';
                         } 
 
                         if(u('.claimable').length == 0){
-                            u('.claim-all').remove();
+                            u('.claim-all-btn').removeClass('claim-all');
                         }
                     }, 1000);                    
                 }, 1500);                        

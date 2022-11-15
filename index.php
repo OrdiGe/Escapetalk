@@ -43,6 +43,7 @@
         <link href="http://localhost/Escapetalk/marketing.min.css" rel="stylesheet">
         <link href="https://lift3cdn.nl/css/glightbox.min.css" rel="stylesheet">
         <link href="http://localhost/Escapetalk/lightbox.min.css" rel="stylesheet">
+        <link href="http://localhost/Escapetalk/modals.min.css" rel="stylesheet">
         <link href="http://localhost/Escapetalk/style.css" rel="stylesheet">
 		<base href="https://escapetalk.nl">
 
@@ -67,7 +68,6 @@
 				let data = {errorObject: encodeURIComponent(errorObject),fileUrl: encodeURIComponent(url), lineNmbr: encodeURIComponent(lineNumber), column: encodeURIComponent(column), page: encodeURIComponent(window.location.href)}; 				var xhttp = new XMLHttpRequest();
 
 				xhttp.open("POST", "/includes/ajax.inc.php", true);
-				xhttp.open("POST", "/includes/experience-bar.inc.php", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				xhttp.send('type=JS_error&data=' + JSON.stringify(data));
 				return false;
@@ -88,7 +88,7 @@
 			<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'UA-21175988-25', {'anonymize_ip': true});</script>
 		
 
-	<link href="/css/modals.min.css?v=0.5.9" rel="stylesheet">
+	
 </head>
 
 <body class="profiel">
