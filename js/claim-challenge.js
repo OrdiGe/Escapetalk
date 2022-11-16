@@ -1,3 +1,7 @@
+var currentRank = 0;
+
+var score = 0;
+
 const claimBadge = function() {
 
     var badge = u(this).data('badgeId');
@@ -28,6 +32,7 @@ u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
 function claimBadges(badges = [])
 {
 
+
     let data = new FormData();
     data.append('type', 'claimBadges');
     // data.append('type', 'levelUp');
@@ -45,12 +50,11 @@ function claimBadges(badges = [])
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
         // console.log(response);
         response.json().then((res) => {
-
+            console.log(res);
             u(res.badges).each(function(e){
                 const badge = e;
-
-                u('.badges-content').prepend(u('<div class="badge" id="badge'+e.id+'"><img src="http://localhost/Escapetalk/images/'+e.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
-                u(document).on('click', '#badge'+e.id, function() {
+                u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
+                u(document).on('click', '#badge'+badge.id, function() {
                     modal('info', ''+badge.title+'</br>', ''+badge.description+' </br></br> Deze badge is behaald op '+badge.claimedDate+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 });
 
@@ -58,31 +62,61 @@ function claimBadges(badges = [])
                     singleNotification('Je hebt de badge '+e.title+' verdiend!', '/badges/');
                 }
 
-
-
                 // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
-                u('#badge'+e.id+'').addClass("badge-ani");
-                u('.challenge[data-challengeId="'+e.id+'"] .claimable').removeClass('claimable');
-                u('.challenge[data-challengeId="'+e.id+'"] .claimable').off('click');
+                u('#badge'+badge.id+'').addClass("badge-ani");
+                u('.challenge[data-challengeId="'+badge.id+'"] .claimable').removeClass('claimable');
+                u('.challenge[data-challengeId="'+badge.id+'"] .claimable').off('click');
 
                 u('#confetti-canvas').first().style.visibility = 'visible';
                 startConfetti();
 
                 setTimeout(function(){
-                    u('.challenge[data-challengeId="'+e.id+'"]').addClass("challenge-ani");
+                    u('.challenge[data-challengeId="'+badge.id+'"]').addClass("challenge-ani");
                     stopConfetti();
                     setTimeout(function(){
 
 
-                        u('.challenge[data-challengeId="'+e.id+'"]').remove();
+                        u('.challenge[data-challengeId="'+badge.id+'"]').remove();
                         u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
 
 
-                        u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";
-                        console.log(u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100))
-                        levelUp();
+                        // u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";
+                        // console.log(u('#progress-bar-xp').first().offsetWidth);
+                        // levelUp();
 
-                        u('p.rank').html(res.new_rank);
+                        u(res.new_rank).each(function(e){
+
+                            score += badge.expPoints;
+
+                            u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+
+                            u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+
+                            console.log(currentRank + 1);
+
+                            if(score >= e[currentRank + 1].minScore) {
+                                console.log('2 levels up!')
+                                score -= e[currentRank + 1].minScore;
+                                //console.log(score);                                
+
+                                currentRank += 2;   
+                            }
+                            else if (score >= e[currentRank].minScore){
+
+                                console.log('Level Up!');
+                                score -= e[currentRank].minScore;
+                                //console.log(score);                                
+
+                                currentRank += 1;                                
+                            }
+
+                            console.log(currentRank);
+                            u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+                            u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+                            u('p.rank').html(e[currentRank].rankName);
+
+
+                        });
 
                         if(u(".challenges").children().length == 0) {
                             u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));

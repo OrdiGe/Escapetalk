@@ -526,7 +526,7 @@
                                     <div class="full-progress-bar">
                                         <div class="progress-bar" id="progress-bar-xp"></div>
                                     </div>
-                                    <p class="progression-text">Progressie: 0/100</p>
+                                    <p class="progression-text">Progressie: 0/25</p>
                                 </div>
                                 
                                 <div class="contact-information grid">

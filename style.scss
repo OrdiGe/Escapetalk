@@ -121,6 +121,7 @@
 									.progress-bar {
 										transition: 1s;
 										width: 0%;
+										max-width: 100%;
 										height: 5px;
 										background-color: #ec202c;
 										border-radius: 10px;
