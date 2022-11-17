@@ -42,7 +42,6 @@ function multipleNotifications(amount, type = 'large') {
 function singleNotification(message, slug) {
     var i = 1;
 
-    console.log(message,slug);
     var notification = document.createElement('a');
     notification.className = 'notification';
     notification.href = slug;

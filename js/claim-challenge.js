@@ -2,6 +2,8 @@ var currentRank = 0;
 
 var score = 0;
 
+var totalScore = 0;
+
 const claimBadge = function() {
 
     var badge = u(this).data('badgeId');
@@ -48,9 +50,15 @@ function claimBadges(badges = [])
     }
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-        // console.log(response);
+        //console.log(response);
         response.json().then((res) => {
-            console.log(res);
+
+            for(let i = 0; i < res.badges.length; i++) {
+                totalScore += res.badges[i].expPoints;
+                score += res.badges[i].expPoints;
+                //console.log(score);
+
+            }
             u(res.badges).each(function(e){
                 const badge = e;
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
@@ -82,41 +90,67 @@ function claimBadges(badges = [])
 
                         // u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";
                         // console.log(u('#progress-bar-xp').first().offsetWidth);
-                        // levelUp();
 
-                        u(res.new_rank).each(function(e){
+                        // u(res.new_rank).each(function(e){
 
-                            score += badge.expPoints;
-
-                            u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
-
-                            u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
-
-                            console.log(currentRank + 1);
-
-                            if(score >= e[currentRank + 1].minScore) {
-                                console.log('2 levels up!')
-                                score -= e[currentRank + 1].minScore;
-                                //console.log(score);                                
-
-                                currentRank += 2;   
-                            }
-                            else if (score >= e[currentRank].minScore){
-
-                                console.log('Level Up!');
-                                score -= e[currentRank].minScore;
-                                //console.log(score);                                
-
-                                currentRank += 1;                                
-                            }
-
-                            console.log(currentRank);
-                            u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
-                            u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
-                            u('p.rank').html(e[currentRank].rankName);
-
-
-                        });
+                            //score += badge.expPoints;
+            
+                            //console.log(score);
+            
+                            // u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+            
+                            // u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+            
+                            // if(totalScore >= e[currentRank + 3].minScore) {
+                            //     console.log('4 levels up!')
+                            //     score = totalScore - e[currentRank + 3].minScore;
+                            //     //console.log(score);                                
+            
+                            //     currentRank += 4;   
+                            // }
+                            // else if(totalScore >= e[currentRank + 2].minScore) {
+                            //     console.log('3 levels up!')
+                            //     score = totalScore - e[currentRank + 2].minScore;
+                            //     //console.log(score);                                
+            
+                            //     currentRank += 3;   
+                            // }
+                            // else if (totalScore >= e[currentRank + 1].minScore) {
+                            //     console.log('2 levels up!')
+                            //     score = totalScore - e[currentRank + 1].minScore;
+                            //     //console.log(score);                                
+            
+                            //     currentRank += 2;
+                            // }
+                            // else if (totalScore >= e[currentRank].minScore){
+            
+                            //     console.log('Level Up!');
+                            //     score = totalScore - e[currentRank].minScore;
+                            //     //console.log(score);                                
+            
+                            //     currentRank += 1;                                
+                            // }
+            
+                            // for(let i = 0; i < res.new_rank.length; i++) {
+                            //     if (totalScore >= e[i].minScore){
+            
+                            //         console.log(''+ i +' levels Up!');
+                            //         score = totalScore - e[i].minScore;
+                            //         //console.log(score);                                
+                
+                            //         currentRank += i;                                
+                            //     }
+                            // }
+            
+                            // u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+                            // u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+                            
+                            
+                        // });
+                        
+                        u('p.rank').html(res.profile.rankName);
+                        u('#progress-bar-xp').first().style.width = res.profile.percentage + "%"
+                        u('.progression-text span').html( res.profile.current_points + " / " + res.profile.next_rank_points);
 
                         if(u(".challenges").children().length == 0) {
                             u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
@@ -128,15 +162,17 @@ function claimBadges(badges = [])
                         }
                     }, 1000);                    
                 }, 1500);                        
-            });                
+            });          
         });            
     })
     .catch((err) => {
 
 
     });
-    
-}   
+
+}  
+
+
 
 // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
 // claimbadge.php
