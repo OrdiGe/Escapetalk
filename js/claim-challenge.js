@@ -25,7 +25,7 @@ const claimAllBadges = function() {
     claimBadges(badges);
 }
 
-u('.claimable').on('click', claimBadge);
+u(document).on('click', '.claimable', claimBadge);
 
 u(document).on('click', '.claim-all', claimAllBadges);
 
@@ -73,7 +73,7 @@ function claimBadges(badges = [])
                 // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 u('#badge'+badge.id+'').addClass("badge-ani");
                 u('.challenge[data-challengeId="'+badge.id+'"] .claimable').removeClass('claimable');
-                u('.challenge[data-challengeId="'+badge.id+'"] .claimable').off('click');
+                u('.challenge[data-challengeId="'+badge.id+'"]').off('click');
 
                 u('#confetti-canvas').first().style.visibility = 'visible';
                 startConfetti();
@@ -148,9 +148,29 @@ function claimBadges(badges = [])
                             
                         // });
                         
-                        u('p.rank').html(res.profile.rankName);
-                        u('#progress-bar-xp').first().style.width = res.profile.percentage + "%"
-                        u('.progression-text span').html( res.profile.current_points + " / " + res.profile.next_rank_points);
+
+                        // You haven't gone rank up
+                        if (u('p.rank').html() == res.rank.name){
+                            u('#progress-bar-xp').first().style.width = res.rank.percentage + "%";
+                            u('.progression-text span').html( res.rank.points_diff + " / " + res.rank.rank_points_diff);
+                        }
+                        else{
+                            // Rank up
+                            u('#progress-bar-xp').first().style.width = "100%";
+                            setTimeout(function(){
+                                u('#progress-bar-xp').first().style.transition = "0s";
+                                u('p.rank').html(res.rank.name);
+                                u('.progression-text span').html(res.rank.points_diff + " / " + res.rank.rank_points_diff);
+                                u('#progress-bar-xp').first().style.width = "0%";
+                                setTimeout(function(){
+                                    u('#progress-bar-xp').first().style.transition = "1s";
+                                    u('#progress-bar-xp').first().style.width = res.rank.percentage + "%";
+                                }, 100);
+                            }, 1000);
+
+                        }
+                        
+
 
                         if(u(".challenges").children().length == 0) {
                             u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));

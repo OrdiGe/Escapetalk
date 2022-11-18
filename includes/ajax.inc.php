@@ -34,7 +34,7 @@ if($_POST['type'] == 'claimBadges')
 
 
 
-    $return['profile'] = getProfileData();
+    $return['rank'] = getProfileData();
 
     
     echo json_encode($return);

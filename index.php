@@ -2,7 +2,7 @@
 
 include "configuration.php";
 
-$profile = getProfileData();
+$rank = getProfileData();
 
 ?>
 
@@ -162,7 +162,7 @@ $profile = getProfileData();
                                             <a href="/profiel/" class="name">OrdiGe</a>
                                             </p>
                                             <p class="rank">
-                                                <a href="/profiel/" class="rank"><?php echo $profile['rankName']; ?></a>
+                                                <a href="/profiel/" class="rank"><?php echo $rank['name']; ?></a>
 
                                             </p> 
                                             <p class="email">
@@ -529,11 +529,11 @@ $profile = getProfileData();
 
                             <div class="right">
                                 <div class="progress-bar-container">
-                                    <p class="rank"><?php echo $profile['rankName']; ?></p>
+                                    <p class="rank"><?php echo $rank['name']; ?></p>
                                     <div class="full-progress-bar">
-                                        <div class="progress-bar" id="progress-bar-xp" style='width:<?php echo $profile['percentage']; ?>%;'></div>
+                                        <div class="progress-bar" id="progress-bar-xp" style='width:<?php echo $rank['percentage']; ?>%;'></div>
                                     </div>
-                                    <p class="progression-text">Progressie: <span><?php echo $profile['current_points']; ?>/<?php echo $profile['next_rank_points']; ?></span></p>
+                                    <p class="progression-text">Progressie: <span><?php echo $rank['points_diff']; ?> / <?php echo $rank['rank_points_diff']; ?></span></p>
                                 </div>
                                 
                                 <div class="contact-information grid">
