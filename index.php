@@ -2,6 +2,8 @@
 
 include "configuration.php";
 
+// var_dump($badges);
+
 $rank = getProfileData();
 
 ?>
@@ -620,105 +622,24 @@ $rank = getProfileData();
 
                                 <div class="challenges-container">
                                     <div class="challenges">
-                                        <div class="challenge" id="challenge1" data-challengeId="1"  data-claimed="false">
-                                            <p class="challenge-title">Profielpagina compleet</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
+                                        <?php
+                                            foreach($badges as $badge) {
+                                                echo '
+                                                <div class="challenge">
+                                                    <p class="challenge-title">'.$badge['title'].'</p>
+                                                    <div class="challenge-pb">
+                                                        <div class="pb-container">
+                                                            <div class="full-progress-bar">
+                                                                <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: 100%"></div>                                            
+                                                            </div>
+                                                            <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
+                                                        </div>                                            
+                                                        <div class="claim-btn claimable" data-badgeId="'.$badge['id'].'">CLAIM</div>
                                                     </div>
-                                                    <p class="challenge-progression">Progressie: 1/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="1">CLAIM</div>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge2" data-challengeId="2"  data-claimed="false">
-                                            <p class="challenge-title">1 kamer gespeeld</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 1/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="2">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge3" data-challengeId="3"  data-claimed="false">
-                                            <p class="challenge-title">1 game gespeeld</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn" data-badgeId="3">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge4" data-challengeId="4"  data-claimed="false">
-                                            <p class="challenge-title">Eerste review over een kamer geplaatst</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 1/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="4">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge5" data-challengeId="5"  data-claimed="false">
-                                            <p class="challenge-title">Eerste review over een game geplaatst</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn" data-badgeId="5">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge6" data-challengeId="6" data-claimed="false">
-                                            <p class="challenge-title">10 kamers in één maand gespeeld</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 1/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="6">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge7" data-challengeId="7"  data-claimed="false">
-                                            <p class="challenge-title">Eén jaar lid</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 0/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn" data-badgeId="7">CLAIM</div>
-                                            </div>
-                                        </div>
-                                        <div class="challenge" id="challenge8" data-challengeId="8"  data-claimed="false">
-                                            <p class="challenge-title">Kamer gespeeld tijdens Halloween</p>
-                                            <div class="challenge-pb">
-                                                <div class="pb-container">
-                                                    <div class="full-progress-bar">
-                                                        <div class="progress-bar" id="pb-challenge-1" style="width: 100%"></div>                                            
-                                                    </div>
-                                                    <p class="challenge-progression">Progressie: 1/1</p>
-                                                </div>                                            
-                                                <div class="claim-btn claimable" data-badgeId="8">CLAIM</div>
-                                            </div>
-                                        </div>
+                                                </div>';
+                                            }
+                                        ?>                                        
                                     </div>
-                                    
                                 </div>
                             </div>
                             <div class="box item extra-information marge-top">
@@ -730,16 +651,25 @@ $rank = getProfileData();
                         </div>
 
                         <div class="item-wrapper md-col-2">
-                            
-
                             <div class="box badges-box item">
                                 <h3>Badges</h3>
-                                <div class="badges-container" style="display: block;">
-                                    <p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>
+                                <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
-
-                                    </div>
-                                    
+                                        <?php
+                                            if($badges == null){
+                                                echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
+                                            }
+                                            else {
+                                                foreach($badges as $badge) {
+                                                    if($badge['claimed'] == true) {
+                                                        $html = preg_replace('#<div class="challenge" id="challenge'.$badge['id'].'">(.*?)</div>#', '', $html);
+                                                        echo '<div class="badge" id="badge'.$badge['id'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>';
+                                                    }
+                                                }
+                                            }
+                                            
+                                        ?>
+                                    </div>                                    
                                 </div>
                             </div>
 
@@ -748,17 +678,13 @@ $rank = getProfileData();
                                 <div class="description">
                                     <p>Nog geen teams</p>
                                 </div>
-                            </div>
-                            
+                            </div>                            
                         </div>
                     </div>
-                </div>
-
-                
+                </div>                
 
                 <div class="marketing" data-tag="profile" data-loaded="true"><a href="/redirect/ad/1/" target="_blank" class="marketing-img" rel="nofollow"><img src="https://lift3cdn.nl/image/20/original/escapetalk-v4-banner.gif"></a><span class="marketing-link"><a href="/info/advertenties/">Advertentie</a></span></div>
 
-                
             </div>
         </div>
         
@@ -768,8 +694,7 @@ $rank = getProfileData();
 <footer class="small">
     <div class="container footer-content">
         <div class="content">
-            <div class="footer-section info-section">
-                 
+            <div class="footer-section info-section">                 
 
                 <p class="section-title">
                     <strong>Over ons</strong>

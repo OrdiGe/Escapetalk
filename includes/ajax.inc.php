@@ -6,12 +6,9 @@ include('../configuration.php');
 
 if($_POST['type'] == 'claimBadges')
 {
+    $return = ['badges' => []];
 
-    $return = ['badges' => [], 'new_rank' => []];
-
-    $badges_post = json_decode($_POST['badges']);
-
-    
+    $badges_post = json_decode($_POST['badges']);    
 
     foreach($badges_post as $badge)
     {
@@ -23,19 +20,9 @@ if($_POST['type'] == 'claimBadges')
 
             $_SESSION['points'] += $badges[$badge]['expPoints'];
         }
-        else if(isset($badges[$badge]) && $badges[$badge]['claimable'] == false && $badges[$badge]['claimed'] == true)
-        {
-
-            $return = [];
-        }
     }
 
-    
-
-
-
     $return['rank'] = getProfileData();
-
     
     echo json_encode($return);
 

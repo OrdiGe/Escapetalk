@@ -41,8 +41,6 @@ function claimBadges(badges = [])
     data.append('badges', JSON.stringify(badges));
     // data.append('levels', JSON.stringify(levels));
 
-    u('.badges-box-description').first().style.display = 'none';
-
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
     if(badges.length >= 3) {
@@ -53,12 +51,14 @@ function claimBadges(badges = [])
         //console.log(response);
         response.json().then((res) => {
 
+            console.log(res);
+
             for(let i = 0; i < res.badges.length; i++) {
                 totalScore += res.badges[i].expPoints;
                 score += res.badges[i].expPoints;
                 //console.log(score);
-
             }
+
             u(res.badges).each(function(e){
                 const badge = e;
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
@@ -191,8 +191,6 @@ function claimBadges(badges = [])
     });
 
 }  
-
-
 
 // PHP: Hier check je welk ID er op gevraagd word en welke badge daar bij hoort
 // claimbadge.php
