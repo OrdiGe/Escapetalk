@@ -382,9 +382,19 @@
   overflow: hidden;
   position: relative;
 }
+.profiel #profile .container .contentbox .more-information .challenge .challenge-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .profiel #profile .container .contentbox .more-information .challenge .challenge-title {
   font-size: 12px;
   font-weight: 500;
+}
+.profiel #profile .container .contentbox .more-information .challenge .challenge-exp {
+  font-size: 12px;
+  font-weight: 500;
+  color: #d9d9d9;
 }
 .profiel #profile .container .contentbox .more-information .challenge .challenge-pb {
   width: 100%;

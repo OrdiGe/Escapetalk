@@ -31,15 +31,17 @@ u(document).on('click', '.claim-all', claimAllBadges);
 
 u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
 
+u(document).on('click', '[data-badgeId]', function() {
+    modal('info', u(this).data('badgeTitle'), u(this).data('badgeDesc')+' </br></br> Deze badge is behaald op '+u(this).data('claimedDate')+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
+});
+
 function claimBadges(badges = [])
 {
-
-
     let data = new FormData();
     data.append('type', 'claimBadges');
-    // data.append('type', 'levelUp');
+
     data.append('badges', JSON.stringify(badges));
-    // data.append('levels', JSON.stringify(levels));
+
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
@@ -51,23 +53,14 @@ function claimBadges(badges = [])
         //console.log(response);
         response.json().then((res) => {
 
-            console.log(res);
+            console.log(res.badges);
 
-            for(let i = 0; i < res.badges.length; i++) {
-                totalScore += res.badges[i].expPoints;
-                score += res.badges[i].expPoints;
-                //console.log(score);
-            }
-
-            u(res.badges).each(function(e){
-                const badge = e;
-                u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"><div class="badge-desc"><h4>Profiel compleet</h4><p>Behaald op</p><p>25-10-2022</p></div></div>'));
-                u(document).on('click', '#badge'+badge.id, function() {
-                    modal('info', ''+badge.title+'</br>', ''+badge.description+' </br></br> Deze badge is behaald op '+badge.claimedDate+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
-                });
+            u(res.badges).each(function(badge){
+                u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'" data-claimedDate="'+badge.claimedDate+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
+                
 
                 if(badges.length < 3) {
-                    singleNotification('Je hebt de badge '+e.title+' verdiend!', '/badges/');
+                    singleNotification('Je hebt de badge "'+badge.title+'" verdiend!', '/badges/');
                 }
 
                 // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});

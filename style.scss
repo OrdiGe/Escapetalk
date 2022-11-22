@@ -415,9 +415,21 @@
 						flex-wrap: wrap;
 						overflow: hidden;
 						position: relative;
+						.challenge-title-container {
+							width: 100%;
+							display: flex;
+							justify-content: space-between;
+
+							
+						}
 						.challenge-title {
 							font-size: 12px;
 							font-weight: 500;
+						}
+						.challenge-exp {
+							font-size: 12px;
+							font-weight: 500;
+							color: #d9d9d9;
 						}
 						.challenge-pb {
 							width: 100%;
@@ -432,7 +444,7 @@
 								height: 5px;
 								background-color: #d9d9d9;
 								border-radius: 10px;
-								.progress-bar {
+								.progress-bar { 
 									width: 0px;
 									height: 5px;
 									background-color: #838383;
