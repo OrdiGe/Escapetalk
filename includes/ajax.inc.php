@@ -17,6 +17,10 @@ if($_POST['type'] == 'claimBadges')
             $badges[$badge]['claimable'] = false;
             $badges[$badge]['claimed'] = true;
             $return['badges'][] = $badges[$badge];
+            
+            $_SESSION['claimed_challenges'][] = $badges[$badge];
+            $return['claimed_challenges'] = $_SESSION['claimed_challenges'];
+
 
             $_SESSION['points'] += $badges[$badge]['expPoints'];
         }

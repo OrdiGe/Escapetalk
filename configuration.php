@@ -86,11 +86,12 @@ function getProfileData()
                 $points = $_SESSION['points'] += $badge['expPoints'];
             }
         }
-
     }
+
+
     
     $return = ['name' => '', 'current_points' => $points, 'current_rank_points' => 0, 'next_rank_points' => 0, 'percentage' => 0, 'rank_points_diff' => 0, 'points_diff' => 0];
-
+    
     foreach($all_ranks as $key => $rank)
     {
         if($points >= $rank['minScore'])

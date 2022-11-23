@@ -382,7 +382,7 @@
   overflow: hidden;
   position: relative;
 }
-.profiel #profile .container .contentbox .more-information .challenge .challenge-title-container {
+.profiel #profile .container .contentbox .more-information .challenge .challenge-progression-container {
   width: 100%;
   display: flex;
   justify-content: space-between;
