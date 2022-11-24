@@ -16,22 +16,13 @@ if($_POST['type'] == 'claimBadges')
 
         if(isset($badges[$badge]) && $badges[$badge]['claimable'] == true && $badges[$badge]['claimed'] == false)
         {
+            $_SESSION['badges'][$badge]['claimed'] = true;
+            $_SESSION['badges'][$badge]['claimable'] = false;
+
             $badges[$badge]['claimable'] = false;
             $badges[$badge]['claimed'] = true;
             $return['badges'][] = $badges[$badge];
             
-            foreach($badges as $badge)
-            {
-                if($badge['claimed'] == true)
-                {
-                    $_SESSION['claimed_challenges'][] = $badges[$badge];
-                    $return['claimed_challenges'] = $_SESSION['claimed_challenges'];
-                }
-            }
-            
-
-
-
             $_SESSION['points'] += $badges[$badge]['expPoints'];
         }
     }

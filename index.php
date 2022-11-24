@@ -614,58 +614,51 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <canvas id="confetti-canvas"></canvas>
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
-                                    <div class="claim-all-btn claim-all" >CLAIM ALLES</div>
+                                    <?php 
+                                        foreach($_SESSION['badges'] as $badge) {
+                                            if($badge['claimable'] == true) {
+                                                $claim_all = 'claim-all';
+                                            }
+                                            else {
+                                                $claim_all = '';
+                                            }
+                                        }
+
+                                        echo '<div class="claim-all-btn '.$claim_all.'" >CLAIM ALLES</div>';
+                                    ?>
+                                    
                                 </div>
 
                                 <div class="challenges-container">
                                     <div class="challenges">
                                         <?php
-                                            var_dump($claimed_challenges);
-                                            foreach($badges as $badge) {
-                                                
-                                                foreach($claimed_challenges as $claimed_challenge) {
-                                                    if($badge['id'] != $claimed_challenge['id']) {
-                                                        if($badge['progress']['currentValue'] == $badge['progress']['challengeCompletedValue'] && $badge['claimed'] != true) {
-                                                            $claimable = true;
-                                                            echo 
-                                                            '<div class="challenge" data-challengeId='.$badge['id'].'>
-                                                                <p class="challenge-title">'.$badge['title'].'</p>                                
-                                                                <div class="challenge-pb">
-                                                                    <div class="pb-container">
-                                                                        <div class="full-progress-bar">
-                                                                            <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: 100%"></div>                                            
-                                                                        </div>
-                                                                        <div class="challenge-progression-container">
-                                                                            <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
-                                                                            <p class="challenge-exp">+'.$badge['expPoints'].' exp.</p>
-                                                                        </div>                                                                  
-                                                                    </div>                                                                                                        
-                                                                    <div class="claim-btn claimable" data-badgeId="'.$badge['id'].'">CLAIM</div>
-                                                                </div>
-                                                            </div>';
-        
-                                                        }
-                                                        else if($badge['progress']['currentValue'] != $badge['progress']['challengeCompletedValue']){
-                                                            echo 
-                                                            '<div class="challenge" data-challengeId='.$badge['id'].'>
-                                                                <p class="challenge-title">'.$badge['title'].'</p>
-                                                                <div class="challenge-pb">
-                                                                    <div class="pb-container">
-                                                                        <div class="full-progress-bar">
-                                                                            <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: '.(($badge['progress']['currentValue'] / $badge['progress']['challengeCompletedValue']) * 100).'%"></div>                                            
-                                                                        </div>
-                                                                        <div class="challenge-progression-container">
-                                                                            <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
-                                                                            <p class="challenge-exp">+'.$badge['expPoints'].' exp.</p>
-                                                                        </div> 
-                                                                    </div>                                            
-                                                                    <div class="claim-btn" data-badgeId="'.$badge['id'].'">CLAIM</div>
-                                                                </div>
-                                                            </div>';
-                                                        }
-                                                    }
+
+                                            foreach($_SESSION['badges'] as $badge) {
+                                                if($badge['claimable'] == true) {
+                                                    $claimable = 'claimable';
                                                 }
-                                                                                                
+                                                else {
+                                                    $claimable = '';
+                                                }
+
+                                                if($badge['claimed'] != true) {
+                                                    echo 
+                                                    '<div class="challenge" data-challengeId='.$badge['id'].'>
+                                                        <p class="challenge-title">'.$badge['title'].'</p>                                
+                                                        <div class="challenge-pb">
+                                                            <div class="pb-container">
+                                                                <div class="full-progress-bar">
+                                                                    <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: '.(($badge['progress']['currentValue'] / $badge['progress']['challengeCompletedValue']) * 100).'%"></div>                                            
+                                                                </div>
+                                                                <div class="challenge-progression-container">
+                                                                    <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
+                                                                    <p class="challenge-exp">+'.$badge['expPoints'].' exp.</p>
+                                                                </div>                                                                  
+                                                            </div>                                                                                                        
+                                                            <div class="claim-btn '.$claimable.'" data-badgeId="'.$badge['id'].'">CLAIM</div>
+                                                        </div>
+                                                    </div>';
+                                                }
                                             }
                                         ?>                                        
                                     </div>
@@ -689,16 +682,12 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                                 echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
                                             }
                                             else {
-                                                foreach($badges as $badge) {
-                                                    foreach($claimed_challenges as $claimed_challenge) {
-                                                        if($badge['claimed'] == true || $badge['id'] == $claimed_challenge['id']) {
-                                                            echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
-                                                        }
-                                                    }
-                                                    
+                                                foreach($_SESSION['badges'] as $badge) {
+                                                    if($badge['claimed'] == true) {
+                                                        echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
+                                                    }                                                    
                                                 }
-                                            }
-                                            
+                                            }                                            
                                         ?>
                                     </div>                                    
                                 </div>

@@ -2,41 +2,40 @@
 
 session_start();
 
-
 $all_ranks = [
     0 => ["id" => 1, "name" => "Escape Baby", "minScore" => 0],
     1 => ["id" => 2, "name" => "Escape Friend", "minScore" => 10],
     2 => ["id" => 3, "name" => "Escape Apprentice", "minScore" => 20],
-    3 => ["id" => 4, "name" => "Escape Trainee", "minScore" => 35],
-    4 => ["id" => 5, "name" => "Escape Newbie", "minScore" => 55],
-    5 => ["id" => 6, "name" => "Escape Rookie", "minScore" => 80],
-    6 => ["id" => 7, "name" => "Escape Novice", "minScore" => 110],
-    7 => ["id" => 8, "name" => "Casual Escaper", "minScore" => 145],
-    8 => ["id" => 9, "name" => "Escape Explorer", "minScore" => 185],
-    9 => ["id" => 10, "name" => "Escape Member", "minScore" => 230],
-    10 => ["id" => 11, "name" => "Established Escaper", "minScore" => 280],
-    11 => ["id" => 12, "name" => "Regular Escaper", "minScore" => 335],
-    12 => ["id" => 13, "name" => "Escape Enthusiast", "minScore" => 395],
-    13 => ["id" => 14, "name" => "Escape Specialist", "minScore" => 460],
-    14 => ["id" => 15, "name" => "Super Escaper", "minScore" => 530],
-    15 => ["id" => 16, "name" => "Senior Escaper", "minScore" => 605],
-    16 => ["id" => 17, "name" => "Escape Pro", "minScore" => 685],
-    17 => ["id" => 18, "name" => "Escape Expert", "minScore" => 770],
-    18 => ["id" => 19, "name" => "Escape Star", "minScore" => 860],
-    19 => ["id" => 20, "name" => "Escape Mastermind", "minScore" => 955],
-    20 => ["id" => 21, "name" => "Escape Maestro", "minScore" => 1055],
-    21 => ["id" => 22, "name" => "Escape Guru", "minScore" => 1160],
-    22 => ["id" => 23, "name" => "Escape Ninja", "minScore" => 1270],
-    23 => ["id" => 24, "name" => "Escape Genious", "minScore" => 1385],
-    24 => ["id" => 25, "name" => "Escape Champion", "minScore" => 1505],
-    25 => ["id" => 26, "name" => "Escape Master", "minScore" => 1630],
-    26 => ["id" => 27, "name" => "Escape Hero", "minScore" => 1760],
-    27 => ["id" => 28, "name" => "Escape Veteran", "minScore" => 1895],
-    28 => ["id" => 29, "name" => "Escape Prodigy", "minScore" => 2035],
-    29 => ["id" => 30, "name" => "Escape Legend", "minScore" => 2180],
-    30 => ["id" => 31, "name" => "Escape Houdini", "minScore" => 2330],
-    31 => ["id" => 32, "name" => "Escape God", "minScore" => 2485],
-    32 => ["id" => 33, "name" => "Escape Enigma", "minScore" => 2645],
+    3 => ["id" => 4, "name" => "Escape Trainee", "minScore" => 40],
+    4 => ["id" => 5, "name" => "Escape Newbie", "minScore" => 80],
+    5 => ["id" => 6, "name" => "Escape Rookie", "minScore" => 160],
+    6 => ["id" => 7, "name" => "Escape Novice", "minScore" => 320],
+    7 => ["id" => 8, "name" => "Casual Escaper", "minScore" => 640],
+    8 => ["id" => 9, "name" => "Escape Explorer", "minScore" => 1280],
+    9 => ["id" => 10, "name" => "Escape Member", "minScore" => 2560],
+    10 => ["id" => 11, "name" => "Established Escaper", "minScore" => 5120],
+    11 => ["id" => 12, "name" => "Regular Escaper", "minScore" => 10240],
+    12 => ["id" => 13, "name" => "Escape Enthusiast", "minScore" => 20480],
+    13 => ["id" => 14, "name" => "Escape Specialist", "minScore" => 40960],
+    14 => ["id" => 15, "name" => "Super Escaper", "minScore" => 81920],
+    15 => ["id" => 16, "name" => "Senior Escaper", "minScore" => 163840],
+    16 => ["id" => 17, "name" => "Escape Pro", "minScore" => 327680],
+    17 => ["id" => 18, "name" => "Escape Expert", "minScore" => 655360],
+    18 => ["id" => 19, "name" => "Escape Star", "minScore" => 1310720],
+    19 => ["id" => 20, "name" => "Escape Mastermind", "minScore" => 2621440],
+    20 => ["id" => 21, "name" => "Escape Maestro", "minScore" => 5242880],
+    21 => ["id" => 22, "name" => "Escape Guru", "minScore" => 10485760],
+    22 => ["id" => 23, "name" => "Escape Ninja", "minScore" => 20971520],
+    23 => ["id" => 24, "name" => "Escape Genious", "minScore" => 41943040],
+    24 => ["id" => 25, "name" => "Escape Champion", "minScore" => 83886080],
+    25 => ["id" => 26, "name" => "Escape Master", "minScore" => 167772160],
+    26 => ["id" => 27, "name" => "Escape Hero", "minScore" => 335544320],
+    27 => ["id" => 28, "name" => "Escape Veteran", "minScore" => 671088640],
+    28 => ["id" => 29, "name" => "Escape Prodigy", "minScore" => 1342177280],
+    29 => ["id" => 30, "name" => "Escape Legend", "minScore" => 2684354560],
+    30 => ["id" => 31, "name" => "Escape Houdini", "minScore" => 5368709120],
+    31 => ["id" => 32, "name" => "Escape God", "minScore" => 10737418240],
+    32 => ["id" => 33, "name" => "Escape Enigma", "minScore" => 21474836480],
     // 0 => ["id" => 1, "name" => "Escape Apprentice", "minScore" => 0],
     // 1 => ["id" => 2, "name" => "Escape Newbie", "minScore" => 25],
     // 2 => ["id" => 3, "name" => "Junior Escaper", "minScore" => 75],
@@ -52,7 +51,26 @@ $all_ranks = [
     // 12 => ["id" => 13, "name" => "Escaper Legend", "minScore" => 102375],
     // 13 => ["id" => 14, "name" => "Escaper Enigma", "minScore" => 204775],
     // 14 => ["id" => 15, "name" => "Escaper God", "minScore" => 409575],
+
+    //generate a list with 33 numbers with the formula: n * () * 5 with n = minScore
+    // 0 => ["id" => 1, "name" => "Escape Baby", "minScore" => 0],
+    // 1 => ["id" => 2, "name" => "Escape Friend", "minScore" => 5],
+    // 2 => ["id" => 3, "name" => "Escape Apprentice", "minScore" => 15],
+    // 3 => ["id" => 4, "name" => "Escape Trainee", "minScore" => 35],
+    // 4 => ["id" => 5, "name" => "Escape Newbie", "minScore" => 75],
+    // 5 => ["id" => 6, "name" => "Escape Rookie", "minScore" => 155],
+    // 6 => ["id" => 7, "name" => "Escape Novice", "minScore" => 315],
+    // 7 => ["id" => 8, "name" => "Casual Escaper", "minScore" => 635],
+
+
+
 ];
+
+
+
+
+
+// unset($_SESSION['badges']);
 
 $badges = [
     1 => ["id" => 1, "title" => "Profielpagina Compleet", "description" => "Maak je profielpagina compleet!", "progress" => ["currentValue" => 1, "challengeCompletedValue" => 1], "claimable" => false, "icon" => "profileCompleteBadge.svg", "claimed" => true, "expPoints" => 51, "claimedDate" => "15-11-2022"],
@@ -65,6 +83,10 @@ $badges = [
     8 => ["id" => 8, "title" => "Spooky Ontsnapping", "description" => "Speel een kamer tijdens Halloween!", "progress" => ["currentValue" => 1, "challengeCompletedValue" => 1], "claimable" => true, "icon" => "halloweenBadge.svg", "claimed" => false, "expPoints" => 76, "claimedDate" => date("d-m-y")],
     
 ];
+
+if (!isset($_SESSION['badges'])) {
+    $_SESSION['badges'] = $badges;
+}
 
 function getProfileData()
 {
