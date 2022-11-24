@@ -8,18 +8,28 @@ if($_POST['type'] == 'claimBadges')
 {
     $return = ['badges' => []];
 
-    $badges_post = json_decode($_POST['badges']);    
+    $badges_post = json_decode($_POST['badges']); 
+
 
     foreach($badges_post as $badge)
     {
+
         if(isset($badges[$badge]) && $badges[$badge]['claimable'] == true && $badges[$badge]['claimed'] == false)
         {
             $badges[$badge]['claimable'] = false;
             $badges[$badge]['claimed'] = true;
             $return['badges'][] = $badges[$badge];
             
-            $_SESSION['claimed_challenges'][] = $badges[$badge];
-            $return['claimed_challenges'] = $_SESSION['claimed_challenges'];
+            foreach($badges as $badge)
+            {
+                if($badge['claimed'] == true)
+                {
+                    $_SESSION['claimed_challenges'][] = $badges[$badge];
+                    $return['claimed_challenges'] = $_SESSION['claimed_challenges'];
+                }
+            }
+            
+
 
 
             $_SESSION['points'] += $badges[$badge]['expPoints'];

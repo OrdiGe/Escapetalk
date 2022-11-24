@@ -5,6 +5,7 @@ include "configuration.php";
 // var_dump($badges);
 
 $rank = getProfileData();
+$claimed_challenges = $_SESSION['claimed_challenges'];
 
 ?>
 
@@ -619,11 +620,11 @@ $rank = getProfileData();
                                 <div class="challenges-container">
                                     <div class="challenges">
                                         <?php
-                                        var_dump($claimed_challenges);
+                                            var_dump($claimed_challenges);
                                             foreach($badges as $badge) {
                                                 
-                                                // foreach($claimed_challenges as $claimed_challenge) {
-                                                //     if($badge['id'] != $claimed_challenge['id']) {
+                                                foreach($claimed_challenges as $claimed_challenge) {
+                                                    if($badge['id'] != $claimed_challenge['id']) {
                                                         if($badge['progress']['currentValue'] == $badge['progress']['challengeCompletedValue'] && $badge['claimed'] != true) {
                                                             $claimable = true;
                                                             echo 
@@ -662,8 +663,8 @@ $rank = getProfileData();
                                                                 </div>
                                                             </div>';
                                                         }
-                                                //     }
-                                                // }
+                                                    }
+                                                }
                                                                                                 
                                             }
                                         ?>                                        
@@ -689,9 +690,12 @@ $rank = getProfileData();
                                             }
                                             else {
                                                 foreach($badges as $badge) {
-                                                    if($badge['claimed'] == true) {
-                                                        echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
+                                                    foreach($claimed_challenges as $claimed_challenge) {
+                                                        if($badge['claimed'] == true || $badge['id'] == $claimed_challenge['id']) {
+                                                            echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
+                                                        }
                                                     }
+                                                    
                                                 }
                                             }
                                             
