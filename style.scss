@@ -514,6 +514,13 @@
 		h3 {
 			font-size: 16px;
 			margin: 0;
+			display: flex;
+			align-items: center;
+
+			.info {
+				margin-left: 5px;
+				cursor: pointer;
+			}
 		}
 
 	}

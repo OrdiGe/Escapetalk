@@ -471,6 +471,12 @@
 .profiel #profile h3 {
   font-size: 16px;
   margin: 0;
+  display: flex;
+  align-items: center;
+}
+.profiel #profile h3 .info {
+  margin-left: 5px;
+  cursor: pointer;
 }
 .profiel .shape {
   --size: 8px 16px;

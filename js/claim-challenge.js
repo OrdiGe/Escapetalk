@@ -29,9 +29,9 @@ u(document).on('click', '.claimable', claimBadge);
 
 u(document).on('click', '.claim-all', claimAllBadges);
 
-u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
+u('.claim-all').html("CLAIM ALLES ("+u('.claimable').length+")");
 
-u(document).on('click', '[data-badgeId]', function() {
+u(document).on('click', '.badge', function() {
     modal('info', u(this).data('badgeTitle'), u(this).data('badgeDesc')+' </br></br> Deze badge is behaald op '+u(this).data('claimedDate')+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
 });
 
@@ -78,7 +78,7 @@ function claimBadges(badges = [])
 
 
                         u('.challenge[data-challengeId="'+badge.id+'"]').remove();
-                        u('.claim-all').first().innerHTML = "CLAIM ALLES ("+u('.claimable').length+")";
+                        u('.claim-all').html("CLAIM ALLES ("+u('.claimable').length+")");
 
 
                         // u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";

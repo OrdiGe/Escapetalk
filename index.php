@@ -632,7 +632,6 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <div class="challenges-container">
                                     <div class="challenges">
                                         <?php
-
                                             foreach($_SESSION['badges'] as $badge) {
                                                 if($badge['claimable'] == true) {
                                                     $claimable = 'claimable';
@@ -674,7 +673,17 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
 
                         <div class="item-wrapper md-col-2">
                             <div class="box badges-box item">
-                                <h3>Badges</h3>
+                                <h3>
+                                    Badges 
+                                    <svg class="info" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17">
+                                        <g id="Group_324" data-name="Group 324" transform="translate(-1306.015 -682)">
+                                            <circle id="Ellipse_6" data-name="Ellipse 6" cx="7.5" cy="7.5" r="7.5" transform="translate(1307.015 683)" fill="none" stroke="#a5a5a5" stroke-width="2"/>
+                                            <rect id="Rectangle_72" data-name="Rectangle 72" width="1.5" height="4.5" rx="0.75" transform="translate(1313.765 689.59)" fill="#a5a5a5"/>
+                                            <rect id="Rectangle_73" data-name="Rectangle 73" width="1.5" height="1.5" rx="0.75" transform="translate(1313.765 686.911)" fill="#a5a5a5"/>
+                                        </g>
+                                    </svg>
+
+                                </h3>
                                 <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
                                         <?php
@@ -903,6 +912,7 @@ var CSS_VERSION = '0.5.9';
 <script src="http://localhost/Escapetalk/js/confetti-button.js"></script>
 <script src="http://localhost/Escapetalk/js/claim-challenge.js"></script>
 <script src="http://localhost/Escapetalk/js/badge-click.js"></script>
+<script src="http://localhost/Escapetalk/js/script.js"></script>
 
 
 

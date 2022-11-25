@@ -18,9 +18,17 @@ if($_POST['type'] == 'claimBadges')
         {
             $_SESSION['badges'][$badge]['claimed'] = true;
             $_SESSION['badges'][$badge]['claimable'] = false;
+            $_SESSION['badges'][$badge]['claimedDate'] = date("d-m-y H:i:s");
+            uasort($_SESSION['badges'], function($a, $b) {
+                if ($a['claimedDate'] == $b['claimedDate']) {
+                    return 0;
+                }
+                return ($a['claimedDate'] > $b['claimedDate']) ? -1 : 1;
+            });
 
             $badges[$badge]['claimable'] = false;
             $badges[$badge]['claimed'] = true;
+
             $return['badges'][] = $badges[$badge];
             
             $_SESSION['points'] += $badges[$badge]['expPoints'];
