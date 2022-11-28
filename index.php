@@ -651,7 +651,7 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                                                 </div>
                                                                 <div class="challenge-progression-container">
                                                                     <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
-                                                                    <p class="challenge-exp">+'.$badge['expPoints'].' exp.</p>
+                                                                    <p class="challenge-exp">+'.$badge['expPoints'].' xp</p>
                                                                 </div>                                                                  
                                                             </div>                                                                                                        
                                                             <div class="claim-btn '.$claimable.'" data-badgeId="'.$badge['id'].'">CLAIM</div>
