@@ -30,30 +30,6 @@
     transform: translateX(-100%);
   }
 }
-@-webkit-keyframes popup {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) rotate(var(--r));
-  }
-}
-@keyframes popup {
-  0% {
-    opacity: 0;
-  }
-  60% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) rotate(var(--r));
-  }
-}
 .notice-modal .content-notice .notice-wrapper h1 {
   margin-bottom: 0.67em;
   font-size: 16px;
@@ -483,23 +459,6 @@
 .profiel #profile h3 .info {
   margin-left: 5px;
   cursor: pointer;
-}
-.profiel .shape {
-  --size: 8px 16px;
-  position: absolute;
-  top: calc(50% - var(--size));
-  left: calc(50% - var(--size));
-  width: calc(var(--size) * 2);
-  height: calc(var(--size) * 2);
-  -webkit-animation: popup var(--d) cubic-bezier(0.08, 0.56, 0.53, 0.98) forwards;
-          animation: popup var(--d) cubic-bezier(0.08, 0.56, 0.53, 0.98) forwards;
-}
-.profiel .circle {
-  border-radius: 50%;
-  background-color: var(--c);
-}
-.profiel .square {
-  background-color: var(--c);
 }
 
 .edit-profile {

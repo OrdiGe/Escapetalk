@@ -22,14 +22,6 @@
 	}
 }
 
-@include animation(popup) {
-	0% { opacity: 0; }
-	60% { opacity: 1; }
-	100% {
-		opacity: 0;
-		transform: translate(var(--x), var(--y)) rotate(var(--r));
-	}
-}
 .notice-modal .content-notice .notice-wrapper h1 {
 	margin-bottom: 0.67em;
 	font-size: 16px;
@@ -527,22 +519,6 @@
 			}
 		}
 
-	}
-	.shape {
-		--size: 8px 16px;
-		position: absolute;
-		top: calc(50% - var(--size));
-		left: calc(50% - var(--size));
-		width: calc(var(--size) * 2);
-		height: calc(var(--size) * 2);
-		animation: popup var(--d) cubic-bezier(.08,.56,.53,.98) forwards;
-	}
-	.circle {
-		border-radius: 50%;
-		background-color: var(--c);
-	}
-	.square {
-		background-color: var(--c);
 	}
 }
 .edit-profile {
