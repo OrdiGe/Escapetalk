@@ -10,7 +10,6 @@ if($_POST['type'] == 'claimBadges')
 
     $badges_post = json_decode($_POST['badges']); 
 
-
     foreach($badges_post as $badge)
     {
 
@@ -18,12 +17,13 @@ if($_POST['type'] == 'claimBadges')
         {
             $_SESSION['badges'][$badge]['claimed'] = true;
             $_SESSION['badges'][$badge]['claimable'] = false;
-            $_SESSION['badges'][$badge]['claimedDate'] = date("d-m-y H:i:s");
+            $_SESSION['badges'][$badge]['claimedTime'] = time();
+            $_SESSION['badges'][$badge]['claimedDate'] = date("d-m-y H:i");
             uasort($_SESSION['badges'], function($a, $b) {
-                if ($a['claimedDate'] == $b['claimedDate']) {
+                if ($a['claimedTime'] == $b['claimedTime'] && $a['id'] == $b['id']) {
                     return 0;
                 }
-                return ($a['claimedDate'] > $b['claimedDate']) ? -1 : 1;
+                return ($a['claimedTime'] > $b['claimedTime'] && $a['id'] > $b['id']) ? -1 : 1;
             });
 
             $badges[$badge]['claimable'] = false;

@@ -659,7 +659,7 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                                     </div>';
                                                 }
                                             }
-                                        ?>                                        
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -687,7 +687,7 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
                                         <?php
-                                            if($badges == null){
+                                            if($_SESSION['badges'] == null){
                                                 echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
                                             }
                                             else {
