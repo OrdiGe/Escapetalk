@@ -2,6 +2,9 @@
 
 
 include('../configuration.php');
+include('../class/class.php');
+include('../class/class.pdo.php');
+include('../dbcon.php');
 
 
 if($_POST['type'] == 'claimBadges')
@@ -15,23 +18,23 @@ if($_POST['type'] == 'claimBadges')
 
         if(isset($badges[$badge]) && $badges[$badge]['claimable'] == true && $badges[$badge]['claimed'] == false)
         {
-            $_SESSION['badges'][$badge]['claimed'] = true;
-            $_SESSION['badges'][$badge]['claimable'] = false;
-            $_SESSION['badges'][$badge]['claimedTime'] = time();
-            $_SESSION['badges'][$badge]['claimedDate'] = date("d-m-y H:i");
-            uasort($_SESSION['badges'], function($a, $b) {
-                if ($a['claimedTime'] == $b['claimedTime'] && $a['id'] == $b['id']) {
-                    return 0;
-                }
-                return ($a['claimedTime'] > $b['claimedTime'] && $a['id'] > $b['id']) ? -1 : 1;
-            });
+            // $_SESSION['badges'][$badge]['claimed'] = true;
+            // $_SESSION['badges'][$badge]['claimable'] = false;
+            // $_SESSION['badges'][$badge]['claimedTime'] = time();
+            // $_SESSION['badges'][$badge]['claimedDate'] = date("d-m-y H:i");
+            // uasort($_SESSION['badges'], function($a, $b) {
+            //     if ($a['claimedTime'] == $b['claimedTime'] && $a['id'] == $b['id']) {
+            //         return 0;
+            //     }
+            //     return ($a['claimedTime'] > $b['claimedTime'] && $a['id'] > $b['id']) ? -1 : 1;
+            // });
 
-            $badges[$badge]['claimable'] = false;
-            $badges[$badge]['claimed'] = true;
+            // $badges[$badge]['claimable'] = false;
+            // $badges[$badge]['claimed'] = true;
 
-            $return['badges'][] = $badges[$badge];
+            // $return['badges'][] = $badges[$badge];
             
-            $_SESSION['points'] += $badges[$badge]['expPoints'];
+            // $_SESSION['points'] += $badges[$badge]['expPoints'];
         }
     }
 

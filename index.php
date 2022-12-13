@@ -1,11 +1,18 @@
 <?php 
 
-include "configuration.php";
+include_once "configuration.php";
+ include_once('dbcon.php');
+include_once 'class/class.pdo.php';
+include_once 'class/class.php';
 
 // var_dump($badges);
 
 $rank = getProfileData();
+
 $claimed_challenges = $_SESSION['claimed_challenges'];
+$class = new Queries($db);
+
+$user_id = 2;
 
 ?>
 
@@ -615,7 +622,7 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <div class="challenges-top-container">
                                     <h3>Challenges</h3>
                                     <?php 
-                                        foreach($_SESSION['badges'] as $badge) {
+                                        foreach($all_badges as $badge) {
                                             if($badge['claimable'] == true) {
                                                 $claim_all = 'claim-all';
                                             }
@@ -632,7 +639,7 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <div class="challenges-container">
                                     <div class="challenges">
                                         <?php
-                                            foreach($_SESSION['badges'] as $badge) {
+                                            foreach($all_badges as $badge) {
                                                 if($badge['claimable'] == true) {
                                                     $claimable = 'claimable';
                                                 }
@@ -659,6 +666,17 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                                     </div>';
                                                 }
                                             }
+
+                                        //     
+                                        //        $class->claim_badge($user_id);
+                                        //     
+
+                                        //    $claimed_badges = $class->get_claimed_badges($user_id);
+
+                                        //    foreach($claimed_badges as $badge){
+                                        //        echo $badge['title'];
+                                        //    }
+    
                                         ?>
                                     </div>
                                 </div>
@@ -687,11 +705,11 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
                                 <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
                                         <?php
-                                            if($_SESSION['badges'] == null){
+                                            if(!$all_badges == null){
                                                 echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
                                             }
                                             else {
-                                                foreach($_SESSION['badges'] as $badge) {
+                                                foreach($all_badges as $badge) {
                                                     if($badge['claimed'] == true) {
                                                         echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
                                                     }                                                    
