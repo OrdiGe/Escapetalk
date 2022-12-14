@@ -60,7 +60,7 @@ function claimBadges(badges = [])
 
             Object.keys(res.badges).forEach(function(k){
 
-                badge = res.badges[k];
+                var badge = res.badges[k];
     
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
                 u('.badges-box-description').remove();
@@ -77,6 +77,7 @@ function claimBadges(badges = [])
                 startConfetti();
 
                 setTimeout(function(){
+                    console.log(badge);
                     u('.challenge[data-challengeId="'+badge.id+'"]').addClass("challenge-ani");
                     stopConfetti();
                     setTimeout(function(){
