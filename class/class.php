@@ -26,16 +26,18 @@ class Queries{
 
             //get random number in array
             
-            $badge['progress'] = ['currentvalue' => 1, 'challengeCompletedValue' => 1];
-           $badge['claimed'] = 0;
+            $badge['progress'] = ['currentValue' => 1, 'challengeCompletedValue' => 1];
+            $badge['claimed'] = 0;
 
-            if($badge['claimed'] == 0){
-                if($badge['progress']['currentvalue'] >= $badge['progress']['challengeCompletedValue']){
+            if($badge['claimed'] == 0) {
+                if($badge['progress']['currentValue'] >= $badge['progress']['challengeCompletedValue']) {
                     $badge['claimable'] = 1;
-                }else{
+                }
+                else {
                     $badge['claimable'] = 0;
                 }
-            }else{
+            }
+            else {
                 $badge['claimable'] = 0;
             }
         }
@@ -44,7 +46,7 @@ class Queries{
 
     }
 
-    public function claim_badge($badge_id, $user_id)
+    public function insert_claimed_badge($badge_id, $user_id)
     {
         $insert = $this->db->run("INSERT INTO cms_claimed_badges (badge_id, user_id) VALUES (:badge_id, :user_id)", 
         [
@@ -55,10 +57,32 @@ class Queries{
         return $insert;
     }
 
+    // public function show_badge($user_id)
+    // {
+    //     $claimed_badge = $this->db->run("SELECT * FROM cms_claimed_badges WHERE user_id = :user_id", 
+    //     [
+    //         ':user_id' => $user_id
+    //     ])->fetchAll();
+
+    //     return $claimed_badge;
+    // }
+
     public function get_claimed_badges($user_id)
     { 
-        $claimed_badges = $this->db->run("SELECT b.title, b.icon, b.points, b.description FROM cms_claimed_badges AS cb LEFT JOIN cms_badges AS b ON cb.badge_id = b.id WHERE cb.user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
-        //WHERE cb.badge_id = :badge_id AND cb.user_id = :user_id",[':badge_id' => $badge_id, ':user_id' => 2]
+        $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE cb.user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+        /*foreach($claimed_badges as $badges)
+        {
+            //echo $badges['id'];
+
+            $return['badges']['id'] = $badges['id'];
+            $return['badges']['title'] = $badges['title'];
+            $return['badges']['description'] = $badges['description'];
+            $return['badges']['points'] = $badges['points'];
+            $return['badges']['icon'] = $badges['icon'];
+
+            print_r($badges);
+        }*/
+        
         return $claimed_badges;
     }
 }

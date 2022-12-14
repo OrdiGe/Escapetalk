@@ -1,16 +1,20 @@
 <?php 
 
 include_once "configuration.php";
- include_once('dbcon.php');
+include_once 'dbcon.php';
 include_once 'class/class.pdo.php';
 include_once 'class/class.php';
+include_once 'includes/ajax.inc.php';
 
 // var_dump($badges);
 
 $rank = getProfileData();
 
 $claimed_challenges = $_SESSION['claimed_challenges'];
+
 $class = new Queries($db);
+
+$claimed_badges = $class->get_claimed_badges($user_id);
 
 $user_id = 2;
 
@@ -658,7 +662,7 @@ $user_id = 2;
                                                                 </div>
                                                                 <div class="challenge-progression-container">
                                                                     <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
-                                                                    <p class="challenge-exp">+'.$badge['expPoints'].' xp</p>
+                                                                    <p class="challenge-exp">+'.$badge['points'].' xp</p>
                                                                 </div>                                                                  
                                                             </div>                                                                                                        
                                                             <div class="claim-btn '.$claimable.'" data-badgeId="'.$badge['id'].'">CLAIM</div>
@@ -668,7 +672,7 @@ $user_id = 2;
                                             }
 
                                         //     
-                                        //        $class->claim_badge($user_id);
+                                            
                                         //     
 
                                         //    $claimed_badges = $class->get_claimed_badges($user_id);
@@ -705,16 +709,16 @@ $user_id = 2;
                                 <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
                                         <?php
-                                            if(!$all_badges == null){
+                                        
+                                            if(count($claimed_badges) <= 0) {
                                                 echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
-                                            }
-                                            else {
-                                                foreach($all_badges as $badge) {
-                                                    if($badge['claimed'] == true) {
-                                                        echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
-                                                    }                                                    
+                                            }elseif(count($claimed_badges) > 0){
+                                                echo '';
+                                                foreach($claimed_badges as $badge) {
+                                                    echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
                                                 }
-                                            }                                            
+                                            }
+                                                    
                                         ?>
                                     </div>                                    
                                 </div>

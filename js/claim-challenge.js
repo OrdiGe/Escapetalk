@@ -4,6 +4,8 @@ var score = 0;
 
 var totalScore = 0;
 
+var count = 0;
+
 const claimBadge = function() {
 
     var badge = u(this).data('badgeId');
@@ -42,6 +44,9 @@ function claimBadges(badges = [])
 
     data.append('badges', JSON.stringify(badges));
 
+    // console.log('badges-check:');
+    // console.log(badges);
+
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
@@ -53,12 +58,12 @@ function claimBadges(badges = [])
         //console.log(response);
         response.json().then((res) => {
 
-            console.log(res.badges);
+            Object.keys(res.badges).forEach(function(k){
 
-            u(res.badges).each(function(badge){
-                u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'" data-claimedDate="'+badge.claimedDate+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
-                
-
+                badge = res.badges[k];
+    
+                u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
+                u('.badges-box-description').remove();
                 if(badges.length < 3) {
                     singleNotification('Je hebt de badge "'+badge.title+'" verdiend!', '/badges/');
                 }
@@ -174,12 +179,141 @@ function claimBadges(badges = [])
                             u('.claim-all-btn').removeClass('claim-all');
                         }
                     }, 1000);                    
-                }, 1500);                        
-            });          
+                }, 1500); 
+                count++;  
+
+            });
+
+            // u(res.badges).each(function(badge, badge_id){
+            //     console.log(badge);
+            //     console.log(badge_id);
+            //     u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
+            //     u('.badges-box-description').remove();
+            //     if(badges.length < 3) {
+            //         singleNotification('Je hebt de badge "'+badge.title+'" verdiend!', '/badges/');
+            //     }
+
+            //     // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
+            //     u('#badge'+badge.badge_id+'').addClass("badge-ani");
+            //     u('.challenge[data-challengeId="'+badge.id+'"] .claimable').removeClass('claimable');
+            //     u('.challenge[data-challengeId="'+badge.id+'"]').off('click');
+
+            //     u('#confetti-canvas').first().style.visibility = 'visible';
+            //     startConfetti();
+
+            //     setTimeout(function(){
+            //         u('.challenge[data-challengeId="'+badge.id+'"]').addClass("challenge-ani");
+            //         stopConfetti();
+            //         setTimeout(function(){
+
+
+            //             u('.challenge[data-challengeId="'+badge.id+'"]').remove();
+            //             u('.claim-all').html("CLAIM ALLES ("+u('.claimable').length+")");
+
+
+            //             // u('#progress-bar-xp').first().style.width = u('#progress-bar-xp').first().offsetWidth + (u('.full-progress-bar').first().offsetWidth * (e.expPoints / 100)) + "px";
+            //             // console.log(u('#progress-bar-xp').first().offsetWidth);
+
+            //             // u(res.new_rank).each(function(e){
+
+            //                 //score += badge.expPoints;
+            
+            //                 //console.log(score);
+            
+            //                 // u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+            
+            //                 // u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+            
+            //                 // if(totalScore >= e[currentRank + 3].minScore) {
+            //                 //     console.log('4 levels up!')
+            //                 //     score = totalScore - e[currentRank + 3].minScore;
+            //                 //     //console.log(score);                                
+            
+            //                 //     currentRank += 4;   
+            //                 // }
+            //                 // else if(totalScore >= e[currentRank + 2].minScore) {
+            //                 //     console.log('3 levels up!')
+            //                 //     score = totalScore - e[currentRank + 2].minScore;
+            //                 //     //console.log(score);                                
+            
+            //                 //     currentRank += 3;   
+            //                 // }
+            //                 // else if (totalScore >= e[currentRank + 1].minScore) {
+            //                 //     console.log('2 levels up!')
+            //                 //     score = totalScore - e[currentRank + 1].minScore;
+            //                 //     //console.log(score);                                
+            
+            //                 //     currentRank += 2;
+            //                 // }
+            //                 // else if (totalScore >= e[currentRank].minScore){
+            
+            //                 //     console.log('Level Up!');
+            //                 //     score = totalScore - e[currentRank].minScore;
+            //                 //     //console.log(score);                                
+            
+            //                 //     currentRank += 1;                                
+            //                 // }
+            
+            //                 // for(let i = 0; i < res.new_rank.length; i++) {
+            //                 //     if (totalScore >= e[i].minScore){
+            
+            //                 //         console.log(''+ i +' levels Up!');
+            //                 //         score = totalScore - e[i].minScore;
+            //                 //         //console.log(score);                                
+                
+            //                 //         currentRank += i;                                
+            //                 //     }
+            //                 // }
+            
+            //                 // u('#progress-bar-xp').first().style.width = (score / e[currentRank].minScore) * 100 + "%";
+            //                 // u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
+                            
+                            
+            //             // });
+                        
+
+            //             // You haven't gone rank up
+            //             if (u('p.rank').html() == res.rank.name){
+            //                 u('#progress-bar-xp').first().style.width = res.rank.percentage + "%";
+            //                 u('.progression-text span').html( res.rank.points_diff + " / " + res.rank.rank_points_diff);
+            //             }
+            //             else{
+            //                 // Rank up
+            //                 u('#progress-bar-xp').first().style.width = "100%";
+            //                 setTimeout(function(){
+            //                     u('#progress-bar-xp').first().style.transition = "0s";
+            //                     u('p.rank').html(res.rank.name);
+            //                     u('.progression-text span').html(res.rank.points_diff + " / " + res.rank.rank_points_diff);
+            //                     u('#progress-bar-xp').first().style.width = "0%";
+            //                     setTimeout(function(){
+            //                         u('#progress-bar-xp').first().style.transition = "1s";
+            //                         u('#progress-bar-xp').first().style.width = res.rank.percentage + "%";
+            //                     }, 100);
+            //                 }, 1000);
+
+            //             }
+                        
+
+
+            //             if(u(".challenges").children().length == 0) {
+            //                 u(".challenges").prepend(u('<p class="desc">Geen challenges beschikbaar</p>'));
+            //                 u('.claim-all-btn').first().style.display = 'none';
+            //             } 
+
+            //             if(u('.claimable').length == 0){
+            //                 u('.claim-all-btn').removeClass('claim-all');
+            //             }
+            //         }, 1000);                    
+            //     }, 1500); 
+            //     count++;                       
+            // });          
         });            
     })
+    .then((data) => {
+        // console.log('Success:', data);
+      })
     .catch((err) => {
-
+        console.log('error', err);
 
     });
 
