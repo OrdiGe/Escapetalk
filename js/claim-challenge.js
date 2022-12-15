@@ -4,6 +4,8 @@ var score = 0;
 
 var totalScore = 0;
 
+var count = 0;
+
 const claimBadge = function() {
 
     var badge = u(this).data('badgeId');
@@ -42,8 +44,8 @@ function claimBadges(badges = [])
 
     data.append('badges', JSON.stringify(badges));
 
-     console.log('badges-check:');
-     console.log(badges);
+    // console.log('badges-check:');
+    // console.log(badges);
 
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
@@ -53,7 +55,7 @@ function claimBadges(badges = [])
     }
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-        console.log(response);
+        //console.log(response);
         response.json().then((res) => {
 
             Object.keys(res.badges).forEach(function(k){
@@ -179,6 +181,8 @@ function claimBadges(badges = [])
                         }
                     }, 1000);                    
                 }, 1500); 
+                count++;  
+
             });
 
             // u(res.badges).each(function(badge, badge_id){
