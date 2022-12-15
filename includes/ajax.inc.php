@@ -11,10 +11,13 @@ include_once('../dbcon.php');
 if($_POST['type'] == 'claimBadges')
 {
     $user_id = 2;
+
     $return = ['badges' => []];
 
     $badges_post = json_decode($_POST['badges']); 
+    
 
+    $user_badges = $class->get_claimed_badges($user_id);
     foreach($badges_post as $badge)
     {
 
@@ -46,20 +49,19 @@ if($_POST['type'] == 'claimBadges')
             
         //     $_SESSION['points'] += $badges[$badge]['expPoints'];
 // }
-    }
-    
+    }    
 
-    $user_badges = $class->get_claimed_badges($user_id);
 
-    foreach($user_badges as $badges)
+
+    $claimed_badge = $class->getBadges($badges_post);
+
+    foreach($claimed_badge as $badges)
     {
-            //echo $badges['id'];
-
-            $return['badges'][$badges['id']]['id'] = $badges['id'];
-            $return['badges'][$badges['id']]['title'] = $badges['title'];
-            $return['badges'][$badges['id']]['description'] = $badges['description'];
-            $return['badges'][$badges['id']]['points'] = $badges['points'];
-            $return['badges'][$badges['id']]['icon'] = $badges['icon'];
+        $return['badges'][$badges['id']]['id'] = $badges['id'];
+        $return['badges'][$badges['id']]['title'] = $badges['title'];
+        $return['badges'][$badges['id']]['description'] = $badges['description'];
+        $return['badges'][$badges['id']]['points'] = $badges['points'];
+        $return['badges'][$badges['id']]['icon'] = $badges['icon'];
     }
 
     $return['rank'] = getProfileData();
