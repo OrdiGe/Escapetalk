@@ -81,12 +81,6 @@ class Queries{
         return $claimed_badges;
     }
 
-    public function awardPoints($points, $user_id)
-    {
-        $update = $this->db->run("UPDATE site_users SET points = points + :points WHERE id = :user_id", [':points' => $points, ':user_id' => $user_id]);
-
-        return $update;
-    }
 
     public function getPoints($user_id)
     {
@@ -99,4 +93,29 @@ class Queries{
 
         return $get_points->points;
     }
+
+    public function awardPoints($points, $user_id)
+    {
+        $update = $this->db->run("UPDATE site_users SET points = points + :points WHERE id = :user_id", [':points' => $points, ':user_id' => $user_id]);
+
+        return $update;
+    }
+    
+
+    public function logInsert($points, $user_id){
+
+        $log = $this->db->run("INSERT INTO cms_users_points_log (user_id, points, newpoints, oldpoints, timestamp, action, ip, status) VALUES(:user_id, :points, :newpoints, :oldpoints, NOW(), :action, :ip, :status)",
+        [
+            ':user_id' => $user_id,
+            ':points' => $points,
+            ':newpoints' => $this->getPoints($user_id),
+            ':oldpoints' => $this->getPoints($user_id) - $points,
+            ':action' => 'claim_badge',
+            ':ip' => $_SERVER['REMOTE_ADDR'],
+            ':status' => 'online'
+        ]);
+
+        return $log;
+    }
 }
+

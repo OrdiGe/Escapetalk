@@ -42,9 +42,6 @@ function claimBadges(badges = [])
 
     data.append('badges', JSON.stringify(badges));
 
-     console.log('badges-check:');
-     console.log(badges);
-
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
@@ -53,7 +50,6 @@ function claimBadges(badges = [])
     }
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
-        console.log(response);
         response.json().then((res) => {
             console.log(res);
             Object.keys(res.badges).forEach(function(k){

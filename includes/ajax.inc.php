@@ -6,12 +6,11 @@ include_once('../class/class.php');
 include_once('../class/class.pdo.php');
 include_once('../dbcon.php');
 
+$user_id = 2;
 $points = $class->getPoints($user_id);
 
 if($_POST['type'] == 'claimBadges')
 {
-    $user_id = 2;
-
     $return = ['badges' => []];
 
     $badges_post = json_decode($_POST['badges']); 
@@ -63,6 +62,7 @@ if($_POST['type'] == 'claimBadges')
         $return['badges'][$badges['id']]['icon'] = $badges['icon'];
 
         $update_points = $class->awardPoints($badges['points'], $user_id);
+        $log_insert = $class->logInsert($badges['points'], $user_id);
     }
 
     $return['rank'] = getProfileData();

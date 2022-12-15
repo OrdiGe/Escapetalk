@@ -542,7 +542,7 @@ $user_id = 2;
 
                             <div class="right">
                                 <div class="progress-bar-container">
-                                    <p class="rank"><?php echo $rank['name']; ?> </p>( <?= $class->getPoints($user_id); ?> )
+                                    <p class="rank"><?php echo $rank['name']; ?> </p>
                                     <div class="full-progress-bar">
                                         <div class="progress-bar" id="progress-bar-xp" style='width:<?php echo $rank['percentage']; ?>%;'></div>
                                     </div>
