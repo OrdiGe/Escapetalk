@@ -9,7 +9,7 @@ class Queries{
         $this->db = $db;
     }
 
-    public function get_ranks()
+    public function getRanks()
     {
         $ranks = $this->db->run("SELECT rank_id AS id, title AS name, points AS minScore FROM cms_ranks")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -17,7 +17,7 @@ class Queries{
 
     }
 
-    public function get_badges()
+    public function getBadges()
     {
         $badges = $this->db->run("SELECT id, title, description, points, icon FROM cms_badges")->fetchAll(PDO::FETCH_ASSOC);
 
@@ -52,9 +52,9 @@ class Queries{
         return $badges;
     }
 
-    public function insert_claimed_badge($badge_id, $user_id)
+    public function claimBadge($badge_id, $user_id)
     {
-        $insert = $this->db->run("INSERT INTO cms_claimed_badges (badge_id, user_id) VALUES (:badge_id, :user_id)", 
+        $insert = $this->db->run("INSERT INTO cms_claimed_badges (badge_id, user_id, claimed_human_date) VALUES (:badge_id, :user_id, NOW())", 
         [
             ':badge_id' => $badge_id,
             ':user_id' => $user_id
@@ -64,14 +64,14 @@ class Queries{
     }
 
 
-    public function get_claimed_badges($user_id)
+    public function getClaimedBadges($user_id)
     { 
-        $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE cb.user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+        $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE cb.user_id = :user_id ORDER BY claimed_human_date DESC", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
 
         return $claimed_badges;
     }
 
-    public function getBadges($badges)
+    public function getAllClaimedBadges($badges)
     {
         if(!is_numeric(implode('', $badges))) return false;
         
@@ -79,5 +79,24 @@ class Queries{
         $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE b.id IN (" . $ids . ")")->fetchAll(PDO::FETCH_ASSOC);
 
         return $claimed_badges;
+    }
+
+    public function awardPoints($points, $user_id)
+    {
+        $update = $this->db->run("UPDATE site_users SET points = points + :points WHERE id = :user_id", [':points' => $points, ':user_id' => $user_id]);
+
+        return $update;
+    }
+
+    public function getPoints($user_id)
+    {
+        $get_points = $this->db->run("SELECT points FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch();
+
+        if(!$get_points)
+        {
+            return 0;
+        }
+
+        return $get_points->points;
     }
 }

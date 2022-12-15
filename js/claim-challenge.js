@@ -55,7 +55,7 @@ function claimBadges(badges = [])
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
         console.log(response);
         response.json().then((res) => {
-
+            console.log(res);
             Object.keys(res.badges).forEach(function(k){
 
                 var badge = res.badges[k];
@@ -145,9 +145,8 @@ function claimBadges(badges = [])
                             
                         // });
                         
-
                         // You haven't gone rank up
-                        if (u('p.rank').html() == res.rank.name){
+                        if (u('a.rank').html() == res.rank.name){
                             u('#progress-bar-xp').first().style.width = res.rank.percentage + "%";
                             u('.progression-text span').html( res.rank.points_diff + " / " + res.rank.rank_points_diff);
                         }

@@ -6,7 +6,7 @@ include_once('../class/class.php');
 include_once('../class/class.pdo.php');
 include_once('../dbcon.php');
 
-
+$points = $class->getPoints($user_id);
 
 if($_POST['type'] == 'claimBadges')
 {
@@ -17,11 +17,11 @@ if($_POST['type'] == 'claimBadges')
     $badges_post = json_decode($_POST['badges']); 
     
 
-    $user_badges = $class->get_claimed_badges($user_id);
+    $user_badges = $class->getClaimedBadges($user_id);
     foreach($badges_post as $badge)
     {
 
-        $class->insert_claimed_badge($badge, $user_id);      
+        $class->claimBadge($badge, $user_id);      
 
 // $claimed_badges = $class->get_claimed_badges($user_id);
 
@@ -52,8 +52,7 @@ if($_POST['type'] == 'claimBadges')
     }    
 
 
-
-    $claimed_badge = $class->getBadges($badges_post);
+    $claimed_badge = $class->getAllClaimedBadges($badges_post);
 
     foreach($claimed_badge as $badges)
     {
@@ -62,6 +61,8 @@ if($_POST['type'] == 'claimBadges')
         $return['badges'][$badges['id']]['description'] = $badges['description'];
         $return['badges'][$badges['id']]['points'] = $badges['points'];
         $return['badges'][$badges['id']]['icon'] = $badges['icon'];
+
+        $update_points = $class->awardPoints($badges['points'], $user_id);
     }
 
     $return['rank'] = getProfileData();

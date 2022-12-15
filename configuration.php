@@ -6,13 +6,11 @@ include_once('class/class.pdo.php');
 
 $class = new Queries($db);
 
-$user_id = 2;   
+$user_id = 2;
 
-$points = $db->run("SELECT points FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch()->points;
+$all_ranks = $class->getRanks();
 
-$all_ranks = $class->get_ranks();
-
-$all_badges = $class->get_badges();
+$all_badges = $class->getBadges();
 $all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
 
 // foreach($all_ranks as $rank)
@@ -89,7 +87,9 @@ function getProfileData()
 {
     global $all_ranks;
     global $points;
-
+    global $user_id;
+    global $class;
+    $points = $class->getPoints($user_id);
 
     // print_r($all_badges);
     
@@ -117,7 +117,7 @@ function getProfileData()
         }
     }
 
-    
+    $return['current_points'] = $points;
     
     $return['current_rank_points'] = $all_ranks[$currentRoleIndex]['minScore'];
     

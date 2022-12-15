@@ -14,10 +14,10 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
 
 $class = new Queries($db);
 
-$all_badges = $class->get_badges();
+$all_badges = $class->getBadges();
 $all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
 
-$claimed_badges = $class->get_claimed_badges($user_id);
+$claimed_badges = $class->getClaimedBadges($user_id);
 
 $user_id = 2;
 
@@ -542,7 +542,7 @@ $user_id = 2;
 
                             <div class="right">
                                 <div class="progress-bar-container">
-                                    <p class="rank"><?php echo $rank['name']; ?></p>
+                                    <p class="rank"><?php echo $rank['name']; ?> </p>( <?= $class->getPoints($user_id); ?> )
                                     <div class="full-progress-bar">
                                         <div class="progress-bar" id="progress-bar-xp" style='width:<?php echo $rank['percentage']; ?>%;'></div>
                                     </div>
