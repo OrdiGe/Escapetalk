@@ -14,6 +14,9 @@ $claimed_challenges = $_SESSION['claimed_challenges'];
 
 $class = new Queries($db);
 
+$all_badges = $class->get_badges();
+$all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
+
 $claimed_badges = $class->get_claimed_badges($user_id);
 
 $user_id = 2;
@@ -643,15 +646,58 @@ $user_id = 2;
                                 <div class="challenges-container">
                                     <div class="challenges">
                                         <?php
+                                            // sprint_r($all_badges);
+                                            // foreach($all_badges as $badge) {
+                                            //     echo 
+                                            //         '<div class="challenge" data-challengeId='.$badge['id'].'>
+                                            //             <p class="challenge-title">'.$badge['title'].'</p>                                
+                                            //             <div class="challenge-pb">
+                                            //                 <div class="pb-container">
+                                            //                     <div class="full-progress-bar">
+                                            //                         <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: '.(($badge['progress']['currentValue'] / $badge['progress']['challengeCompletedValue']) * 100).'%"></div>                                            
+                                            //                     </div>
+                                            //                     <div class="challenge-progression-container">
+                                            //                         <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
+                                            //                         <p class="challenge-exp">+'.$badge['points'].' xp</p>
+                                            //                     </div>                                                                  
+                                            //                 </div>                                                                                                        
+                                            //                 <div class="claim-btn '.$claimable.'" data-badgeId="'.$badge['id'].'">CLAIM</div>
+                                            //             </div>
+                                            //         </div>';
+                                            // }
+                                            // print_r($claimed_badges);
+                                            // foreach($claimed_badges as $badge) {
+                                                
+                                            //     if(!$badge) {
+                                            //         echo 
+                                            //         '<div class="challenge" data-challengeId='.$badge['id'].'>
+                                            //             <p class="challenge-title">'.$badge['title'].'</p>                                
+                                            //             <div class="challenge-pb">
+                                            //                 <div class="pb-container">
+                                            //                     <div class="full-progress-bar">
+                                            //                         <div class="progress-bar" id="pb-challenge-'.$badge['id'].'" style="width: '.(($badge['progress']['currentValue'] / $badge['progress']['challengeCompletedValue']) * 100).'%"></div>                                            
+                                            //                     </div>
+                                            //                     <div class="challenge-progression-container">
+                                            //                         <p class="challenge-progression">Progressie: '.$badge['progress']['currentValue'].' / '.$badge['progress']['challengeCompletedValue'].'</p>
+                                            //                         <p class="challenge-exp">+'.$badge['points'].' xp</p>
+                                            //                     </div>                                                                  
+                                            //                 </div>                                                                                                        
+                                            //                 <div class="claim-btn '.$claimable.'" data-badgeId="'.$badge['id'].'">CLAIM</div>
+                                            //             </div>
+                                            //         </div>';
+                                            //     }                                            
+                                            // }
                                             foreach($all_badges as $badge) {
-                                                if($badge['claimable'] == true) {
+
+                                                
+                                                if($badge['claimable'] == 1) {
                                                     $claimable = 'claimable';
                                                 }
                                                 else {
                                                     $claimable = '';
                                                 }
 
-                                                if($badge['claimed'] != true) {
+                                                if($badge['claimed'] == 0) {
                                                     echo 
                                                     '<div class="challenge" data-challengeId='.$badge['id'].'>
                                                         <p class="challenge-title">'.$badge['title'].'</p>                                
