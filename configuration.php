@@ -133,4 +133,3 @@ function getProfileData()
     return $return;
 }
 
-?>

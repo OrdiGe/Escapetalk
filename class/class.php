@@ -27,7 +27,7 @@ class Queries{
 
     public function getBadgesProcessForUser($badges, $user_id)
     {
-        $claimed_badges = $this->db->run("SELECT badge_id FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_UNIQUE);
+        $claimed_badges = $this->db->run("SELECT badge_id, claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_UNIQUE);
        
         foreach ($badges as &$badge) {
 
@@ -66,9 +66,11 @@ class Queries{
 
     public function getClaimedBadges($user_id)
     { 
-        $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE cb.user_id = :user_id ORDER BY claimed_human_date DESC", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+        $claimed_human_date = $this->db->run("SELECT claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+        $claimed_badges = $this->db->run("SELECT b.id, b.title, b.icon, b.points, b.description, cb.claimed_human_date FROM cms_badges AS b LEFT JOIN cms_claimed_badges AS cb ON b.id = cb.badge_id WHERE cb.user_id = :user_id ORDER BY claimed_human_date DESC", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
 
         return $claimed_badges;
+        return $claimed_human_date;
     }
 
     public function getAllClaimedBadges($badges)
@@ -116,6 +118,18 @@ class Queries{
         ]);
 
         return $log;
+    }
+
+    public function getClaimedHumanDate($user_id) {
+        $claimed_human_date = $this->db->run("SELECT claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+
+        return $claimed_human_date;
+    }
+
+    public function getYearsActive($user_id) {
+        $years_active = $this->db->run("SELECT added FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch(PDO::FETCH_ASSOC);
+
+        return $years_active;
     }
 }
 

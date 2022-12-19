@@ -9,6 +9,8 @@ include_once('../dbcon.php');
 $user_id = 2;
 $points = $class->getPoints($user_id);
 
+
+
 if($_POST['type'] == 'claimBadges')
 {
     $return = ['badges' => []];
@@ -52,14 +54,27 @@ if($_POST['type'] == 'claimBadges')
 
 
     $claimed_badge = $class->getAllClaimedBadges($badges_post);
+    $claimed_human_date = $class->getClaimedHumanDate($user_id);
 
-    foreach($claimed_badge as $badges)
+    foreach($claimed_badge as $badge)
+    {
+        foreach($claimed_human_date as $claim_date)
+        {
+           // if($badge->uid == $user->id){ 
+                $badge['date'] = $claim_date['claimed_human_date'];
+            //}
+        }
+        $claimed_array[] = $badge; 
+    }
+
+    foreach($claimed_array as $badges)
     {
         $return['badges'][$badges['id']]['id'] = $badges['id'];
         $return['badges'][$badges['id']]['title'] = $badges['title'];
         $return['badges'][$badges['id']]['description'] = $badges['description'];
         $return['badges'][$badges['id']]['points'] = $badges['points'];
         $return['badges'][$badges['id']]['icon'] = $badges['icon'];
+        $return['badges'][$badges['id']]['claimed_human_date'] = $badge['date'];
 
         $update_points = $class->awardPoints($badges['points'], $user_id);
         $log_insert = $class->logInsert($badges['points'], $user_id);
@@ -69,6 +84,40 @@ if($_POST['type'] == 'claimBadges')
     
     echo json_encode($return);
 
+}
+
+if($_POST['type'] == 'checkDate') {
+
+    $added_date = $class->getYearsActive($user_id);
+
+    $one_year_member = strtotime($added_date['added'] . ' + 1 year' );
+    $two_year_member = strtotime($added_date['added'] . ' + 2 year' );
+    $five_year_member = strtotime($added_date['added'] . ' + 5 year' );
+    $eight_year_member = strtotime($added_date['added'] . ' + 8 year' );
+    $ten_year_member = strtotime($added_date['added'] . ' + 10 year' );
+
+    if(time() >= $ten_year_member) {
+        echo json_encode('10 jaar lid!');
+    }
+    elseif(time() >= $eight_year_member) {
+        echo json_encode('8 jaar lid!');
+    }
+    elseif(time() >= $five_year_member) {
+        echo json_encode('5 jaar lid!');
+    }
+    elseif(time() >= $two_year_member) {
+        echo json_encode('2 jaar lid!');
+    }
+    elseif(time() >= $one_year_member) {
+        echo json_encode('1 jaar lid!');
+    }
+
+
+
+
+    
+
+    
 }
 
 // $return = [['badge1'], ['badge2'], ['badge3']];
@@ -124,4 +173,3 @@ if($_POST['type'] == 'claimBadges')
     //     echo json_encode($return);
 // }
 
-?>

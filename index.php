@@ -10,14 +10,13 @@ include_once 'includes/ajax.inc.php';
 
 $rank = getProfileData();
 
-$claimed_challenges = $_SESSION['claimed_challenges'];
-
 $class = new Queries($db);
 
 $all_badges = $class->getBadges();
 $all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
 
 $claimed_badges = $class->getClaimedBadges($user_id);
+
 
 $user_id = 2;
 
@@ -735,6 +734,12 @@ $user_id = 2;
                                 <h3 class="short-description">Omschrijving</h3>
                                 <div class="description">
                                     <p>Een beginnende escaper</p>
+                                    <!-- delete at handover -->
+                                    <br>
+                                    <div class="check-date-btn date-claimable">CHECK AANTAL JAAR LID</div>
+                                    <br>
+                                    <div class="place-review-btn review-claimable">PLAATS REVIEW</div>
+                                    <!-- delete at handover -->
                                 </div>                                
                             </div>
                         </div>
@@ -755,13 +760,12 @@ $user_id = 2;
                                 <div class="badges-container" style="display: block;">                                    
                                     <div class="badges-content">                                        
                                         <?php
-                                        
                                             if(count($claimed_badges) <= 0) {
                                                 echo '<p class="badges-box-description">Voltooi challenges om badges te krijgen!</p>';
                                             }elseif(count($claimed_badges) > 0){
                                                 echo '';
                                                 foreach($claimed_badges as $badge) {
-                                                    echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimedDate'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
+                                                    echo '<div class="badge" id="badge'.$badge['id'].'" data-badgeId="'.$badge['id'].'" data-badgeTitle="'.$badge['title'].'" data-badgeDesc="'.$badge['description'].'" data-claimedDate="'.$badge['claimed_human_date'].'"><img src="http://localhost/Escapetalk/images/'.$badge['icon'].'"></div>';
                                                 }
                                             }
                                                     

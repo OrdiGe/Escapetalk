@@ -434,6 +434,50 @@
   color: #888;
   font-size: 12px;
 }
+.profiel #profile .container .contentbox .more-information .extra-information .check-date-btn {
+  width: 25%;
+  background-color: #fff;
+  padding: 5px;
+  margin-left: 0px;
+  border-radius: 10px;
+  color: #efefef;
+  border: 2px solid #efefef;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+.profiel #profile .container .contentbox .more-information .extra-information .place-review-btn {
+  width: 25%;
+  background-color: #fff;
+  padding: 5px;
+  margin-left: 0px;
+  border-radius: 10px;
+  color: #efefef;
+  border: 2px solid #efefef;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+.profiel #profile .container .contentbox .more-information .extra-information .date-claimable {
+  background-color: #30d158;
+  border: 0px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.profiel #profile .container .contentbox .more-information .extra-information .review-claimable {
+  background-color: #30d158;
+  border: 0px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 .profiel #profile .container .contentbox .more-information .badges-box p {
   color: #888;
   font-size: 12px;
