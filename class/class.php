@@ -1,6 +1,10 @@
 <?php 
 include_once('dbcon.php');
 include_once 'class/class.pdo.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class Queries{
 
     private $db;
@@ -19,7 +23,7 @@ class Queries{
 
     public function getBadges()
     {
-        $badges = $this->db->run("SELECT id, title, description, points, icon FROM cms_badges")->fetchAll(PDO::FETCH_ASSOC);
+        $badges = $this->db->run("SELECT id, category, title, description, points, icon, completedValue FROM cms_badges")->fetchAll(PDO::FETCH_ASSOC);
 
         return $badges;
 
@@ -28,12 +32,30 @@ class Queries{
     public function getBadgesProcessForUser($badges, $user_id)
     {
         $claimed_badges = $this->db->run("SELECT badge_id, claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_UNIQUE);
-       
+        
         foreach ($badges as &$badge) {
 
             //get random number in array
-            
-            $badge['progress'] = ['currentValue' => 1, 'challengeCompletedValue' => 1];
+
+            if($badge['category'] == 'membership') {
+                $badge['progress'] = ['currentValue' => $this->getYearsActive($user_id), 'challengeCompletedValue' => $badge['completedValue']];
+            }
+            elseif($badge['category'] == 'room_review') {
+                $badge['progress'] = ['currentValue' => $this->roomsReviewProgression($user_id), 'challengeCompletedValue' => $badge['completedValue']];
+            }
+            elseif($badge['category'] == 'game_review') {
+                $badge['progress'] = ['currentValue' => $this->gamesReviewProgression($user_id), 'challengeCompletedValue' => $badge['completedValue']];
+            }
+            elseif($badge['category'] == 'play_room') {
+                $badge['progress'] = ['currentValue' => $this->roomsPlayedProgression($user_id), 'challengeCompletedValue' => $badge['completedValue']];
+            }
+            elseif($badge['category'] == 'play_game') {
+                $badge['progress'] = ['currentValue' => $this->gamesPlayedProgression($user_id), 'challengeCompletedValue' => $badge['completedValue']];
+            }
+            else {
+                $badge['progress'] = ['currentValue' => 0, 'challengeCompletedValue' => 1];
+            }        
+
             $badge['claimed'] = (isset($claimed_badges[$badge['id']]) ? 1 : 0);
 
             if($badge['claimed'] == 0) {
@@ -126,10 +148,68 @@ class Queries{
         return $claimed_human_date;
     }
 
+    public function setProgress($user_id, $challenge_id, $challenge_category, $current_progress) {
+        $progress = $this->db->run("INSERT INTO cms_challenge_progress (user_id, challenge_id, challenge_category, current_progress) VALUES (:user_id, :challenge_id, :challenge_category, :current_progress)", 
+        [
+            ':user_id' => $user_id,
+            ':challenge_id' => $challenge_id,
+            ':challenge_category' => $challenge_category,
+            ':current_progress' => $current_progress
+        ]);
+
+        return $progress;
+    }
+
+    public function challengeRequirements($user_id) {
+        $general_progression = $this->db->run("SELECT * FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $general_progression;
+    }
+
+    public function membershipChallengeRequirements() {
+        $membership_progression = $this->db->run("SELECT completedValue FROM `cms_badges` WHERE category = 'membership'")->fetchAll(PDO::FETCH_ASSOC);
+
+        return $membership_progression;
+    }
+
     public function getYearsActive($user_id) {
-        $years_active = $this->db->run("SELECT added FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch(PDO::FETCH_ASSOC);
+        $added = $this->db->run("SELECT added FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch(PDO::FETCH_ASSOC);
+
+        $years_active = floor((time() - strtotime($added['added'])) / 60 / 60 / 24 / 365);
 
         return $years_active;
+    }
+
+    public function roomsReviewProgression($user_id) {
+        $review_progression = $this->db->run("SELECT user_id, status FROM `cms_reviews` WHERE user_id = :id AND status = 'online'", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+
+        $online_reviews = count($review_progression);
+
+        return $online_reviews;
+    }
+
+    public function roomsPlayedProgression($user_id) {
+        $rooms_played_progression = $this->db->run("SELECT user_id FROM `cms_rooms_played` WHERE user_id = :id", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);  
+        
+        $rooms_played = count($rooms_played_progression);
+
+        return $rooms_played;
+    }
+
+    public function gamesReviewProgression($user_id) {
+        $review_progression = $this->db->run("SELECT user_id, status FROM `cms_games_reviews` WHERE user_id = :id AND status = 'online'", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+
+        $online_reviews = count($review_progression);
+
+        return $online_reviews;
+    }
+
+    public function gamesPlayedProgression($user_id) {
+        $games_played_progression = $this->db->run("SELECT user_id FROM `cms_games_played` WHERE user_id = :id", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+
+        $games_played = count($games_played_progression);
+
+        return $games_played;
     }
 }
 

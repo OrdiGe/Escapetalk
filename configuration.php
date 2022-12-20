@@ -4,6 +4,10 @@ include_once('dbcon.php');
 include_once('class/class.php');
 include_once('class/class.pdo.php');
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $class = new Queries($db);
 
 $user_id = 2;
@@ -11,7 +15,12 @@ $user_id = 2;
 $all_ranks = $class->getRanks();
 
 $all_badges = $class->getBadges();
-$all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
+// $all_completedValues = $class->getChallengeProgression();
+$all_badges_process = $class->getBadgesProcessForUser($all_badges, $user_id);
+
+$review_requirement = $class->roomsReviewProgression($user_id);
+
+
 
 // foreach($all_ranks as $rank)
     // {
@@ -76,12 +85,12 @@ $all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
     //     8 => ["id" => 8, "title" => "Spooky Ontsnapping", "description" => "Speel een kamer tijdens Halloween!", "progress" => ["currentValue" => 1, "challengeCompletedValue" => 1], "claimable" => true, "icon" => "halloweenBadge.svg", "claimed" => false, "expPoints" => 76, "claimedTime" => "", "claimedDate" => ""],
 // ];
 
-uasort($all_badges, function($a, $b) {
-    if ($a['claimedTime'] == $b['claimedTime']) {
-        return 0;
-    }
-    return ($a['claimedTime'] > $b['claimedTime']) ? -1 : 1;
-});
+// uasort($all_badges, function($a, $b) {
+    //     if ($a['claimedTime'] == $b['claimedTime']) {
+    //         return 0;
+    //     }
+    //     return ($a['claimedTime'] > $b['claimedTime']) ? -1 : 1;
+// });
 
 function getProfileData()
 {
@@ -133,3 +142,51 @@ function getProfileData()
     return $return;
 }
 
+function getChallengeProgression() {
+    global $all_badges;
+    global $all_badges_process;
+    global $points;
+    global $user_id;
+    global $class;
+
+    $points = $class->getPoints($user_id);
+
+    //$added_date = $class->getYearsActive($user_id);
+
+    //$difference = floor((time() - strtotime($added_date['added'])) / 60 / 60 / 24 / 365);
+
+    $return = ['currentProgression' => 0, 'neededProgression' => 0, 'percentage' => 0];
+
+    foreach($all_badges as $key => $badge)
+    {
+        $badgeIndex = $key;
+    }
+
+    $return['neededProgression'] = $all_badges[$badgeIndex]['progress']['challengeCompletedValue'];
+    $return['currentProgression'] = $difference;
+    $return['percentage'] = ($return['currentProgression'] / $return['neededProgression']) * 100;
+
+    $setProgress = $class->setProgress($user_id, $all_badges[$badgeIndex]['id'], $all_badges[$badgeIndex]['category'], $return['currentProgression']);
+    
+    return $return;
+}
+
+// function getMembershipProgression() {
+//     global $class;
+//     global $user_id;
+
+//     $return = ['currentProgression' => 0, 'neededProgression' => 0, 'percentage' => 0];
+
+//     foreach($membershipCompletedvalue as $key => $value)
+//     {
+//         $return['neededProgression'] = $value['completedValue'];
+//         $return['currentProgression'] = $difference;
+//         $return['percentage'] = ($return['currentProgression'] / $return['neededProgression']) * 100;
+    
+//         print_r($return);
+//     }
+
+
+// }
+
+// getMembershipProgression();

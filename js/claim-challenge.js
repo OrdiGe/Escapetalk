@@ -29,7 +29,7 @@ u(document).on('click', '.claimable', claimBadge);
 
 u(document).on('click', '.claim-all', claimAllBadges);
 
-u(document).on('click', '.check-date-btn', checkDate)
+u(document).on('click', '.place-review-btn', placeGameReview)
 
 u('.claim-all').html("CLAIM ALLES ("+u('.claimable').length+")");
 
@@ -314,10 +314,10 @@ function claimBadges(badges = [])
 
 }  
 
-function checkDate() {
+function placeGameReview() {
 
     let data = new FormData();
-    data.append('type', 'checkDate');
+    data.append('type', 'placeGameReview');
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
         response.json().then((res) => {

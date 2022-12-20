@@ -9,7 +9,9 @@ include_once('../dbcon.php');
 $user_id = 2;
 $points = $class->getPoints($user_id);
 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 if($_POST['type'] == 'claimBadges')
 {
@@ -86,38 +88,9 @@ if($_POST['type'] == 'claimBadges')
 
 }
 
-if($_POST['type'] == 'checkDate') {
+if($_POST['type'] == 'placeGameReview') {
 
-    $added_date = $class->getYearsActive($user_id);
-
-    $one_year_member = strtotime($added_date['added'] . ' + 1 year' );
-    $two_year_member = strtotime($added_date['added'] . ' + 2 year' );
-    $five_year_member = strtotime($added_date['added'] . ' + 5 year' );
-    $eight_year_member = strtotime($added_date['added'] . ' + 8 year' );
-    $ten_year_member = strtotime($added_date['added'] . ' + 10 year' );
-
-    if(time() >= $ten_year_member) {
-        echo json_encode('10 jaar lid!');
-    }
-    elseif(time() >= $eight_year_member) {
-        echo json_encode('8 jaar lid!');
-    }
-    elseif(time() >= $five_year_member) {
-        echo json_encode('5 jaar lid!');
-    }
-    elseif(time() >= $two_year_member) {
-        echo json_encode('2 jaar lid!');
-    }
-    elseif(time() >= $one_year_member) {
-        echo json_encode('1 jaar lid!');
-    }
-
-
-
-
-    
-
-    
+    echo json_encode('PHP is working');
 }
 
 // $return = [['badge1'], ['badge2'], ['badge3']];
