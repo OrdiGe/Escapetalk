@@ -22,6 +22,12 @@ $all_badges = $class->getBadgesProcessForUser($all_badges, $user_id);
 
 $claimed_badges = $class->getClaimedBadges($user_id);
 
+// delete after handover
+$rooms_review_data = $class->roomsReviewProgression($user_id);
+$rooms_played_data = $class->roomsPlayedProgression($user_id);
+$games_review_data = $class->gamesReviewProgression($user_id);
+$games_played_data = $class->gamesPlayedProgression($user_id);
+$forum_posts_data = $class->getUserData($user_id);
 
 $user_id = 2;
 
@@ -537,11 +543,7 @@ $user_id = 2;
                                             Profiel bewerken</a>
                                         </div>                                                                        
                                     </div>
-                                </div>                                
-                                
-                                
-
-
+                                </div>                          
                             </div>
 
                             <div class="right">
@@ -591,11 +593,11 @@ $user_id = 2;
 
                                             <div class="label-container">
                                                 <div class="labels">
-                                                    <p class="label number">0</p>
+                                                    <p class="label number"><?php echo $rooms_review_data ?></p>
                                                     <p class="label statistic">kamer<br>reviews</p>
                                                 </div>
                                                 <div class="labels">
-                                                    <p class="label number">0</p>
+                                                    <p class="label number"><?php echo $rooms_played_data ?></p>
                                                     <p class="label statistic">kamers<br>gespeeld</p>
                                                 </div>
                                                 <div class="labels full-width">
@@ -603,15 +605,15 @@ $user_id = 2;
                                                     <p class="label statistic">ontsnappings<br>percentage</p>
                                                 </div>
                                                 <div class="labels">
-                                                    <p class="label number">0</p>
+                                                    <p class="label number"><?php echo $games_review_data ?></p>
                                                     <p class="label statistic">game<br>reviews</p>
                                                 </div>
                                                 <div class="labels">
-                                                    <p class="label number">0</p>
+                                                    <p class="label number"><?php echo $games_played_data ?></p>
                                                     <p class="label statistic">games<br>gespeeld</p>
                                                 </div>
                                                 <div class="labels full-width">
-                                                    <p class="label number">0</p>
+                                                    <p class="label number"><?php echo $forum_posts_data[0]['posts'] ?></p>
                                                     <p class="label statistic">forum<br>berichten</p>
                                                 </div>
                                             </div>                                            

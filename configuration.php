@@ -142,34 +142,34 @@ function getProfileData()
     return $return;
 }
 
-function getChallengeProgression() {
-    global $all_badges;
-    global $all_badges_process;
-    global $points;
-    global $user_id;
-    global $class;
+// function getChallengeProgression() {
+//     global $all_badges;
+//     global $all_badges_process;
+//     global $points;
+//     global $user_id;
+//     global $class;
 
-    $points = $class->getPoints($user_id);
+//     $points = $class->getPoints($user_id);
 
-    //$added_date = $class->getYearsActive($user_id);
+//     //$added_date = $class->getYearsActive($user_id);
 
-    //$difference = floor((time() - strtotime($added_date['added'])) / 60 / 60 / 24 / 365);
+//     //$difference = floor((time() - strtotime($added_date['added'])) / 60 / 60 / 24 / 365);
 
-    $return = ['currentProgression' => 0, 'neededProgression' => 0, 'percentage' => 0];
+//     $return = ['currentProgression' => 0, 'neededProgression' => 0, 'percentage' => 0];
 
-    foreach($all_badges as $key => $badge)
-    {
-        $badgeIndex = $key;
-    }
+//     foreach($all_badges as $key => $badge)
+//     {
+//         $badgeIndex = $key;
+//     }
 
-    $return['neededProgression'] = $all_badges[$badgeIndex]['progress']['challengeCompletedValue'];
-    $return['currentProgression'] = $difference;
-    $return['percentage'] = ($return['currentProgression'] / $return['neededProgression']) * 100;
+//     $return['neededProgression'] = $all_badges[$badgeIndex]['progress']['challengeCompletedValue'];
+//     $return['currentProgression'] = $difference;
+//     $return['percentage'] = ($return['currentProgression'] / $return['neededProgression']) * 100;
 
-    $setProgress = $class->setProgress($user_id, $all_badges[$badgeIndex]['id'], $all_badges[$badgeIndex]['category'], $return['currentProgression']);
+//     $setProgress = $class->setProgress($user_id, $all_badges[$badgeIndex]['id'], $all_badges[$badgeIndex]['category'], $return['currentProgression']);
     
-    return $return;
-}
+//     return $return;
+// }
 
 // function getMembershipProgression() {
 //     global $class;

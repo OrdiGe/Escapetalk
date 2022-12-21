@@ -70,7 +70,7 @@ class Queries{
                 $badge['claimable'] = 0;
             }
         }
-       // print_r($badges);
+
         return $badges;
     }
 
@@ -142,6 +142,15 @@ class Queries{
         return $log;
     }
 
+    public function gameReviewInsert($user_id) {
+        $insert = $this->db->run("INSERT INTO cms_games_reviews (user_id) VALUES (:user_id)", 
+        [
+            ':user_id' => $user_id
+        ]);
+
+        return $insert;
+    }
+
     public function getClaimedHumanDate($user_id) {
         $claimed_human_date = $this->db->run("SELECT claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
 
@@ -160,10 +169,12 @@ class Queries{
         return $progress;
     }
 
-    public function challengeRequirements($user_id) {
-        $general_progression = $this->db->run("SELECT * FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $general_progression;
+    public function getUserData($user_id) {
+        $general_progression = $this->db->run("SELECT * FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetchAll();
+
+        $array = json_decode(json_encode($general_progression), true);
+
+        return $array;
     }
 
     public function membershipChallengeRequirements() {

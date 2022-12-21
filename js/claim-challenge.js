@@ -321,6 +321,7 @@ function placeGameReview() {
 
     fetch('http://localhost/Escapetalk/includes/ajax.inc.php', {method: 'POST', body: data}).then(response => {
         response.json().then((res) => {
+            location.reload(true);
             console.log(res);
         });
     });

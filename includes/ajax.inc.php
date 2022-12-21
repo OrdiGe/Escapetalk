@@ -90,6 +90,8 @@ if($_POST['type'] == 'claimBadges')
 
 if($_POST['type'] == 'placeGameReview') {
 
+    $game_review_insert = $class->gameReviewInsert($user_id);
+
     echo json_encode('PHP is working');
 }
 
