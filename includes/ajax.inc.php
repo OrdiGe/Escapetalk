@@ -6,7 +6,6 @@ include_once('../class/class.php');
 include_once('../class/class.pdo.php');
 include_once('../dbcon.php');
 
-$user_id = 2;
 $points = $class->getPoints($user_id);
 
 ini_set('display_errors', 1);

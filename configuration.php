@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 $class = new Queries($db);
 
-$user_id = 2;
+$user_id = 723;
 
 $all_ranks = $class->getRanks();
 

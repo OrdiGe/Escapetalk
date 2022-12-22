@@ -840,6 +840,7 @@
   }
   .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
     margin-left: 10px;
+    text-align: center;
   }
   .profiel #profile .container .contentbox .more-information .challenges-top-container {
     display: flex;

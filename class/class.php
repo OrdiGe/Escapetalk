@@ -186,7 +186,7 @@ class Queries{
     public function getYearsActive($user_id) {
         $added = $this->db->run("SELECT added FROM `site_users` WHERE id = :id", [':id' => $user_id])->fetch(PDO::FETCH_ASSOC);
 
-        $years_active = floor((time() - strtotime($added['added'])) / 60 / 60 / 24 / 365);
+        $years_active = round((time() - strtotime($added['added'])) / 60 / 60 / 24 / 365, 1);
 
         return $years_active;
     }
@@ -221,6 +221,14 @@ class Queries{
         $games_played = count($games_played_progression);
 
         return $games_played;
+    }
+
+    public function getEscapePercentage($user_id) {
+        $review_progression = $this->db->run("SELECT `user_id`, `escaped` FROM `cms_reviews` WHERE `user_id` = :id AND `escaped` = 'ja'", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
+
+        $escape_percentage = round((count($review_progression) / $this->roomsReviewProgression($user_id)) * 100, 1);
+
+        return $escape_percentage;
     }
 }
 

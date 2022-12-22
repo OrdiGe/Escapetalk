@@ -28,8 +28,7 @@ $rooms_played_data = $class->roomsPlayedProgression($user_id);
 $games_review_data = $class->gamesReviewProgression($user_id);
 $games_played_data = $class->gamesPlayedProgression($user_id);
 $forum_posts_data = $class->getUserData($user_id);
-
-$user_id = 2;
+$escape_percentage = $class->getEscapePercentage($user_id);
 
 ?>
 
@@ -537,7 +536,7 @@ $user_id = 2;
                                     <div class="title-container">
                                         
                                         <div class="title">                                        
-                                            <h1>Ordige</h1>
+                                            <h1><?php echo $forum_posts_data[0]['nickname'] ?></h1>
                                             <a href="/instellingen/" class="btn btn-slim full-width-button edit-profile">
                                                 <svg class="svg-inline--fa fa-user-pen" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user-pen" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" data-fa-i2svg=""><path fill="currentColor" d="M223.1 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 223.1 256zM274.7 304H173.3C77.61 304 0 381.7 0 477.4C0 496.5 15.52 512 34.66 512h286.4c-1.246-5.531-1.43-11.31-.2832-17.04l14.28-71.41c1.943-9.723 6.676-18.56 13.68-25.56l45.72-45.72C363.3 322.4 321.2 304 274.7 304zM371.4 420.6c-2.514 2.512-4.227 5.715-4.924 9.203l-14.28 71.41c-1.258 6.289 4.293 11.84 10.59 10.59l71.42-14.29c3.482-.6992 6.682-2.406 9.195-4.922l125.3-125.3l-72.01-72.01L371.4 420.6zM629.5 255.7l-21.1-21.11c-14.06-14.06-36.85-14.06-50.91 0l-38.13 38.14l72.01 72.01l38.13-38.13C643.5 292.5 643.5 269.7 629.5 255.7z"></path></svg><!-- <i class="fas fa-user-edit"></i> -->
                                             Profiel bewerken</a>
@@ -564,8 +563,8 @@ $user_id = 2;
                                                     <path id="Icon_material-location-on" data-name="Icon material-location-on" d="M14.15,3A6.645,6.645,0,0,0,7.5,9.65C7.5,14.638,14.15,22,14.15,22S20.8,14.638,20.8,9.65A6.645,6.645,0,0,0,14.15,3Zm0,9.025A2.375,2.375,0,1,1,16.525,9.65,2.376,2.376,0,0,1,14.15,12.025Z" transform="translate(-7.5 -3)" fill="#ec202c"/>
                                                   </svg>
                                                   
-                                                <p>Hoensbroek,</p>
-                                                <p>Limburg</p>
+                                                <p><?php echo $forum_posts_data[0]['location'] ?>,</p>
+                                                <p>Brussels Hofstedelijk Gewest</p>
                                             </div>
                                             <div class="item-category">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17.1" height="19" viewBox="0 0 17.1 19">
@@ -573,7 +572,7 @@ $user_id = 2;
                                                   </svg>
                                                   
                                                 <p>Lid sinds: </p>
-                                                <p>30-08-2022</p>
+                                                <p><?php echo date('d-m-Y', strtotime($forum_posts_data[0]['added'])) ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -601,7 +600,7 @@ $user_id = 2;
                                                     <p class="label statistic">kamers<br>gespeeld</p>
                                                 </div>
                                                 <div class="labels full-width">
-                                                    <p class="label number">0%</p>
+                                                    <p class="label number"><?php echo $escape_percentage ?>%</p>
                                                     <p class="label statistic">ontsnappings<br>percentage</p>
                                                 </div>
                                                 <div class="labels">

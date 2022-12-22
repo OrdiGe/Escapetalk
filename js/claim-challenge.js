@@ -65,7 +65,6 @@ function claimBadges(badges = [])
                     singleNotification('Je hebt de badge "'+badge.title+'" verdiend!', '/badges/');
                 }
 
-                // modal('info', ''+e.title+'', 'Deze badge is behaald op deze datum', 'test', 'test',{'Sluiten' : 'Sluiten'});
                 u('#badge'+badge.id+'').addClass("badge-ani");
                 u('.challenge[data-challengeId="'+badge.id+'"] .claimable').removeClass('claimable');
                 u('.challenge[data-challengeId="'+badge.id+'"]').off('click');
@@ -142,7 +141,7 @@ function claimBadges(badges = [])
                             // u('.progression-text').html("Progressie: " + score + " / " + e[currentRank].minScore);
                             
                             
-                        // });
+                        //  }); 
                         
                         // You haven't gone rank up
                         if (u('a.rank').html() == res.rank.name){
