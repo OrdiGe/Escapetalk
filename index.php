@@ -564,7 +564,7 @@ $escape_percentage = $class->getEscapePercentage($user_id);
                                                   </svg>
                                                   
                                                 <p><?php echo $forum_posts_data[0]['location'] ?>,</p>
-                                                <p>Brussels Hofstedelijk Gewest</p>
+                                                <p>(Provincie / Land)</p>
                                             </div>
                                             <div class="item-category">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="17.1" height="19" viewBox="0 0 17.1 19">

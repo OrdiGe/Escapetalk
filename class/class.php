@@ -226,7 +226,12 @@ class Queries{
     public function getEscapePercentage($user_id) {
         $review_progression = $this->db->run("SELECT `user_id`, `escaped` FROM `cms_reviews` WHERE `user_id` = :id AND `escaped` = 'ja'", [':id' => $user_id])->fetchAll(PDO::FETCH_ASSOC);
 
-        $escape_percentage = round((count($review_progression) / $this->roomsReviewProgression($user_id)) * 100, 1);
+        if($this->roomsReviewProgression($user_id) == 0) {
+            $escape_percentage = round((count($review_progression) / 1) * 100, 1);
+        }
+        else {
+            $escape_percentage = round((count($review_progression) / $this->roomsReviewProgression($user_id)) * 100, 1);
+        }
 
         return $escape_percentage;
     }
