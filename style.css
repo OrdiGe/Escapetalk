@@ -133,15 +133,15 @@
   color: #fd4c4c;
 }
 .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category {
-  display: flex;
   margin-bottom: 15px;
-  align-items: center;
 }
 .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category svg {
-  width: 17px;
+  width: 100%;
 }
 .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
-  margin-left: 10px;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
 }
 .profiel #profile .container .contentbox .profile-header .header-info .lazy-loaded {
   display: flex;
@@ -553,6 +553,20 @@
     background-color: #fff;
     border-radius: 0 5px 0 0;
     font-size: 12px;
+  }
+  .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category svg {
+    width: 17px;
+  }
+  .profiel #profile .container .contentbox .profile-header .header-info .right .contact-information .item-wrapper .item .item-category p {
+    margin-left: 10px;
+    margin-top: 0px;
+    width: unset;
+    text-align: left;
   }
   .profiel #profile .container .contentbox .more-information .grid .item-wrapper .challenges-box #confetti-canvas {
     width: 528px;

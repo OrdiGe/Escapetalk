@@ -131,14 +131,14 @@
 								.item-wrapper {
 									.item {
 										.item-category {
-											display: flex;
 											margin-bottom: 15px;
-											align-items: center;
 											svg {
-												width: 17px;
+												width: 100%;
 											}
 											p {
-												margin-left: 10px;
+												margin-top: 10px;
+												width: 100%;
+												text-align: center;
 											}
 										}
 									}
@@ -614,11 +614,35 @@
 									font-size: 12px;
 								}
 							}
+							.right {
+								.contact-information {
+									.item-wrapper {
+										.item {
+											.item-category {
+												display: flex;
+												margin-bottom: 15px;
+												align-items: center;
+												svg {
+													width: 17px;
+												}
+												p {
+													margin-left: 10px;
+													margin-top: 0px;
+													width: unset;
+													text-align: left;
+												}
+											}
+										}
+									}
+								}
+								
+							}
 						}
 					}
 					.more-information {
 						.grid {
 							.item-wrapper {
+								
 								.challenges-box {
 									#confetti-canvas {
 										width: 528px;
@@ -721,6 +745,7 @@
 		align-items: center;
 		position: unset;
 	}
+	
 }
 @media (min-width: 768px) {
 	.profiel {
