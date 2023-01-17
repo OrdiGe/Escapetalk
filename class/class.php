@@ -31,9 +31,6 @@ class Queries{
         $claimed_badges = $this->db->run("SELECT badge_id, claimed_human_date FROM `cms_claimed_badges` WHERE user_id = :user_id", [':user_id' => $user_id])->fetchAll(PDO::FETCH_UNIQUE);
         
         foreach ($badges as &$badge) {
-
-            //get random number in array
-
             if($badge['category'] == 'membership') {
                 $badge['progress'] = ['currentValue' => $this->getYearsActive($user_id), 'challengeCompletedValue' => $badge['completedValue']];
             }

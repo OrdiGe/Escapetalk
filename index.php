@@ -924,7 +924,6 @@ var CSS_VERSION = '0.5.9';
 <script src="https://lift3cdn.nl/js/lazysizes.5.2.1-rc2.min.js?v=0.5.5" async=""></script>
 <script src="https://lift3cdn.nl/js/hoverintent-2.2.1.js?v=0.5.5"></script>
 
-<!-- <script src="http://localhost/Escapetalk/button-confetti.js"></script> -->
 <script src="http://localhost/Escapetalk/js/confetti-button.js"></script>
 <script src="http://localhost/Escapetalk/js/claim-challenge.js"></script>
 <script src="http://localhost/Escapetalk/js/badge-click.js"></script>
