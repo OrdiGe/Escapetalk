@@ -32,11 +32,13 @@ u(document).on('click', '.place-review-btn', placeGameReview)
 
 u('.claim-all').html("CLAIM ALLES ("+u('.claimable').length+")");
 
+//Als er op een badge wordt geklikt, dan wordt de badge info weergegeven via een modal
 u(document).on('click', '.badge', function() {
     console.log(u(this).data('badgeDesc'));
     modal('info', u(this).data('badgeTitle'), u(this).data('badgeDesc')+' </br></br> Deze badge is behaald op '+u(this).data('claimedDate')+'', 'test', 'test',{'Sluiten' : 'Sluiten'});
 });
 
+//De funcie die de badges claimt
 function claimBadges(badges = [])
 {
     let data = new FormData();
@@ -47,6 +49,7 @@ function claimBadges(badges = [])
 
     setTimeout(function(){ u('.badge').removeClass("badge-ani"); }, 750);
 
+    //Als meer dan 2 badges worden geclaimd, dan zie je alleen het aantal geclaimde challenges in de notification
     if(badges.length >= 3) {
         multipleNotifications(u('.claimable').length, 'small');
     }
@@ -57,9 +60,12 @@ function claimBadges(badges = [])
             Object.keys(res.badges).forEach(function(k){
 
                 var badge = res.badges[k];
-    
+                
+                //Badge wordt toegevoegd in de div
                 u('.badges-content').prepend(u('<div class="badge" id="badge'+badge.id+'" data-badgeId="'+badge.id+'" data-badgeTitle="'+badge.title+'" data-badgeDesc="'+badge.description+'" data-claimedDate="'+badge.claimed_human_date+'"><img src="http://localhost/Escapetalk/images/'+badge.icon+'"></div>'));
+                
                 u('.badges-box-description').remove();
+                
                 if(badges.length < 3) {
                     singleNotification('Je hebt de badge "'+badge.title+'" verdiend!', '/badges/');
                 }
